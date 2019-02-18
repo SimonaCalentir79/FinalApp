@@ -1,0 +1,15 @@
+﻿@model SchoolJournalModels.Persons
+
+<div>
+    <h2>DETAILS</h2>
+    <br />
+    <p>ID: @Model.PersonID</p>
+    <br />
+    <h3>Name: @Model.PersonName</h3>
+
+    <p>E-mail: @Model.PersonEmail</p>
+    <p>Phone: @Model.PersonPhone</p>
+    <p>Address: @Model.PersonAddress</p>
+    <br />
+    <p>@Html.ActionLink("Back to list", "Index", "Persons")</p>
+</div>
