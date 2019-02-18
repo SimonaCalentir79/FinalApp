@@ -186,6 +186,24 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SchoolJournalBusinessLogic\SchoolJournalBusinessLogic.csproj">
+      <Project>{22774e84-8903-451d-bff3-524505598e6c}</Project>
+      <Name>SchoolJournalBusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SchoolJournalDataAccess\SchoolJournalDataAccess.csproj">
+      <Project>{f99141e3-0c50-48cc-925e-f0e65b005107}</Project>
+      <Name>SchoolJournalDataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SchoolJournalInterfaces\SchoolJournalInterfaces.csproj">
+      <Project>{043529a0-ced6-4dd9-aebf-1d24ed7137fc}</Project>
+      <Name>SchoolJournalInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SchoolJournalModels\SchoolJournalModels.csproj">
+      <Project>{6e93a2bd-61e6-44d0-9766-87ff911fc1ef}</Project>
+      <Name>SchoolJournalModels</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
