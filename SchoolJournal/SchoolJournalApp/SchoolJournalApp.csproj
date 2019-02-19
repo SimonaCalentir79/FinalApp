@@ -207,6 +207,7 @@
     <Content Include="Views\Semesters\Index.cshtml" />
     <Content Include="Views\Semesters\Update.cshtml" />
     <Content Include="Views\Persons\AddSchoolSubject.cshtml" />
+    <Content Include="Views\Persons\AddHomework.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

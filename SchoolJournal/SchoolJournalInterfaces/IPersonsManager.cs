@@ -23,6 +23,8 @@ namespace SchoolJournalInterfaces
 
         void AddSchoolSubject(Subjects subject);
 
+        void AddHomework(Homework homework);
+
         string[] GetSubjects();
     }
 }

@@ -108,6 +108,7 @@ namespace SchoolJournalApp.Controllers
             }
             return View(person);
         }
+
         [HttpGet]
         public ActionResult AddSchoolSubject()
         {
@@ -131,6 +132,23 @@ namespace SchoolJournalApp.Controllers
         {
             var subjects = manager.GetSubjects();
             return JsonConvert.SerializeObject(subjects);
+        }
+
+        [HttpGet]
+        public ActionResult AddHomework()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddHomework(Homework homework)
+        {
+            if (ModelState.IsValid)
+            {
+                manager.AddHomework(homework);
+                return RedirectToAction("../Home/Index");
+            }
+            return View(homework);
         }
     }
 }

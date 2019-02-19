@@ -70,5 +70,14 @@ namespace SchoolJournalBusinessLogic
             db.Subjects.Add(subject);
             db.SaveChanges();
         }
+
+        public void AddHomework(Homework homework)
+        {
+            homework.StudentID = 1;
+            homework.SubjectID = 1;
+            db.Homework.Add(homework);
+            db.SaveChanges();
+        }
+
     }
 }

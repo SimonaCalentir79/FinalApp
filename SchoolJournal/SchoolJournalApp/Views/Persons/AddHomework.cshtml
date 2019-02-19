@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "AddHomework";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model SchoolJournalModels.Homework
+@section Scripts{
+    <script src="~/Scripts/ScriptMonica.js"></script>
+}
+
+<h2>AddHomework</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="control-label col-md-3">
+                <label for="formGroupExampleInput">Details</label>
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(h => h.Details, new { htmlAttributes = new { @class = "form-control", placeholder = "Details", type = "text" } })
+                @Html.ValidationMessageFor(h => h.Details, "", new { @class = "text-danger" })
+            </div>
+
+            <br />
+            <br />
+            <br />
+            <div class="control-label col-md-3">
+                <label for="formGroupExampleInput">Date of Homework</label>
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(h => h.DateOfHomework, new { htmlAttributes = new { @class = "form-control", id = "today", type = "date" } })
+                @Html.ValidationMessageFor(h => h.DateOfHomework, "", new { @class = "text-danger" })
+            </div>
+
+            <br />
+            <br />
+            <br />
+            <div class="control-label col-md-3">
+                <label for="formGroupExampleInput">Due date</label>
+            </div>
+            <div class="col-md-9">
+                @Html.EditorFor(h => h.DueDate, new { htmlAttributes = new { @class = "form-control", id = "dateOfBirth", placeholder = "Due date", type = "date" } })
+                @Html.ValidationMessageFor(h => h.DueDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
