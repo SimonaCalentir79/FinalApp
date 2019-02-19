@@ -18,6 +18,7 @@ namespace SchoolJournalBusinessLogic
         public PersonsManager()
         {
             db = new SchoolJournalEntities();
+
         }
 
         public IList<Persons> GetAllPersons()
