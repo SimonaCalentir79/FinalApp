@@ -20,5 +20,9 @@ namespace SchoolJournalInterfaces
         void Delete(int id);
 
         void Add(Persons person);
+
+        void AddSchoolSubject(Subjects subject);
+
+        string[] GetSubjects();
     }
 }

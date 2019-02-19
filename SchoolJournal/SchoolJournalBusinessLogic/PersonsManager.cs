@@ -58,5 +58,17 @@ namespace SchoolJournalBusinessLogic
             db.Persons.Add(person);
             db.SaveChanges();
         }
+
+        public string[] GetSubjects()
+        {
+            return db.Subjects.Select(s => s.SubjectName).ToArray();
+        }
+
+        public void AddSchoolSubject(Subjects subject)
+        {
+            subject.TeacherID = 1;
+            db.Subjects.Add(subject);
+            db.SaveChanges();
+        }
     }
 }

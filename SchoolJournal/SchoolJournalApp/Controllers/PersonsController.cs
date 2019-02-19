@@ -1,4 +1,5 @@
-﻿using PagedList;
+﻿using Newtonsoft.Json;
+using PagedList;
 using SchoolJournalBusinessLogic;
 using SchoolJournalInterfaces;
 using SchoolJournalModels;
@@ -106,6 +107,30 @@ namespace SchoolJournalApp.Controllers
                 return RedirectToAction("Index");
             }
             return View(person);
+        }
+        [HttpGet]
+        public ActionResult AddSchoolSubject()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddSchoolSubject(Subjects subject)
+        {
+            if (ModelState.IsValid)
+            {
+                manager.AddSchoolSubject(subject);
+                return RedirectToAction("../Home/Index");
+            }
+            return View(subject);
+        }
+
+        [HttpGet]
+        [Route("/Persons/GetAllSubjects")]
+        public string GetAllSubjects()
+        {
+            var subjects = manager.GetSubjects();
+            return JsonConvert.SerializeObject(subjects);
         }
     }
 }
