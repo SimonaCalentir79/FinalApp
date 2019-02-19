@@ -16,10 +16,6 @@ namespace SchoolJournalApp.Controllers
             manager = new PersonsManager();
         }
 
-        //public ActionResult Index()
-        //{
-        //    return View(manager.GetAllPersons());
-        //}
 
         public ActionResult Index(string option, string search, int? pageNumber)
         {
