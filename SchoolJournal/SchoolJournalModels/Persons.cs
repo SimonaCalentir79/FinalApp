@@ -18,16 +18,16 @@ namespace SchoolJournalModels
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        [DisplayName("ID ")]
+        [DisplayName("ID: ")]
         public int PersonID { get; set; }
 
         [Required]
-        [DisplayName("Name ")]
+        [DisplayName("Name: ")]
         public string PersonName { get; set; }
 
         [Required]
         [EmailAddress]
-        [DisplayName("E-mail ")]
+        [DisplayName("E-mail: ")]
         public string PersonEmail { get; set; }
 
         [DisplayName("Phone: ")]
