@@ -1,0 +1,13 @@
+﻿@model SchoolJournalModels.GradeCategory
+
+<div>
+    <h2>DETAILS</h2>
+    <br />
+    <p>ID: @Model.CategoryID</p>
+    <br />
+    <h3>Name: @Model.CategoryName</h3>
+
+    <p>E-mail: @Model.Share</p>
+    <br />
+    <p>@Html.ActionLink("Back to list", "Index", "GradeCategory")</p>
+</div>

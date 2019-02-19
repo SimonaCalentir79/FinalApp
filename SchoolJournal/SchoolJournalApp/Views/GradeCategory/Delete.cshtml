@@ -1,0 +1,40 @@
+﻿@model SchoolJournalModels.GradeCategory
+
+
+<h2>DELETE</h2>
+<h3>Are you sure you want to delete this information?</h3>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(gc => gc.CategoryID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(gc => gc.CategoryID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(gc => gc.CategoryName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(gc => gc.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(gc => gc.Share)
+        </dt>
+        <dd>
+            @Html.DisplayFor(gc => gc.Share)
+        </dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <input type="submit" value="Delete" class="btn btn-primary" />
+            @Html.ActionLink("Cancel", "Index", "GradeCategory")
+        </div>
+    }
+</div>

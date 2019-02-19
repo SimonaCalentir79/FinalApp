@@ -1,0 +1,62 @@
+﻿
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<SchoolJournalModels.GradeCategory>
+
+<br />
+<h2>GRADE CATEGORY (@Model.Count records)</h2>
+<br />
+<div>
+    <p>
+        <strong>@Html.ActionLink("ADD NEW GRADE CATEGORY", "Add", "GradeCategory")</strong>
+    </p>
+</div>
+<br />
+<div>
+    @using (Html.BeginForm("Index", "GradeCategory", FormMethod.Get))
+    {
+        <b>Search option: </b>
+        @Html.RadioButton("option", "Name")<text> Name </text>
+        @Html.TextBox("search") <input type="submit" value="Search" class="btn btn-primary" />
+    }
+</div>
+<br />
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Share(%)</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count == 0)
+            {
+                <tr>
+                    <td colspan="5">
+                        <i>Records not found</i>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                foreach (var grdctg in Model)
+                {
+                    <tr>
+                        <td>@grdctg.CategoryName</td>
+                        <td>@grdctg.Share</td>
+                        <td>@Html.ActionLink("Details", "Details", "GradeCategory", new { @id = grdctg.CategoryID }, null)</td>
+                        <td>@Html.ActionLink("Edit", "Update", "GradeCategory", new { @id = grdctg.CategoryID }, null)</td>
+                        <td>@Html.ActionLink("Delete", "Delete", "GradeCategory", new { @id = grdctg.CategoryID }, null)</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, option = Request.QueryString["option"], search = Request.QueryString["search"] }))
+</div>

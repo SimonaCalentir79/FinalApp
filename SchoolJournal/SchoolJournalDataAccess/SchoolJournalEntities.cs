@@ -4,11 +4,17 @@ using System.Text;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using SchoolJournalModels;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace SchoolJournalDataAccess
 {
     public class SchoolJournalEntities: DbContext
     {
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }
+
         public SchoolJournalEntities():base("name=SchoolJournalEntities"){}
 
         public virtual DbSet<GradeCategory> GradeCategory { get; set; }
