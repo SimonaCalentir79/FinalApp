@@ -1,0 +1,24 @@
+﻿@model SchoolJournalModels.Semesters
+
+<div>
+    <h2>UPDATE</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(s => s.SemesterID)
+        <div class="form-group">
+            @Html.LabelFor(s => s.SemesterNumber)
+            @Html.TextBoxFor(s => s.SemesterNumber, null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(s => s.SemesterNumber)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(s => s.SchoolYear)
+            @Html.TextBoxFor(s => s.SchoolYear, null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(s => s.SchoolYear)
+        </div>
+
+        <input type="submit" value="Save" class="btn btn-primary" />
+        @Html.ActionLink("Cancel", "Index", "Semesters");
+    }
+</div>

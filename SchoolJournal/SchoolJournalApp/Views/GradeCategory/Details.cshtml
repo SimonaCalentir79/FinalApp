@@ -3,11 +3,11 @@
 <div>
     <h2>DETAILS</h2>
     <br />
-    <p>ID: @Model.CategoryID</p>
+    <p>@Html.DisplayNameFor(gc => gc.CategoryID): @Model.CategoryID</p>
     <br />
-    <h3>Name: @Model.CategoryName</h3>
+    <h3>@Html.DisplayNameFor(gc => gc.CategoryName): @Model.CategoryName</h3>
 
-    <p>E-mail: @Model.Share</p>
+    <p>@Html.DisplayNameFor(gc => gc.Share): @Model.Share</p>
     <br />
     <p>@Html.ActionLink("Back to list", "Index", "GradeCategory")</p>
 </div>

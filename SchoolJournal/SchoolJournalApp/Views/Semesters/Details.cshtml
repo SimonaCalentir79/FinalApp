@@ -1,0 +1,13 @@
+﻿@model SchoolJournalModels.Semesters
+
+<div>
+    <h2>DETAILS</h2>
+    <br />
+    <p>@Html.DisplayNameFor(s => s.SemesterID): @Model.SemesterID</p>
+    <br />
+    <h3>@Html.DisplayNameFor(s => s.SemesterNumber): @Model.SemesterNumber</h3>
+
+    <p>@Html.DisplayNameFor(s => s.SchoolYear): @Model.SchoolYear</p>
+    <br />
+    <p>@Html.ActionLink("Back to list", "Index", "Semesters")</p>
+</div>
