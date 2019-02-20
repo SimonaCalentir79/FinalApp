@@ -4,74 +4,39 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - SchoolJournal (ASP.NET Application)</title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav class="mb-1 navbar navbar-expand-lg navbar-dark danger-color lighten-1">
+    <nav class="navbar navbar-inverse">
         <div class="container">
-            <a class="navbar-brand" href="../Home/Index">School Journal</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
-                    aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../Home/Index">
-                            Home
-                            <span class="sr-only">(current)</span>
-                        </a>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../Home/Index">School Journal</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="../Home/Index">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Records<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../Teacher/Index">Teachers</a></li>
+                            <li><a href="../Subject/Index">Subjects</a></li>
+                            <li><a href="../GradeCategory/Index">Grade categories</a></li>
+                            <li><a href="../Semester/Index">Semesters</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Home/About">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Home/Contact">Contact</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-555" data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false">
-                            Info&amp;Settings
-                        </a>
-                        <div class="dropdown-menu dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-555">
-                            <a class="dropdown-item" href="../Teacher/Index">Teachers</a>
-                            <a class="dropdown-item" href="../GradeCategory/Index">Grade category</a>
-                            <a class="dropdown-item" href="../Semester/Index">Semesters</a>
-                            <a class="dropdown-item" href="../Subject/Index">Subjects</a>
-                        </div>
-                    </li>
+                    <li><a href="../Home/About">About</a></li>
+                    <li><a href="../Home/Contact">Contact</a></li>
                 </ul>
-                <ul class="navbar-nav ml-auto nav-flex-icons" style="float: right;">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Home/Login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Home/Register">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect waves-light">
-                            1
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item avatar dropdown">
-                        <a style="padding-top: 0px;" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false">
-                            <img style="height:50px;" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="rounded-circle z-depth-0" alt="avatar image">
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 </ul>
             </div>
         </div>
@@ -83,14 +48,6 @@
             <p>&copy; @DateTime.Now.Year - School Journal Application</p>
         </footer>
     </div>
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/js/mdb.min.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
