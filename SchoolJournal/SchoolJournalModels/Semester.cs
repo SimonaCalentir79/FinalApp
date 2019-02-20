@@ -20,9 +20,11 @@ namespace SchoolJournalModels
         [DisplayName("ID ")]
         public int SemesterID { get; set; }
 
+        [Required]
         [DisplayName("No. of semester ")]
         public int SemesterNumber { get; set; }
 
+        [Required]
         [DisplayName("School year ")]
         public string SchoolYear { get; set; }
 

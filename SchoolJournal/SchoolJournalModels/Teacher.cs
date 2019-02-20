@@ -11,19 +11,21 @@ namespace SchoolJournalModels
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        [DisplayName("ID: ")]
+        [DisplayName("ID ")]
         public int TeacherID { get; set; }
 
         [Required]
-        [DisplayName("Name: ")]
+        [DisplayName("Name of teacher: ")]
         public string TeacherName { get; set; }
 
         [Required]
         [EmailAddress]
-        [DisplayName("E-mail: ")]
+        [DisplayName("E-mail ")]
         public string TeacherEmail { get; set; }
 
-        [DisplayName("Phone: ")]
+        [DisplayName("Phone ")]
         public string TeacherPhone { get; set; }
+
+        public ICollection<Subject> Subjects { get; set; }
     }
 }

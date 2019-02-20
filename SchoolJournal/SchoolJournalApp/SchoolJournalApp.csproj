@@ -142,6 +142,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\GradeCategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\SemesterController.cs" />
     <Compile Include="Global.asax.cs">
@@ -206,6 +207,11 @@
     <Content Include="Views\Semester\Details.cshtml" />
     <Content Include="Views\Semester\Index.cshtml" />
     <Content Include="Views\Semester\Update.cshtml" />
+    <Content Include="Views\Subject\Index.cshtml" />
+    <Content Include="Views\Subject\Details.cshtml" />
+    <Content Include="Views\Subject\Delete.cshtml" />
+    <Content Include="Views\Subject\Update.cshtml" />
+    <Content Include="Views\Subject\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

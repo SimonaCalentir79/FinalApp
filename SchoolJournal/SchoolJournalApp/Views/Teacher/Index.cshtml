@@ -25,11 +25,9 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>E-mail</th>
-                <th>Phone</th>
-                <th></th>
-                <th></th>
+                <th><b>Name</b></th>
+                <th><b>E-mail</b></th>
+                <th><b>Phone</b></th>
                 <th></th>
             </tr>
         </thead>
@@ -37,7 +35,7 @@
             @if (Model.Count == 0)
             {
                 <tr>
-                    <td colspan="6">
+                    <td colspan="4">
                         <i>Records not found</i>
                     </td>
                 </tr>
@@ -50,9 +48,9 @@
                         <td>@teach.TeacherName</td>
                         <td>@teach.TeacherEmail</td>
                         <td>@teach.TeacherPhone</td>
-                        <td>@Html.ActionLink("Details", "Details", "Teacher", new { @id = teach.TeacherID }, null)</td>
-                        <td>@Html.ActionLink("Edit", "Update", "Teacher", new { @id = teach.TeacherID }, null)</td>
-                        <td>@Html.ActionLink("Delete", "Delete", "Teacher", new { @id = teach.TeacherID }, null)</td>
+                        <td>@Html.ActionLink("Details", "Details", "Teacher", new { @id = teach.TeacherID }, null) | 
+                            @Html.ActionLink("Edit", "Update", "Teacher", new { @id = teach.TeacherID }, null) | 
+                            @Html.ActionLink("Delete", "Delete", "Teacher", new { @id = teach.TeacherID }, null)</td>
                     </tr>
                 }
             }

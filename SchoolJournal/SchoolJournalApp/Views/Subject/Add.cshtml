@@ -1,0 +1,45 @@
+﻿@model SchoolJournalModels.Subject
+
+<h2><strong>ADD SUBJECT</strong></h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Subject details</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(s => s.SubjectName, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(s => s.SubjectName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(s => s.SubjectName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(s => s.LevelYear, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(s => s.LevelYear, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(s => s.LevelYear, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(s => s.Teacher.TeacherName, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @*@Html.DropDownListFor(Model => Model.Teacher.TeacherName, new SelectList(Model.) ,new { @class="input-exlarge"})*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+<div>
+    @Html.ActionLink("Back to list", "Index", "Subject")
+</div>

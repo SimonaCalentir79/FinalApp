@@ -1,0 +1,15 @@
+﻿@model  SchoolJournalModels.Subject
+
+<div>
+    <h2>DETAILS</h2>
+    <br />
+    <p>@Html.DisplayNameFor(m => m.SubjectID): @Model.SubjectID</p>
+    <br />
+    <h3>@Html.DisplayNameFor(m => m.SubjectName): @Model.SubjectName</h3>
+
+    <p>@Html.DisplayNameFor(m => m.LevelYear): @Model.LevelYear</p>
+    <p>Teacher: @Html.ActionLink(@Model.Teacher.TeacherName.ToString(), "Details", "Teacher", new { id = Model.Teacher.TeacherID }, null)</p>
+    <br />
+    <p>@Html.ActionLink("Back to list", "Index", "Subject")</p>
+</div>
+

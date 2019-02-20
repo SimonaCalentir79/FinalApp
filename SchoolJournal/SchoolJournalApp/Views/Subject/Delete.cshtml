@@ -1,0 +1,47 @@
+﻿@model SchoolJournalModels.Subject
+
+
+<h2>DELETE</h2>
+<h3>Are you sure you want to delete this information?</h3>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(s => s.SubjectID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(s => s.SubjectID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(s => s.SubjectName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(s => s.SubjectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(s => s.LevelYear)
+        </dt>
+        <dd>
+            @Html.DisplayFor(s => s.LevelYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(s => s.TeacherID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(s => s.TeacherID)
+        </dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <input type="submit" value="Delete" class="btn btn-primary" />
+            @Html.ActionLink("Cancel", "Index", "Subject")
+        </div>
+    }
+</div>

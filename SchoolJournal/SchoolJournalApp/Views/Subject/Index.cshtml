@@ -1,0 +1,74 @@
+﻿
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<SchoolJournalModels.Subject>
+
+<h2>SUBJECTS (@Model.Count() records)</h2>
+
+<div>
+    <p><strong>@Html.ActionLink("ADD NEW SUBJECT", "Add", "Subject")</strong></p>
+</div>
+<br />
+<div>
+    @using (Html.BeginForm("Index", "Subject", FormMethod.Get))
+    {
+        <b>Search option: </b>
+        @Html.RadioButton("option", "Subject")<text> Subject </text>
+        @Html.RadioButton("option", "Level")<text> Level year </text>
+        @Html.RadioButton("option", "Teacher")<text> Teacher </text>
+        @Html.TextBox("search") <input type="submit" value="Search" class="btn btn-primary" />
+    }
+</div>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <b>Subject</b>
+                </th>
+                <th>
+                    <b>Level year</b>
+                </th>
+                <th>
+                    <b>Teacher</b>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="4">
+                        <i>Records not found</i>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                foreach (var subj in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => subj.SubjectName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => subj.LevelYear)
+                        </td>
+                        <td>
+                            @Html.ActionLink(@Html.DisplayFor(m => subj.Teacher.TeacherName).ToString(), "Details", "Teacher", new { id = subj.Teacher.TeacherID }, null)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", "Subject", new { id = subj.SubjectID }, null) |
+                            @Html.ActionLink("Edit", "Update", "Subject", new { id = subj.SubjectID }, null) |
+                            @Html.ActionLink("Delete", "Delete", "Subject", new { id = subj.SubjectID }, null)
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, option = Request.QueryString["option"], search = Request.QueryString["search"] }))
+</div>

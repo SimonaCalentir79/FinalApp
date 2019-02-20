@@ -21,6 +21,7 @@ namespace SchoolJournalModels
         [DisplayName("ID ")]
         public int StudentID { get; set; }
 
+        [Required]
         [DisplayName("Name ")]
         public int StudentName { get; set; }
 
