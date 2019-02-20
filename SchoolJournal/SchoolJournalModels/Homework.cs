@@ -33,7 +33,10 @@ namespace SchoolJournalModels
         [DisplayName("Details ")]
         public string Details { get; set; }
 
+        [ForeignKey("StudentID")]
         public virtual Student Students { get; set; }
+
+        [ForeignKey("SubjectID")]
         public virtual Subject Subjects { get; set; }
     }
 }

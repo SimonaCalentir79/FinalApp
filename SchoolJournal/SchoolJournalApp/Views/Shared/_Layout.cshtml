@@ -9,7 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -27,6 +27,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="../Teacher/Index">Teachers</a></li>
                             <li><a href="../Student/Index">Students</a></li>
+                            <li><a href="../Homework/Index">Homeworks</a></li>
                             <li><a href="../Subject/Index">Subjects</a></li>
                             <li><a href="../GradeCategory/Index">Grade categories</a></li>
                             <li><a href="../Semester/Index">Semesters</a></li>
@@ -42,7 +43,7 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content">
+    <div class="container body-content" style="margin-top:75px">
         @RenderBody()
         <hr />
         <footer>

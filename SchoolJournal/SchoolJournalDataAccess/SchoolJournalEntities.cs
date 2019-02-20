@@ -14,6 +14,22 @@ namespace SchoolJournalDataAccess
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            modelBuilder.Entity<Student>()
+                .HasMany(s => s.Homeworks);
+
+            modelBuilder.Entity<Subject>()
+                .HasMany(s => s.Homeworks);
+
+            modelBuilder.Entity<Homework>()
+                .HasRequired(h => h.Students)
+                .WithMany(h => h.Homeworks)
+                .HasForeignKey(h => h.StudentID);
+
+            modelBuilder.Entity<Homework>()
+                .HasRequired(h => h.Subjects)
+                .WithMany(h => h.Homeworks)
+                .HasForeignKey(h => h.SubjectID);
         }
 
         public SchoolJournalEntities():base("name=SchoolJournalEntities"){}

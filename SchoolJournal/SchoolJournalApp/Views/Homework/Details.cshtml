@@ -1,0 +1,19 @@
+﻿@model  SchoolJournalModels.Homework
+
+<div>
+    <h2>DETAILS</h2>
+    <br />
+    <p>@Html.DisplayNameFor(h => h.HomeworkID): @Model.HomeworkID</p>
+    <p>@Html.DisplayNameFor(h => h.Students.StudentName): @Html.ActionLink(@Model.Students.StudentName.ToString(), "Details", "Student", new { id = Model.StudentID }, null)</p>
+    <br />
+    <h3>@Html.DisplayNameFor(h => h.Subjects.SubjectName): @Html.ActionLink(@Model.Subjects.SubjectName.ToString(), "Details", "Subject", new { id = Model.SubjectID }, null)</h3>
+
+    <p>@Html.DisplayNameFor(h => h.DateOfHomework): @Model.DateOfHomework</p>
+    <br />
+    <p>@Html.DisplayNameFor(h => h.DueDate): @Model.DueDate</p>
+    <br />
+    <p>@Html.DisplayNameFor(h => h.Details): @Model.Details</p>
+    <br />
+    <p>@Html.ActionLink("Back to list", "Index", "Homework")</p>
+</div>
+

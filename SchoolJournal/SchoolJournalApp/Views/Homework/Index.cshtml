@@ -1,0 +1,85 @@
+﻿
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<SchoolJournalModels.Homework>
+
+<h2>SUBJECTS (@Model.Count() records)</h2>
+
+<div>
+    <p><strong>@Html.ActionLink("ADD NEW HOMEWORK", "Add", "Homework")</strong></p>
+</div>
+<br />
+<div>
+    @using (Html.BeginForm("Index", "Homework", FormMethod.Get))
+    {
+        <b>Search option: </b>
+        @Html.RadioButton("option", "Subject")<text> Subject </text>
+        @Html.RadioButton("option", "Student")<text> Student </text>
+        @Html.TextBox("search") <input type="submit" value="Search" class="btn btn-primary" />
+    }
+</div>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <b>Student</b>
+                </th>
+                <th>
+                    <b>Subject</b>
+                </th>
+                <th>
+                    <b>Date of homework</b>
+                </th>
+                <th>
+                    <b>Due date</b>
+                </th>
+                <th>
+                    <b>Details</b>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="6">
+                        <i>Records not found</i>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                foreach (var hwork in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.ActionLink(@Html.DisplayFor(h => hwork.Students.StudentName).ToString(), "Details", "Student", new { id = hwork.Students.StudentID }, null)
+                    </td>
+                    <td>
+                        @Html.ActionLink(@Html.DisplayFor(h => hwork.Subjects.SubjectName).ToString(), "Details", "Subject", new { id = hwork.Subjects.SubjectID }, null)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(h => hwork.DateOfHomework)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(h => hwork.DueDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(h => hwork.Details)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", "Homework", new { id = hwork.HomeworkID }, null) |
+                        @Html.ActionLink("Edit", "Update", "Homework", new { id = hwork.HomeworkID }, null) |
+                        @Html.ActionLink("Delete", "Delete", "Homework", new { id = hwork.HomeworkID }, null)
+                    </td>
+                </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, option = Request.QueryString["option"], search = Request.QueryString["search"] }))
+</div>

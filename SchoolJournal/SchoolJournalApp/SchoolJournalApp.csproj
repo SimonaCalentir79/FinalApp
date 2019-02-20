@@ -136,6 +136,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\GradeCategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HomeworkController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
@@ -250,6 +251,11 @@
     <Content Include="Views\Student\Details.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Student\Update.cshtml" />
+    <Content Include="Views\Homework\Index.cshtml" />
+    <Content Include="Views\Homework\Details.cshtml" />
+    <Content Include="Views\Homework\Add.cshtml" />
+    <Content Include="Views\Homework\Delete.cshtml" />
+    <Content Include="Views\Homework\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

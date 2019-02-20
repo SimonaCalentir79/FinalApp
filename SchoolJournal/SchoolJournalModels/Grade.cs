@@ -16,13 +16,13 @@ namespace SchoolJournalModels
         [DisplayName("Student ID ")]
         public int StudentID { get; set; }
 
-        [DisplayName("Semester ID")]
+        [DisplayName("Semester ID ")]
         public int SemesterID { get; set; }
 
-        [DisplayName("Subject ID")]
+        [DisplayName("Subject ID ")]
         public int SubjectID { get; set; }
 
-        [DisplayName("Category ID")]
+        [DisplayName("Category ID ")]
         public int CategoryID { get; set; }
 
         [Required]
@@ -33,12 +33,19 @@ namespace SchoolJournalModels
         [DisplayName("Date ")]
         public Nullable<System.DateTime> DateOfGrade { get; set; }
 
-        [DisplayName("Observations")]
+        [DisplayName("Observations ")]
         public string Observations { get; set; }
 
-        public virtual GradeCategory GradeCategory { get; set; }
-        public virtual Semester Semester { get; set; }
-        public virtual Student Student { get; set; }
-        public virtual Subject Subject { get; set; }
+        [ForeignKey("CategoryID")]
+        public virtual GradeCategory GradeCategories { get; set; }
+
+        [ForeignKey("SemesterID")]
+        public virtual Semester Semesters { get; set; }
+
+        [ForeignKey("StudentID")]
+        public virtual Student Students { get; set; }
+
+        [ForeignKey("SubjectID")]
+        public virtual Subject Subjects { get; set; }
     }
 }
