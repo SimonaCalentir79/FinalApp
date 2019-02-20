@@ -1,0 +1,12 @@
+﻿@model SchoolJournalModels.Student
+
+<div>
+    <h2>DETAILS</h2>
+    <br />
+    <p>ID: @Model.StudentID</p>
+    <br />
+    <h3>Name: @Model.StudentName</h3>
+
+    <br />
+    <p>@Html.ActionLink("Back to teachers", "Index", "Student") | @Html.ActionLink("Back to ...", "Index", "Student")</p>
+</div>

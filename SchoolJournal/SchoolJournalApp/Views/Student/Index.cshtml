@@ -1,0 +1,60 @@
+﻿
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<SchoolJournalModels.Student>
+
+<br />
+<h2>STUDENTS (@Model.Count records)</h2>
+<br />
+<div>
+    <p>
+        <strong>@Html.ActionLink("ADD NEW STUDENT", "Add", "Student")</strong>
+    </p>
+</div>
+<br />
+<div>
+    @using (Html.BeginForm("Index", "Student", FormMethod.Get))
+    {
+        <b>Search option: </b>
+        @Html.RadioButton("option", "Name")<text> Name </text>
+        @Html.TextBox("search") <input type="submit" value="Search" class="btn btn-primary" />
+    }
+</div>
+<br />
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th><b>Name</b></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count == 0)
+            {
+                <tr>
+                    <td colspan="2">
+                        <i>Records not found</i>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                foreach (var stud in Model)
+                {
+                    <tr>
+                        <td>@stud.StudentName</td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", "Student", new { @id = stud.StudentID }, null) |
+                        @Html.ActionLink("Edit", "Update", "Student", new { @id = stud.StudentID }, null) |
+                        @Html.ActionLink("Delete", "Delete", "Student", new { @id = stud.StudentID }, null)
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>
+<div>
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, option = Request.QueryString["option"], search = Request.QueryString["search"] }))
+</div>

@@ -18,11 +18,5 @@ namespace SchoolJournalInterfaces
         void Delete(int id);
 
         void Add(Teacher teacher);
-
-        //void AddSchoolSubject(Subject subject);
-
-        //void AddHomework(Homework homework);
-
-        //string[] GetSubjects();
     }
 }

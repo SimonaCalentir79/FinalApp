@@ -1,0 +1,19 @@
+﻿@model SchoolJournalModels.Student
+
+<div>
+    <h2>UPDATE</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(s => s.StudentID)
+        <div class="form-group">
+            @Html.LabelFor(s => s.StudentName)
+            @Html.TextBoxFor(s => s.StudentName, null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(s => s.StudentName)
+        </div>
+
+        <input type="submit" value="Save" class="btn btn-primary" />
+        @Html.ActionLink("Cancel", "Index", "Student");
+    }
+</div>
