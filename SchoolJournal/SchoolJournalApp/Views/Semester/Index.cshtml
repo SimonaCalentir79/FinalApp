@@ -1,19 +1,19 @@
 ﻿
 @using PagedList;
 @using PagedList.Mvc;
-@model IPagedList<SchoolJournalModels.Semesters>
+@model IPagedList<SchoolJournalModels.Semester>
 
 <br />
 <h2>SEMESTERS (@Model.Count records)</h2>
 <br />
 <div>
     <p>
-        <strong>@Html.ActionLink("ADD NEW SEMESTER", "Add", "Semesters")</strong>
+        <strong>@Html.ActionLink("ADD NEW SEMESTER", "Add", "Semester")</strong>
     </p>
 </div>
 <br />
 <div>
-    @using (Html.BeginForm("Index", "Semesters", FormMethod.Get))
+    @using (Html.BeginForm("Index", "Semester", FormMethod.Get))
     {
         <b>Search option: </b>
         @Html.RadioButton("option", "Number")<text> Semester Number </text>
@@ -49,9 +49,9 @@
                     <tr>
                         <td>@semester.SemesterNumber</td>
                         <td>@semester.SchoolYear</td>
-                        <td>@Html.ActionLink("Details", "Details", "Semesters", new { @id = semester.SemesterID }, null)</td>
-                        <td>@Html.ActionLink("Edit", "Update", "Semesters", new { @id = semester.SemesterID }, null)</td>
-                        <td>@Html.ActionLink("Delete", "Delete", "Semesters", new { @id = semester.SemesterID }, null)</td>
+                        <td>@Html.ActionLink("Details", "Details", "Semester", new { @id = semester.SemesterID }, null)</td>
+                        <td>@Html.ActionLink("Edit", "Update", "Semester", new { @id = semester.SemesterID }, null)</td>
+                        <td>@Html.ActionLink("Delete", "Delete", "Semester", new { @id = semester.SemesterID }, null)</td>
                     </tr>
                 }
             }

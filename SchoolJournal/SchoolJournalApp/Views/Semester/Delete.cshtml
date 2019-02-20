@@ -1,4 +1,4 @@
-﻿@model SchoolJournalModels.Semesters
+﻿@model SchoolJournalModels.Semester
 
 
 <h2>DELETE</h2>
@@ -34,7 +34,7 @@
         @Html.AntiForgeryToken()
         <div class="form-group">
             <input type="submit" value="Delete" class="btn btn-primary" />
-            @Html.ActionLink("Cancel", "Index", "Semesters")
+            @Html.ActionLink("Cancel", "Index", "Semester")
         </div>
     }
 </div>

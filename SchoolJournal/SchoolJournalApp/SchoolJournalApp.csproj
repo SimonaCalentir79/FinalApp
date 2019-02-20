@@ -142,8 +142,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\GradeCategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PersonsController.cs" />
-    <Compile Include="Controllers\SemestersController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
+    <Compile Include="Controllers\SemesterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -189,11 +189,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Persons\Add.cshtml" />
-    <Content Include="Views\Persons\Delete.cshtml" />
-    <Content Include="Views\Persons\Details.cshtml" />
-    <Content Include="Views\Persons\Index.cshtml" />
-    <Content Include="Views\Persons\Update.cshtml" />
+    <Content Include="Views\Teacher\Add.cshtml" />
+    <Content Include="Views\Teacher\Delete.cshtml" />
+    <Content Include="Views\Teacher\Details.cshtml" />
+    <Content Include="Views\Teacher\Index.cshtml" />
+    <Content Include="Views\Teacher\Update.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\GradeCategory\Index.cshtml" />
@@ -201,13 +201,11 @@
     <Content Include="Views\GradeCategory\Delete.cshtml" />
     <Content Include="Views\GradeCategory\Details.cshtml" />
     <Content Include="Views\GradeCategory\Update.cshtml" />
-    <Content Include="Views\Semesters\Add.cshtml" />
-    <Content Include="Views\Semesters\Delete.cshtml" />
-    <Content Include="Views\Semesters\Details.cshtml" />
-    <Content Include="Views\Semesters\Index.cshtml" />
-    <Content Include="Views\Semesters\Update.cshtml" />
-    <Content Include="Views\Persons\AddSchoolSubject.cshtml" />
-    <Content Include="Views\Persons\AddHomework.cshtml" />
+    <Content Include="Views\Semester\Add.cshtml" />
+    <Content Include="Views\Semester\Delete.cshtml" />
+    <Content Include="Views\Semester\Details.cshtml" />
+    <Content Include="Views\Semester\Index.cshtml" />
+    <Content Include="Views\Semester\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

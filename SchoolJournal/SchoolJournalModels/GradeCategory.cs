@@ -12,7 +12,7 @@ namespace SchoolJournalModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public GradeCategory()
         {
-            this.Grades = new HashSet<Grades>();
+            this.Grade = new HashSet<Grade>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -29,6 +29,6 @@ namespace SchoolJournalModels
         public decimal Share { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Grades> Grades { get; set; }
+        public virtual ICollection<Grade> Grade { get; set; }
     }
 }

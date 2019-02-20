@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SchoolJournalModels
 {
-    public class Grades
+    public class Grade
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
@@ -15,13 +15,13 @@ namespace SchoolJournalModels
         public int SemesterID { get; set; }
         public int SubjectID { get; set; }
         public int CategoryID { get; set; }
-        public decimal Grade { get; set; }
+        public decimal Mark { get; set; }
         public Nullable<System.DateTime> DateOfGrade { get; set; }
         public string Observations { get; set; }
 
         public virtual GradeCategory GradeCategory { get; set; }
-        public virtual Semesters Semesters { get; set; }
-        public virtual Students Students { get; set; }
-        public virtual Subjects Subjects { get; set; }
+        public virtual Semester Semester { get; set; }
+        public virtual Student Student { get; set; }
+        public virtual Subject Subject { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace SchoolJournalModels
         public Nullable<System.DateTime> DueDate { get; set; }
         public string Details { get; set; }
 
-        public virtual Students Students { get; set; }
-        public virtual Subjects Subjects { get; set; }
+        public virtual Student Students { get; set; }
+        public virtual Subject Subjects { get; set; }
     }
 }

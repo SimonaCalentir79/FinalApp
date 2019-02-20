@@ -6,13 +6,13 @@ using System.Web.Mvc;
 
 namespace SchoolJournalApp.Controllers
 {
-    public class SemestersController : Controller
+    public class SemesterController : Controller
     {
-        private ISemestersManager manager;
+        private ISemesterManager manager;
 
-        public SemestersController()
+        public SemesterController()
         {
-            manager = new SemestersManager();
+            manager = new SemesterManager();
         }
 
         public ActionResult Index(string option, string search, int? pageNumber)
@@ -50,7 +50,7 @@ namespace SchoolJournalApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update([Bind(Include = "SemesterID,SemesterNumber,SchoolYear")]Semesters semester)
+        public ActionResult Update([Bind(Include = "SemesterID,SemesterNumber,SchoolYear")]Semester semester)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace SchoolJournalApp.Controllers
         {
             if (saveChangesError.GetValueOrDefault())
                 ViewBag.ErrorMessage = "Delete failed! Try again or see your sysadmin!";
-            Semesters semester = manager.Get(id);
+            Semester semester = manager.Get(id);
             if (semester == null)
             {
                 return HttpNotFound();
@@ -93,7 +93,7 @@ namespace SchoolJournalApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "SemesterID,SemesterNumber,SchoolYear")]Semesters semester)
+        public ActionResult Add([Bind(Include = "SemesterID,SemesterNumber,SchoolYear")]Semester semester)
         {
             if (ModelState.IsValid)
             {

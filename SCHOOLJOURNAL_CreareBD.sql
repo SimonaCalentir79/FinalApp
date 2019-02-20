@@ -1,36 +1,26 @@
 --DROP TABLE Homework;
---DROP TABLE Grades;
---DROP TABLE Subjects;
+--DROP TABLE Grade;
+--DROP TABLE Subject;
 --DROP TABLE GradeCategory;
---DROP TABLE Semesters;
---DROP TABLE Teachers;
---DROP TABLE Students;
---DROP TABLE Persons;
+--DROP TABLE Semester;
+--DROP TABLE Student;
+--DROP TABLE Teacher;
 
-CREATE TABLE Persons
-(
-	PersonID INT IDENTITY(1,1) PRIMARY KEY,
-	PersonName VARCHAR(150) NOT NULL,
-	PersonEmail VARCHAR(100),
-	PersonPhone VARCHAR(100),
-	PersonAddress VARCHAR(250)
-)
-
-CREATE TABLE Students
-(
-	StudentID INT IDENTITY(1,1) PRIMARY KEY,
-	PersonID INT NOT NULL,
-	CONSTRAINT FK_Students_PersonID FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
-)
-
-CREATE TABLE Teachers
+CREATE TABLE Teacher
 (
 	TeacherID INT IDENTITY(1,1) PRIMARY KEY,
-	PersonID INT NOT NULL,
-	CONSTRAINT FK_Teachers_PersonID FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
+	TeacherName VARCHAR(150) NOT NULL,
+	TeacherEmail VARCHAR(100),
+	TeacherPhone VARCHAR(100)
 )
 
-CREATE TABLE Semesters
+CREATE TABLE Student
+(
+	StudentID INT IDENTITY(1,1) PRIMARY KEY,
+	StudentName VARCHAR(150) NOT NULL
+)
+
+CREATE TABLE Semester
 (
 	SemesterID INT IDENTITY(1,1) PRIMARY KEY,
 	SemesterNumber INT NOT NULL,
@@ -44,28 +34,28 @@ CREATE TABLE GradeCategory
 	Share NUMERIC(4,2) NOT NULL
 )
 
-CREATE TABLE Subjects
+CREATE TABLE Subject
 (
 	SubjectID INT IDENTITY(1,1) PRIMARY KEY,
 	SubjectName VARCHAR(200),
 	LevelYear INT NOT NULL,
 	TeacherID INT,
-	CONSTRAINT FK_Subjects_TeacherID FOREIGN KEY (TeacherID) REFERENCES Teachers(TeacherID)
+	CONSTRAINT FK_Subjects_TeacherID FOREIGN KEY (TeacherID) REFERENCES Teacher(TeacherID)
 )
 
-CREATE TABLE Grades
+CREATE TABLE Grade
 (
 	GradeID INT IDENTITY(1,1) PRIMARY KEY,
 	StudentID INT NOT NULL,
 	SemesterID INT NOT NULL,
 	SubjectID INT NOT NULL,
 	CategoryID INT NOT NULL,
-	Grade NUMERIC(4,2) NOT NULL,
+	Mark NUMERIC(4,2) NOT NULL,
 	DateOfGrade DATE,
 	Observations VARCHAR(200)
-	CONSTRAINT FK_Grades_StudentID FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
-	CONSTRAINT FK_Grades_SemesterID FOREIGN KEY (SemesterID) REFERENCES Semesters(SemesterID),
-	CONSTRAINT FK_Grades_SubjectID FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID),
+	CONSTRAINT FK_Grades_StudentID FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
+	CONSTRAINT FK_Grades_SemesterID FOREIGN KEY (SemesterID) REFERENCES Semester(SemesterID),
+	CONSTRAINT FK_Grades_SubjectID FOREIGN KEY (SubjectID) REFERENCES Subject(SubjectID),
 	CONSTRAINT FK_Grades_CategoryID FOREIGN KEY (CategoryID) REFERENCES GradeCategory(CategoryID)
 )
 
@@ -77,6 +67,6 @@ CREATE TABLE Homework
 	DateOfHomework DATE,
 	DueDate DATE,
 	Details VARCHAR(500) NOT NULL,
-	CONSTRAINT FK_Homework_StudentID FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
-	CONSTRAINT FK_Homework_SubjectID FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)
+	CONSTRAINT FK_Homework_StudentID FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
+	CONSTRAINT FK_Homework_SubjectID FOREIGN KEY (SubjectID) REFERENCES Subject(SubjectID)
 )

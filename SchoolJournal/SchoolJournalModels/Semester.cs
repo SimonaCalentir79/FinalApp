@@ -1,29 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace SchoolJournalModels
 {
-    public class Students
+    public class Semester
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Students()
+        public Semester()
         {
-            this.Grades = new HashSet<Grades>();
-            this.Homework = new HashSet<Homework>();
+            this.Grade = new HashSet<Grade>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int StudentID { get; set; }
-        public int PersonID { get; set; }
+        [DisplayName("ID ")]
+        public int SemesterID { get; set; }
+
+        [DisplayName("No. of semester ")]
+        public int SemesterNumber { get; set; }
+
+        [DisplayName("School year ")]
+        public string SchoolYear { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Grades> Grades { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Homework> Homework { get; set; }
-        public virtual Persons Persons { get; set; }
+        public virtual ICollection<Grade> Grade { get; set; }
     }
 }

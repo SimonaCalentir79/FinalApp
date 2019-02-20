@@ -7,26 +7,26 @@ using System.Text;
 
 namespace SchoolJournalModels
 {
-    public class Semesters
+    public class Student
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Semesters()
+        public Student()
         {
-            this.Grades = new HashSet<Grades>();
+            this.Grade = new HashSet<Grade>();
+            this.Homework = new HashSet<Homework>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         [DisplayName("ID ")]
-        public int SemesterID { get; set; }
+        public int StudentID { get; set; }
 
-        [DisplayName("No. of semester ")]
-        public int SemesterNumber { get; set; }
-
-        [DisplayName("School year ")]
-        public string SchoolYear { get; set; }
+        [DisplayName("Name ")]
+        public int StudentName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Grades> Grades { get; set; }
+        public virtual ICollection<Grade> Grade { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Homework> Homework { get; set; }
     }
 }
