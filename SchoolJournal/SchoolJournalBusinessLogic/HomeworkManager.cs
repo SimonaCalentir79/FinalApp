@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
+using System.Web.Mvc;
 
 namespace SchoolJournalBusinessLogic
 {
@@ -18,9 +19,23 @@ namespace SchoolJournalBusinessLogic
             db = new SchoolJournalEntities();
         }
 
+        public Homework HWwithSubjStudList()
+        {
+            Homework hwork = new Homework();
+            hwork.StudentsList = db.Student.Select(s => new SelectListItem { Value = s.StudentID.ToString(), Text = s.StudentName }).ToList();
+            hwork.SubjectsList = db.Subject.Select(s => new SelectListItem { Value = s.SubjectID.ToString(), Text = s.SubjectName }).ToList();
+
+            return hwork;
+        }
+
         public Homework Get(int id)
         {
-            return db.Homework.Find(id);
+            //return db.Homework.Find(id);
+            Homework hwork = db.Homework.Find(id);
+            hwork.StudentsList = db.Student.Select(s => new SelectListItem { Value = s.StudentID.ToString(), Text = s.StudentName }).ToList();
+            hwork.SubjectsList = db.Subject.Select(s => new SelectListItem { Value = s.SubjectID.ToString(), Text = s.SubjectName }).ToList();
+
+            return hwork;
         }
 
         public IList<Homework> GetAll()

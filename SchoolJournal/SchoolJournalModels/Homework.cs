@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Web.Mvc;
 
 namespace SchoolJournalModels
 {
@@ -22,17 +23,22 @@ namespace SchoolJournalModels
         [DisplayName("Subject ID")]
         public int SubjectID { get; set; }
 
-        [Required]
+        
         [DisplayName("Date ")]
         public Nullable<System.DateTime> DateOfHomework { get; set; }
 
-        [Required]
+        
         [DisplayName("Due date ")]
         public Nullable<System.DateTime> DueDate { get; set; }
 
         [DisplayName("Details ")]
         public string Details { get; set; }
 
+
+        public IEnumerable<SelectListItem> StudentsList { get; set; }
+        public IEnumerable<SelectListItem> SubjectsList { get; set; }
+
+        
         [ForeignKey("StudentID")]
         public virtual Student Students { get; set; }
 

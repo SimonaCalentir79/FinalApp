@@ -22,5 +22,7 @@ namespace SchoolJournalInterfaces
         void Add(Subject subject);
 
         void Save(Subject subject);
+
+        Subject SubjectWithTeachersList();
     }
 }

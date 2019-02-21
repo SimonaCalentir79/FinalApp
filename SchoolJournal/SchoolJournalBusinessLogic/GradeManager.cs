@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
+using System.Web.Mvc;
 
 namespace SchoolJournalBusinessLogic
 {
@@ -32,7 +33,42 @@ namespace SchoolJournalBusinessLogic
 
         public Grade Get(int id)
         {
-            return db.Grade.Find(id);
+            //return db.Grade.Find(id);
+            Grade grade = db.Grade.Find(id);
+
+            grade.StudentsList = db.Student
+                .Select(s => new SelectListItem { Value = s.StudentID.ToString(), Text = s.StudentName })
+                .ToList();
+            grade.SubjectsList = db.Subject
+                .Select(s => new SelectListItem { Value = s.SubjectID.ToString(), Text = s.SubjectName })
+                .ToList();
+            grade.SemestersList = db.Semester
+                .Select(s => new SelectListItem { Value = s.SemesterID.ToString(), Text = s.SemesterNumber.ToString() })
+                .ToList();
+            grade.GradeCategoriesList = db.GradeCategory
+                .Select(g => new SelectListItem { Value = g.CategoryID.ToString(), Text = g.CategoryName })
+                .ToList();
+
+            return grade;
+        }
+
+        public Grade GradeWithParentsLists()
+        {
+            Grade grade = new Grade();
+            grade.StudentsList = db.Student
+                .Select(s => new SelectListItem { Value = s.StudentID.ToString(), Text = s.StudentName })
+                .ToList();
+            grade.SubjectsList = db.Subject
+                .Select(s => new SelectListItem { Value = s.SubjectID.ToString(), Text = s.SubjectName })
+                .ToList();
+            grade.SemestersList = db.Semester
+                .Select(s => new SelectListItem { Value = s.SemesterID.ToString(), Text = s.SemesterNumber.ToString() })
+                .ToList();
+            grade.GradeCategoriesList = db.GradeCategory
+                .Select(g => new SelectListItem { Value = g.CategoryID.ToString(), Text = g.CategoryName })
+                .ToList();
+
+            return grade;
         }
 
         public IList<Grade> GetAll()

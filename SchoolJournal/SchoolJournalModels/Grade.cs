@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Web.Mvc;
 
 namespace SchoolJournalModels
 {
@@ -29,13 +30,18 @@ namespace SchoolJournalModels
         [DisplayName("Grade ")]
         public decimal Mark { get; set; }
 
-        [Required]
+        
         [DisplayName("Date ")]
         public Nullable<System.DateTime> DateOfGrade { get; set; }
 
         [DisplayName("Observations ")]
         public string Observations { get; set; }
 
+
+        public IEnumerable<SelectListItem> StudentsList { get; set; }
+        public IEnumerable<SelectListItem> SubjectsList { get; set; }
+        public IEnumerable<SelectListItem> SemestersList { get; set; }
+        public IEnumerable<SelectListItem> GradeCategoriesList { get; set; }
 
 
         [ForeignKey("CategoryID")]

@@ -29,7 +29,7 @@
         <div class="form-group">
             @Html.LabelFor(s => s.Teachers.TeacherName, new { @class = "control-label col-md-3" })
             <div class="col-md-9">
-                @*@Html.DropDownListFor(Model => Model.Teacher.TeacherName, new SelectList(Model.) ,new { @class="input-exlarge"})*@
+                @Html.DropDownListFor(s => s.TeacherID, new SelectList(Model.TeachersList, "Value", "Text"))
             </div>
         </div>
 

@@ -13,28 +13,28 @@
     <div class="form-group">
         @Html.LabelFor(g => g.Students.StudentName, new { @class = "control-label col-md-3" })
         <div class="col-md-9">
-            @*DDL for StudentID*@
+            @Html.DropDownListFor(g => g.StudentID, new SelectList(Model.StudentsList, "Value","Text"))
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(g => g.Subjects.SubjectName, new { @class = "control-label col-md-3" })
         <div class="col-md-9">
-            @*DDL for SubjectID*@
+            @Html.DropDownListFor(g => g.SubjectID, new SelectList(Model.SubjectsList, "Value", "Text"))
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(g => g.Semesters.SemesterNumber, new { @class = "control-label col-md-3" })
         <div class="col-md-9">
-            @*DDL for SemesterID*@
+            @Html.DropDownListFor(g => g.SemesterID, new SelectList(Model.SemestersList, "Value", "Text"))
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(g => g.GradeCategories.CategoryName, new { @class = "control-label col-md-3" })
         <div class="col-md-9">
-            @*DDL for CategoryID*@
+            @Html.DropDownListFor(g => g.CategoryID, new SelectList(Model.GradeCategoriesList, "Value", "Text"))
         </div>
     </div>
 

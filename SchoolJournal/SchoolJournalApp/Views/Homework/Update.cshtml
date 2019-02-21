@@ -9,11 +9,11 @@
         @Html.HiddenFor(h => h.HomeworkID)
         <div class="form-group">
             @Html.LabelFor(h => h.Students.StudentName)
-            @*DDL for StudentID*@
+            @Html.DropDownListFor(h => h.StudentID, new SelectList(Model.StudentsList, "Value", "Text"))
         </div>
         <div class="form-group">
             @Html.LabelFor(h => h.Subjects.SubjectName)
-            @*DDL for StudentID*@
+            @Html.DropDownListFor(h => h.SubjectID, new SelectList(Model.SubjectsList, "Value", "Text"))
         </div>
         <div class="form-group">
             @Html.LabelFor(h => h.DateOfHomework)

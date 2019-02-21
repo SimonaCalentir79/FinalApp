@@ -19,6 +19,14 @@ namespace SchoolJournalBusinessLogic
             db = new SchoolJournalEntities();
         }
 
+        public Subject SubjectWithTeachersList()
+        {
+            Subject subject = new Subject();
+            subject.TeachersList = db.Teacher.Select(t => new SelectListItem { Value = t.TeacherID.ToString(), Text = t.TeacherName }).ToList();
+
+            return subject;
+        }
+
         public IList<Subject> GetAll()
         {
             return db.Subject.Select(s => s).ToList();
@@ -26,7 +34,11 @@ namespace SchoolJournalBusinessLogic
 
         public Subject Get(int id)
         {
-            return db.Subject.Find(id);
+            //return db.Subject.Find(id);
+            Subject subject = db.Subject.Find(id);
+            subject.TeachersList = db.Teacher.Select(t => new SelectListItem { Value = t.TeacherID.ToString(), Text = t.TeacherName }).ToList();
+
+            return subject;
         }
 
         public IList<Subject> GetBySubject(string subject)

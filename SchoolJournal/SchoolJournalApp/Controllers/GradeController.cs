@@ -96,7 +96,7 @@ namespace SchoolJournalApp.Controllers
         [HttpGet]
         public ActionResult Add()
         {
-            return View();
+            return View(manager.GradeWithParentsLists());
         }
 
         [HttpPost]

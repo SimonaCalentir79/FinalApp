@@ -9,19 +9,19 @@
         @Html.HiddenFor(g => g.GradeID)
         <div class="form-group">
             @Html.LabelFor(g => g.Students.StudentName)
-            @*DDL for StudentID*@
+            @Html.DropDownListFor(g => g.StudentID, new SelectList(Model.StudentsList, "Value", "Text"))
         </div>
         <div class="form-group">
             @Html.LabelFor(g => g.Subjects.SubjectName)
-            @*DDL for StudentID*@
+            @Html.DropDownListFor(g => g.SubjectID, new SelectList(Model.SubjectsList, "Value", "Text"))
         </div>
         <div class="form-group">
             @Html.LabelFor(g => g.Semesters.SemesterNumber)
-            @*DDL for SemesterID*@
+            @Html.DropDownListFor(g => g.SemesterID, new SelectList(Model.SemestersList, "Value", "Text"))
         </div>
         <div class="form-group">
             @Html.LabelFor(g => g.GradeCategories.CategoryName)
-            @*DDL for CategoryID*@
+            @Html.DropDownListFor(g => g.CategoryID, new SelectList(Model.GradeCategoriesList, "Value", "Text"))
         </div>
         <div class="form-group">
             @Html.LabelFor(g => g.Mark)

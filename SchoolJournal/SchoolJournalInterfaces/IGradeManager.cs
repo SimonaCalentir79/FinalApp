@@ -24,5 +24,7 @@ namespace SchoolJournalInterfaces
         void Add(Grade grade);
 
         void Save(Grade grade);
+
+        Grade GradeWithParentsLists();
     }
 }

@@ -20,5 +20,7 @@ namespace SchoolJournalInterfaces
         void Add(Homework hwork);
 
         void Save(Homework hwork);
+
+        Homework HWwithSubjStudList();
     }
 }
