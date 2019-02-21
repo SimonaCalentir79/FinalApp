@@ -4,46 +4,53 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - SchoolJournal (ASP.NET Application)</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="../Home/Index">School Journal</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li><a href="../Home/Index">Home</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Records<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="../Teacher/Index">Teachers</a></li>
-                            <li><a href="../Student/Index">Students</a></li>
-                            <li><a href="../Homework/Index">Homeworks</a></li>
-                            <li><a href="../Subject/Index">Subjects</a></li>
-                            <li><a href="../GradeCategory/Index">Grade categories</a></li>
-                            <li><a href="../Semester/Index">Semesters</a></li>
-                        </ul>
+    <div class="container">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <!-- Brand -->
+            <a class="navbar-brand" href="../Home/Index">School Journal</a>
+            <!-- Toggler/collapsibe Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Home/Index">Home</a>
                     </li>
-                    <li><a href="../Home/About">About</a></li>
-                    <li><a href="../Home/Contact">Contact</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            RECORDS
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="../Teacher/Index">Teachers</a>
+                            <a class="dropdown-item" href="../Student/Index">Students</a>
+                            <a class="dropdown-item" href="../Homework/Index">Homeworks</a>
+                            <a class="dropdown-item" href="../Grade/Index">Grades</a>
+                            <a class="dropdown-item" href="../Subject/Index">Subjects</a>
+                            <a class="dropdown-item" href="../GradeCategory/Index">Grade categories</a>
+                            <a class="dropdown-item" href="../Semester/Index">Semesters</a>
+                        </div>
+                    </li>
+
+                    <!-- Links -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Home/About">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../Home/Contact">Contact</a>
+                    </li>
                 </ul>
             </div>
-        </div>
-    </nav>
-    <div class="container body-content" style="margin-top:75px">
+        </nav>
+    </div>
+    <div class="container body-content" style="margin-top:50px">
         @RenderBody()
         <hr />
         <footer>

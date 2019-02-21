@@ -20,8 +20,8 @@
     }
 </div>
 <div class="table-responsive">
-    <table class="table">
-        <thead>
+    <table class="table table-hover table-responsive-sm">
+        <thead class="thead-dark">
             <tr>
                 <th>
                     <b>Subject</b>
@@ -56,7 +56,7 @@
                             @Html.DisplayFor(m => subj.LevelYear)
                         </td>
                         <td>
-                            @Html.ActionLink(@Html.DisplayFor(m => subj.Teacher.TeacherName).ToString(), "Details", "Teacher", new { id = subj.Teacher.TeacherID }, null)
+                            @Html.ActionLink(@Html.DisplayFor(m => subj.Teachers.TeacherName).ToString(), "Details", "Teacher", new { id = subj.TeacherID }, null)
                         </td>
                         <td>
                             @Html.ActionLink("Details", "Details", "Subject", new { id = subj.SubjectID }, null) |

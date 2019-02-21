@@ -12,7 +12,7 @@ namespace SchoolJournalModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Semester()
         {
-            this.Grade = new HashSet<Grade>();
+            this.Grades = new HashSet<Grade>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -29,6 +29,6 @@ namespace SchoolJournalModels
         public string SchoolYear { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Grade> Grade { get; set; }
+        public virtual ICollection<Grade> Grades { get; set; }
     }
 }

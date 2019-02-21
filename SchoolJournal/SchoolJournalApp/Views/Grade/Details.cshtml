@@ -1,0 +1,23 @@
+﻿@model  SchoolJournalModels.Grade
+
+<div>
+    <h2>DETAILS</h2>
+    <br />
+    <p>@Html.DisplayNameFor(g => g.GradeID): @Model.GradeID</p>
+    <p>@Html.DisplayNameFor(g => g.Students.StudentName): @Html.ActionLink(@Model.Students.StudentName.ToString(), "Details", "Student", new { id = Model.StudentID }, null)</p>
+    <br />
+    <h3>@Html.DisplayNameFor(g => g.Subjects.SubjectName): @Html.ActionLink(@Model.Subjects.SubjectName.ToString(), "Details", "Subject", new { id = Model.SubjectID }, null)</h3>
+
+    <p>@Html.DisplayNameFor(g => g.Semesters.SemesterNumber): @Html.ActionLink(@Model.Semesters.SemesterNumber.ToString(), "Details", "Subject", new { id = Model.SemesterID }, null)</p>
+    <br />
+    <p>@Html.DisplayNameFor(g => g.GradeCategories.CategoryName): @Html.ActionLink(@Model.GradeCategories.CategoryName.ToString(), "Details", "Subject", new { id = Model.CategoryID }, null)</p>
+    <br />
+    <p>@Html.DisplayNameFor(g => g.Mark): @Model.Mark</p>
+    <br />
+    <p>@Html.DisplayNameFor(g => g.DateOfGrade): @Model.DateOfGrade</p>
+    <br />
+    <p>@Html.DisplayNameFor(g => g.Observations): @Model.Observations</p>
+    <br />
+    <p>@Html.ActionLink("Back to list", "Index", "Grade")</p>
+</div>
+

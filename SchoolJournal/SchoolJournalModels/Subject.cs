@@ -39,6 +39,6 @@ namespace SchoolJournalModels
         public virtual ICollection<Homework> Homeworks { get; set; }
 
         [ForeignKey("TeacherID")]
-        public virtual Teacher Teacher { get; set; }
+        public virtual Teacher Teachers { get; set; }
     }
 }

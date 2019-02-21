@@ -8,7 +8,7 @@
     <h3>@Html.DisplayNameFor(m => m.SubjectName): @Model.SubjectName</h3>
 
     <p>@Html.DisplayNameFor(m => m.LevelYear): @Model.LevelYear</p>
-    <p>Teacher: @Html.ActionLink(@Model.Teacher.TeacherName.ToString(), "Details", "Teacher", new { id = Model.Teacher.TeacherID }, null)</p>
+    <p>Teacher: @Html.ActionLink(@Model.Teachers.TeacherName.ToString(), "Details", "Teacher", new { id = Model.TeacherID }, null)</p>
     <br />
     <p>@Html.ActionLink("Back to subjects", "Index", "Subject") | @Html.ActionLink("Back to homeworks", "Index", "Homework")</p>
 </div>

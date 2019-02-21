@@ -36,6 +36,8 @@ namespace SchoolJournalModels
         [DisplayName("Observations ")]
         public string Observations { get; set; }
 
+
+
         [ForeignKey("CategoryID")]
         public virtual GradeCategory GradeCategories { get; set; }
 

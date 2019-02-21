@@ -21,7 +21,7 @@ namespace SchoolJournalBusinessLogic
 
         public IList<Subject> GetAll()
         {
-            return db.Subject.Select(s => s).Include("Teacher").ToList();
+            return db.Subject.Select(s => s).ToList();
         }
 
         public Subject Get(int id)
@@ -42,7 +42,7 @@ namespace SchoolJournalBusinessLogic
 
         public IList<Subject> GetByTeacher(string teacher)
         {
-            return db.Subject.Where(p => p.Teacher.TeacherName.Contains(teacher) || teacher == null).ToList();
+            return db.Subject.Where(p => p.Teachers.TeacherName.Contains(teacher) || teacher == null).ToList();
         }
 
         public void Delete(int id)
