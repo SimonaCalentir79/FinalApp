@@ -26,7 +26,7 @@ namespace SchoolJournalModels
         [DisplayName("Category ID ")]
         public int CategoryID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Grade is required!")]
         [DisplayName("Grade ")]
         public decimal Mark { get; set; }
 

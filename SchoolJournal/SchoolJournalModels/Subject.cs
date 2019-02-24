@@ -22,11 +22,11 @@ namespace SchoolJournalModels
         [DisplayName("ID ")]
         public int SubjectID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Name of course is required!")]
         [DisplayName("Subject ")]
         public string SubjectName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Level year is required!")]
         [DisplayName("Level year ")]
         public int LevelYear { get; set; }
 

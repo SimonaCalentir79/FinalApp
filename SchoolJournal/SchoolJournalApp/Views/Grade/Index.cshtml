@@ -24,37 +24,19 @@
     <table class="table table-hover table-responsive-sm">
         <thead class="thead-dark">
             <tr>
-                <th>
-                    <b>Student</b>
-                </th>
-                <th>
-                    <b>Subject</b>
-                </th>
-                <th>
-                    <b>Level Year</b>
-                </th>
-                <th>
-                    <b>School Year</b>
-                </th>
-                <th>
-                    <b>Semester</b>
-                </th>
-                <th>
-                    <b>Type of grade</b>
-                </th>
-                <th>
-                    <b>Grade</b>
-                </th>
-                <th>
-                    <b>Date of grade</b>
-                </th>
-                <th>
-                    <b>Details</b>
-                </th>
+                <th><b>Student</b></th>
+                <th><b>Subject</b></th>
+                <th><b>Level Year</b></th>
+                <th><b>School Year</b></th>
+                <th><b>Semester</b></th>
+                <th><b>Type of grade</b></th>
+                <th><b>Grade</b></th>
+                <th><b>Date of grade</b></th>
+                <th><b>Details</b></th>
                 <th></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="myTable">
             @if (Model.Count() == 0)
             {
                 <tr>
@@ -68,33 +50,15 @@
                 foreach (var grade in Model)
                 {
                 <tr>
-                    <td>
-                        @Html.ActionLink(@Html.DisplayFor(g => grade.Students.StudentName).ToString(), "Details", "Student", new { id = grade.StudentID }, null)
-                    </td>
-                    <td>
-                        @Html.ActionLink(@Html.DisplayFor(g => grade.Subjects.SubjectName).ToString(), "Details", "Subject", new { id = grade.SubjectID }, null)
-                    </td>
-                    <td>
-                        @Html.ActionLink(@Html.DisplayFor(g => grade.Subjects.LevelYear).ToString(), "Details", "Subject", new { id = grade.SubjectID }, null)
-                    </td>
-                    <td>
-                        @Html.ActionLink(@Html.DisplayFor(g => grade.Semesters.SchoolYear).ToString(), "Details", "Semester", new { id = grade.SemesterID }, null)
-                    </td>
-                    <td>
-                        @Html.ActionLink(@Html.DisplayFor(g => grade.Semesters.SemesterNumber).ToString(), "Details", "Semester", new { id = grade.SemesterID }, null)
-                    </td>
-                    <td>
-                        @Html.ActionLink(@Html.DisplayFor(g => grade.GradeCategories.CategoryName).ToString(), "Details", "GradeCategory", new { id = grade.CategoryID }, null)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(g => grade.Mark)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(g => grade.DateOfGrade)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(g => grade.Observations)
-                    </td>
+                    <td>@Html.DisplayFor(g => grade.Students.StudentName)</td>
+                    <td>@Html.DisplayFor(g => grade.Subjects.SubjectName)</td>
+                    <td>@Html.DisplayFor(g => grade.Subjects.LevelYear)</td>
+                    <td>@Html.DisplayFor(g => grade.Semesters.SchoolYear)</td>
+                    <td>@Html.DisplayFor(g => grade.Semesters.SemesterNumber)</td>
+                    <td>@Html.DisplayFor(g => grade.GradeCategories.CategoryName)</td>
+                    <td>@Html.DisplayFor(g => grade.Mark)</td>
+                    <td>@Html.DisplayFor(g => grade.DateOfGrade)</td>
+                    <td>@Html.DisplayFor(g => grade.Observations)</td>
                     <td>
                         @Html.ActionLink("Details", "Details", "Grade", new { id = grade.GradeID }, null) |
                         @Html.ActionLink("Edit", "Update", "Grade", new { id = grade.GradeID }, null) |
@@ -108,4 +72,5 @@
 </div>
 <div>
     @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, option = Request.QueryString["option"], search = Request.QueryString["search"] }))
+    Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount grades
 </div>

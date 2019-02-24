@@ -31,6 +31,7 @@ namespace SchoolJournalModels
         [DisplayName("Due date ")]
         public Nullable<System.DateTime> DueDate { get; set; }
 
+        [Required(ErrorMessage ="Details of homework are required!")]
         [DisplayName("Details ")]
         public string Details { get; set; }
 

@@ -28,10 +28,10 @@
             <tr>
                 <th><b>Semester Number</b></th>
                 <th><b>School Year</b></th>
-                <th></th>
+                <th>@*<input class="form-control" id="myInput" type="text" placeholder="Search..">*@</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="myTable">
             @if (Model.Count == 0)
             {
                 <tr>
@@ -58,4 +58,15 @@
 </div>
 <div>
     @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, option = Request.QueryString["option"], search = Request.QueryString["search"] }))
+    Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount semesters
 </div>
+@*<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>*@

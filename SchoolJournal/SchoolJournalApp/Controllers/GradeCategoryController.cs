@@ -23,13 +23,9 @@ namespace SchoolJournalApp.Controllers
         public ActionResult Index(string option, string search, int? pageNumber)
         {
             if (option == "Name")
-            {
                 return View(manager.GetByName(search).ToPagedList(pageNumber ?? 1, 5));
-            }
             else
-            {
                 return View(manager.GetAllCategories().ToPagedList(pageNumber ?? 1, 5));
-            }
         }
 
         public ActionResult Details(int id)

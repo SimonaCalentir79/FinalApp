@@ -14,11 +14,11 @@ namespace SchoolJournalModels
         [DisplayName("ID ")]
         public int TeacherID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Name of teacher is required!")]
         [DisplayName("Name of teacher: ")]
         public string TeacherName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="E-mail address is required!")]
         [EmailAddress]
         [DisplayName("E-mail ")]
         public string TeacherEmail { get; set; }

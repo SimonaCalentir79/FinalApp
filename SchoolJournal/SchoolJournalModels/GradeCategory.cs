@@ -21,11 +21,11 @@ namespace SchoolJournalModels
         public int CategoryID { get; set; }
 
         [DisplayName("Category name ")]
-        [Required]
+        [Required(ErrorMessage ="Name of category is required!")]
         public string CategoryName { get; set; }
 
         [DisplayName("Share (% of final grade) ")]
-        [Required]
+        [Required(ErrorMessage ="Share in final grade is required!")]
         public decimal Share { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

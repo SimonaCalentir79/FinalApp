@@ -18,17 +18,11 @@ namespace SchoolJournalApp.Controllers
         public ActionResult Index(string option, string search, int? pageNumber)
         {
             if (option == "Number")
-            {
                 return View(manager.GetByNumber(search).ToPagedList(pageNumber ?? 1, 5));
-            }
             else if (option == "Year")
-            {
                 return View(manager.GetByYear(search).ToPagedList(pageNumber ?? 1, 5));
-            }
             else
-            {
                 return View(manager.GetAllSemesters().ToPagedList(pageNumber ?? 1, 5));
-            }
         }
 
         public ActionResult Details(int id)

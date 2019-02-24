@@ -40,13 +40,13 @@ namespace SchoolJournalBusinessLogic
                 .Select(s => new SelectListItem { Value = s.StudentID.ToString(), Text = s.StudentName })
                 .ToList();
             grade.SubjectsList = db.Subject
-                .Select(s => new SelectListItem { Value = s.SubjectID.ToString(), Text = s.SubjectName })
+                .Select(s => new SelectListItem { Value = s.SubjectID.ToString(), Text = s.SubjectName+"/cls. "+s.LevelYear })
                 .ToList();
             grade.SemestersList = db.Semester
-                .Select(s => new SelectListItem { Value = s.SemesterID.ToString(), Text = s.SemesterNumber.ToString() })
+                .Select(s => new SelectListItem { Value = s.SemesterID.ToString(), Text = s.SemesterNumber.ToString()+"/"+s.SchoolYear })
                 .ToList();
             grade.GradeCategoriesList = db.GradeCategory
-                .Select(g => new SelectListItem { Value = g.CategoryID.ToString(), Text = g.CategoryName })
+                .Select(g => new SelectListItem { Value = g.CategoryID.ToString(), Text = g.CategoryName + "/" + g.Share.ToString() })
                 .ToList();
 
             return grade;
@@ -59,13 +59,13 @@ namespace SchoolJournalBusinessLogic
                 .Select(s => new SelectListItem { Value = s.StudentID.ToString(), Text = s.StudentName })
                 .ToList();
             grade.SubjectsList = db.Subject
-                .Select(s => new SelectListItem { Value = s.SubjectID.ToString(), Text = s.SubjectName })
+                .Select(s => new SelectListItem { Value = s.SubjectID.ToString(), Text = s.SubjectName + "/cls. " + s.LevelYear })
                 .ToList();
             grade.SemestersList = db.Semester
-                .Select(s => new SelectListItem { Value = s.SemesterID.ToString(), Text = s.SemesterNumber.ToString() })
+                .Select(s => new SelectListItem { Value = s.SemesterID.ToString(), Text = s.SemesterNumber.ToString() + "/" + s.SchoolYear })
                 .ToList();
             grade.GradeCategoriesList = db.GradeCategory
-                .Select(g => new SelectListItem { Value = g.CategoryID.ToString(), Text = g.CategoryName })
+                .Select(g => new SelectListItem { Value = g.CategoryID.ToString(), Text = g.CategoryName + "/" + g.Share.ToString() })
                 .ToList();
 
             return grade;
