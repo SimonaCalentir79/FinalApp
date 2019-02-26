@@ -13,10 +13,9 @@
     @using (Html.BeginForm("Index", "Grade", FormMethod.Get))
     {
         <b>Search option: </b>
-        @Html.RadioButton("option", "Subject")<text> Subject </text>
+        @Html.RadioButton("option", "Subject")<text> Course </text>
         @Html.RadioButton("option", "Student")<text> Student </text>
         @Html.RadioButton("option", "Semester")<text> Semester </text>
-        @Html.RadioButton("option", "Grade category")<text> Grade category </text>
         @Html.TextBox("search") <input type="submit" value="Search" class="btn btn-primary" />
     }
 </div>
@@ -25,11 +24,11 @@
         <thead class="thead-dark">
             <tr>
                 <th><b>Student</b></th>
-                <th><b>Subject</b></th>
+                <th><b>Course</b></th>
                 <th><b>Level Year</b></th>
                 <th><b>School Year</b></th>
                 <th><b>Semester</b></th>
-                <th><b>Type of grade</b></th>
+                <th><b>Grading Weight</b></th>
                 <th><b>Grade</b></th>
                 <th><b>Date of grade</b></th>
                 <th><b>Details</b></th>
@@ -40,7 +39,7 @@
             @if (Model.Count() == 0)
             {
                 <tr>
-                    <td colspan="8">
+                    <td colspan="10">
                         <i>Records not found</i>
                     </td>
                 </tr>
@@ -51,13 +50,13 @@
                 {
                 <tr>
                     <td>@Html.DisplayFor(g => grade.Students.StudentName)</td>
-                    <td>@Html.DisplayFor(g => grade.Subjects.SubjectName)</td>
-                    <td>@Html.DisplayFor(g => grade.Subjects.LevelYear)</td>
+                    <td>@Html.DisplayFor(g => grade.Courses.CourseName)</td>
+                    <td>@Html.DisplayFor(g => grade.Courses.LevelYear)</td>
                     <td>@Html.DisplayFor(g => grade.Semesters.SchoolYear)</td>
                     <td>@Html.DisplayFor(g => grade.Semesters.SemesterNumber)</td>
-                    <td>@Html.DisplayFor(g => grade.GradeCategories.CategoryName)</td>
+                    <td>@Html.DisplayFor(g => grade.GradingWeight)</td>
                     <td>@Html.DisplayFor(g => grade.Mark)</td>
-                    <td>@Html.DisplayFor(g => grade.DateOfGrade)</td>
+                    <td>@Html.DisplayFor(g => grade.DateOfMark)</td>
                     <td>@Html.DisplayFor(g => grade.Observations)</td>
                     <td>
                         @Html.ActionLink("Details", "Details", "Grade", new { id = grade.GradeID }, null) |

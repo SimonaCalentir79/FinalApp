@@ -10,19 +10,19 @@ using System.Web.Mvc;
 
 namespace SchoolJournalApp.Controllers
 {
-    public class SubjectController : Controller
+    public class CourseController : Controller
     {
-        private ISubjectManager manager;
+        private ICourseManager manager;
 
-        public SubjectController()
+        public CourseController()
         {
-            manager = new SubjectManager();
+            manager = new CourseManager();
         }
 
         public ActionResult Index(string option, string search, int? pageNumber)
         {
             if (option == "Subject")
-                return View(manager.GetBySubject(search).ToPagedList(pageNumber ?? 1, 5));
+                return View(manager.GetByCourse(search).ToPagedList(pageNumber ?? 1, 5));
             else if (option == "Teacher")
                 return View(manager.GetByTeacher(search).ToPagedList(pageNumber ?? 1, 5));
             else if (option == "Level")
@@ -41,7 +41,7 @@ namespace SchoolJournalApp.Controllers
         {
             if (saveChangesError.GetValueOrDefault())
                 ViewBag.ErrorMessage = "Delete failed! Try again or see your sysadmin!";
-            Subject subject = manager.Get(id);
+            Course subject = manager.Get(id);
             if (subject == null)
             {
                 return HttpNotFound();
@@ -74,7 +74,7 @@ namespace SchoolJournalApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update([Bind(Include = "SubjectID,SubjectName,LevelYear,TeacherID")]Subject subject)
+        public ActionResult Update([Bind(Include = "CourseID,CourseName,LevelYear,TeacherID")]Course subject)
         {
             if (ModelState.IsValid)
             {
@@ -87,12 +87,12 @@ namespace SchoolJournalApp.Controllers
         [HttpGet]
         public ActionResult Add()
         {
-            return View(manager.SubjectWithTeachersList());
+            return View(manager.CourseWithTeachersList());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "SubjectID,SubjectName,LevelYear,TeacherID")]Subject subject)
+        public ActionResult Add([Bind(Include = "CourseID,CourseName,LevelYear,TeacherID")]Course subject)
         {
             if (ModelState.IsValid)
             {

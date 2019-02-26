@@ -9,43 +9,39 @@ INSERT INTO Teacher(TeacherName,TeacherEmail) VALUES ('Teacher08','teacher08@ema
 INSERT INTO Teacher(TeacherName,TeacherEmail) VALUES ('Teacher09','teacher09@email.com');
 INSERT INTO Teacher(TeacherName,TeacherEmail) VALUES ('Teacher10','teacher10@email.com');
 
-INSERT INTO Student(StudentName) VALUES ('Student01');
-INSERT INTO Student(StudentName) VALUES ('Student02');
+INSERT INTO Student(StudentName) VALUES ('Luca-Bogdan');
+INSERT INTO Student(StudentName) VALUES ('Matei-Calin');
 
 INSERT INTO Semester(SemesterNumber,SchoolYear) VALUES (1,'2017-2018');
 INSERT INTO Semester(SemesterNumber,SchoolYear) VALUES (2,'2017-2018');
 INSERT INTO Semester(SemesterNumber,SchoolYear) VALUES (1,'2018-2019');
 INSERT INTO Semester(SemesterNumber,SchoolYear) VALUES (2,'2018-2019');
 
-INSERT INTO GradeCategory(CategoryName,Share) VALUES ('Nota',0.75);
-INSERT INTO GradeCategory(CategoryName,Share) VALUES ('Nota',1.00);
-INSERT INTO GradeCategory(CategoryName,Share) VALUES ('Teza',0.25);
+INSERT INTO Course(CourseName,LevelYear,TeacherID) VALUES ('Matematica',3,4);
+INSERT INTO Course(CourseName,LevelYear,TeacherID) VALUES ('Limba Romana',3,4);
+INSERT INTO Course(CourseName,LevelYear,TeacherID) VALUES ('Limba Engleza',3,7);
+INSERT INTO Course(CourseName,LevelYear,TeacherID) VALUES ('Informatica',3,5);
+INSERT INTO Course(CourseName,LevelYear,TeacherID) VALUES ('Arte vizuale',3,4);
+INSERT INTO Course(CourseName,LevelYear,TeacherID) VALUES ('Educatie fizica',3,4);
+INSERT INTO Course(CourseName,LevelYear,TeacherID) VALUES ('Educatie sociala',3,4);
+INSERT INTO Course(CourseName,LevelYear,TeacherID) VALUES ('Matematica',5,5);
+INSERT INTO Course(CourseName,LevelYear,TeacherID) VALUES ('Limba Romana',5,6);
+INSERT INTO Course(CourseName,LevelYear,TeacherID) VALUES ('Limba Engleza',5,7);
+INSERT INTO Course(CourseName,LevelYear,TeacherID) VALUES ('Limba germana',5,8);
+INSERT INTO Course(CourseName,LevelYear,TeacherID) VALUES ('Biologie',5,1);
+INSERT INTO Course(CourseName,LevelYear,TeacherID) VALUES ('Istorie',5,2);
+INSERT INTO Course(CourseName,LevelYear,TeacherID) VALUES ('Georgrafie',5,6);
+INSERT INTO Course(CourseName,LevelYear,TeacherID) VALUES ('Informatica',5,5);
 
-INSERT INTO Subject(SubjectName,LevelYear,TeacherID) VALUES ('Matematica',3,4);
-INSERT INTO Subject(SubjectName,LevelYear,TeacherID) VALUES ('Limba Romana',3,4);
-INSERT INTO Subject(SubjectName,LevelYear,TeacherID) VALUES ('Limba Engleza',3,7);
-INSERT INTO Subject(SubjectName,LevelYear,TeacherID) VALUES ('Informatica',3,5);
-INSERT INTO Subject(SubjectName,LevelYear,TeacherID) VALUES ('Arte vizuale',3,4);
-INSERT INTO Subject(SubjectName,LevelYear,TeacherID) VALUES ('Educatie fizica',3,4);
-INSERT INTO Subject(SubjectName,LevelYear,TeacherID) VALUES ('Educatie sociala',3,4);
-INSERT INTO Subject(SubjectName,LevelYear,TeacherID) VALUES ('Matematica',5,5);
-INSERT INTO Subject(SubjectName,LevelYear,TeacherID) VALUES ('Limba Romana',5,6);
-INSERT INTO Subject(SubjectName,LevelYear,TeacherID) VALUES ('Limba Engleza',5,7);
-INSERT INTO Subject(SubjectName,LevelYear,TeacherID) VALUES ('Limba germana',5,8);
-INSERT INTO Subject(SubjectName,LevelYear,TeacherID) VALUES ('Biologie',5,1);
-INSERT INTO Subject(SubjectName,LevelYear,TeacherID) VALUES ('Istorie',5,2);
-INSERT INTO Subject(SubjectName,LevelYear,TeacherID) VALUES ('Georgrafie',5,6);
-INSERT INTO Subject(SubjectName,LevelYear,TeacherID) VALUES ('Informatica',5,5);
+INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (1,1,1,10,1.00);
+INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (1,1,3,10,0.75);
+INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (1,2,5,10,0.75);
+INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (1,2,7,10,0.25);
+INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (2,1,8,10,1.00);
+INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (2,1,10,10,0.75);
+INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (2,2,9,10,0.25);
+INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (2,2,9,8,1.00);
+INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (2,2,9,6,1.00);
+INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (2,2,9,10,1.00);
 
-INSERT INTO Grade(StudentID,SemesterID,SubjectID,CategoryID,Mark) VALUES (1,1,1,1,10);
-INSERT INTO Grade(StudentID,SemesterID,SubjectID,CategoryID,Mark) VALUES (1,1,3,1,10);
-INSERT INTO Grade(StudentID,SemesterID,SubjectID,CategoryID,Mark) VALUES (1,2,5,1,10);
-INSERT INTO Grade(StudentID,SemesterID,SubjectID,CategoryID,Mark) VALUES (1,2,7,1,10);
-INSERT INTO Grade(StudentID,SemesterID,SubjectID,CategoryID,Mark) VALUES (2,1,8,1,10);
-INSERT INTO Grade(StudentID,SemesterID,SubjectID,CategoryID,Mark) VALUES (2,1,10,1,10);
-INSERT INTO Grade(StudentID,SemesterID,SubjectID,CategoryID,Mark) VALUES (2,2,9,1,10);
-INSERT INTO Grade(StudentID,SemesterID,SubjectID,CategoryID,Mark) VALUES (2,2,9,1,8);
-INSERT INTO Grade(StudentID,SemesterID,SubjectID,CategoryID,Mark) VALUES (2,2,9,1,6);
-INSERT INTO Grade(StudentID,SemesterID,SubjectID,CategoryID,Mark) VALUES (2,2,9,3,10);
-
-INSERT INTO Homework(StudentID,SubjectID,Details) VALUES (2,9,'details about homework');
+INSERT INTO Homework(StudentID,CourseID,Details) VALUES (2,9,'details about homework');

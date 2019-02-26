@@ -44,7 +44,7 @@ namespace SchoolJournalApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update([Bind(Include = "StudentId,StudentName")]Student student)
+        public ActionResult Update([Bind(Include = "StudentId,StudentName,Observations")]Student student)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace SchoolJournalApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "StudentId,StudentName")]Student student)
+        public ActionResult Add([Bind(Include = "StudentId,StudentName,Observations")]Student student)
         {
             if (ModelState.IsValid)
             {

@@ -23,7 +23,7 @@ namespace SchoolJournalBusinessLogic
         {
             Homework hwork = new Homework();
             hwork.StudentsList = db.Student.Select(s => new SelectListItem { Value = s.StudentID.ToString(), Text = s.StudentName }).ToList();
-            hwork.SubjectsList = db.Subject.Select(s => new SelectListItem { Value = s.SubjectID.ToString(), Text = s.SubjectName }).ToList();
+            hwork.CoursesList = db.Course.Select(s => new SelectListItem { Value = s.CourseID.ToString(), Text = s.CourseName }).ToList();
 
             return hwork;
         }
@@ -33,7 +33,7 @@ namespace SchoolJournalBusinessLogic
             //return db.Homework.Find(id);
             Homework hwork = db.Homework.Find(id);
             hwork.StudentsList = db.Student.Select(s => new SelectListItem { Value = s.StudentID.ToString(), Text = s.StudentName }).ToList();
-            hwork.SubjectsList = db.Subject.Select(s => new SelectListItem { Value = s.SubjectID.ToString(), Text = s.SubjectName }).ToList();
+            hwork.CoursesList = db.Course.Select(s => new SelectListItem { Value = s.CourseID.ToString(), Text = s.CourseName }).ToList();
 
             return hwork;
         }
@@ -48,9 +48,9 @@ namespace SchoolJournalBusinessLogic
             return db.Homework.Where(h => h.Students.StudentName.Contains(student) || student == null).ToList();
         }
 
-        public IList<Homework> GetBySubject(string subject)
+        public IList<Homework> GetByCourse(string course)
         {
-            return db.Homework.Where(h => h.Subjects.SubjectName.Contains(subject) || subject == null).ToList();
+            return db.Homework.Where(h => h.Courses.CourseName.Contains(course) || course == null).ToList();
         }
 
         public void Save(Homework hwork)

@@ -16,17 +16,17 @@ namespace SchoolJournalDataAccess
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
             modelBuilder.Entity<Teacher>()
-                .HasMany(t => t.Subjects);
+                .HasMany(t => t.Courses);
 
-            modelBuilder.Entity<Subject>()
+            modelBuilder.Entity<Course>()
                 .HasRequired(s => s.Teachers)
-                .WithMany(s => s.Subjects)
+                .WithMany(s => s.Courses)
                 .HasForeignKey(s => s.TeacherID);
 
             modelBuilder.Entity<Student>()
                 .HasMany(s => s.Homeworks);
 
-            modelBuilder.Entity<Subject>()
+            modelBuilder.Entity<Course>()
                 .HasMany(s => s.Homeworks);
 
             modelBuilder.Entity<Homework>()
@@ -35,20 +35,17 @@ namespace SchoolJournalDataAccess
                 .HasForeignKey(h => h.StudentID);
 
             modelBuilder.Entity<Homework>()
-                .HasRequired(h => h.Subjects)
+                .HasRequired(h => h.Courses)
                 .WithMany(h => h.Homeworks)
-                .HasForeignKey(h => h.SubjectID);
+                .HasForeignKey(h => h.CourseID);
 
             modelBuilder.Entity<Student>()
                 .HasMany(g => g.Grades);
 
-            modelBuilder.Entity<Subject>()
+            modelBuilder.Entity<Course>()
                 .HasMany(g => g.Grades);
 
             modelBuilder.Entity<Semester>()
-                .HasMany(g => g.Grades);
-
-            modelBuilder.Entity<GradeCategory>()
                 .HasMany(g => g.Grades);
 
             modelBuilder.Entity<Grade>()
@@ -57,29 +54,48 @@ namespace SchoolJournalDataAccess
                 .HasForeignKey(g => g.StudentID);
 
             modelBuilder.Entity<Grade>()
-                .HasRequired(g => g.Subjects)
+                .HasRequired(g => g.Courses)
                 .WithMany(g => g.Grades)
-                .HasForeignKey(g => g.SubjectID);
+                .HasForeignKey(g => g.CourseID);
 
             modelBuilder.Entity<Grade>()
                 .HasRequired(g => g.Semesters)
                 .WithMany(g => g.Grades)
                 .HasForeignKey(g => g.SemesterID);
 
-            modelBuilder.Entity<Grade>()
-                .HasRequired(g => g.GradeCategories)
-                .WithMany(g => g.Grades)
-                .HasForeignKey(g => g.CategoryID);
+            modelBuilder.Entity<Student>()
+                .HasMany(g => g.TermReports);
+
+            modelBuilder.Entity<Course>()
+                .HasMany(g => g.TermReports);
+
+            modelBuilder.Entity<Semester>()
+                .HasMany(g => g.TermReports);
+
+            modelBuilder.Entity<TermReport>()
+                .HasRequired(g => g.Students)
+                .WithMany(g => g.TermReports)
+                .HasForeignKey(g => g.StudentID);
+
+            modelBuilder.Entity<TermReport>()
+                .HasRequired(g => g.Courses)
+                .WithMany(g => g.TermReports)
+                .HasForeignKey(g => g.CourseID);
+
+            modelBuilder.Entity<TermReport>()
+                .HasRequired(g => g.Semesters)
+                .WithMany(g => g.TermReports)
+                .HasForeignKey(g => g.SemesterID);
         }
 
         public SchoolJournalEntities():base("name=SchoolJournalEntities"){}
 
-        public virtual DbSet<GradeCategory> GradeCategory { get; set; }
         public virtual DbSet<Grade> Grade { get; set; }
         public virtual DbSet<Homework> Homework { get; set; }
         public virtual DbSet<Semester> Semester { get; set; }
         public virtual DbSet<Student> Student { get; set; }
-        public virtual DbSet<Subject> Subject { get; set; }
+        public virtual DbSet<Course> Course { get; set; }
         public virtual DbSet<Teacher> Teacher { get; set; }
+        public virtual DbSet<TermReport> TermReport { get; set; }
     }
 }

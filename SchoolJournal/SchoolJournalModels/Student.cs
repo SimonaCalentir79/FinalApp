@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Web;
 
 namespace SchoolJournalModels
 {
@@ -14,6 +15,7 @@ namespace SchoolJournalModels
         {
             this.Grades = new HashSet<Grade>();
             this.Homeworks = new HashSet<Homework>();
+            this.TermReports = new HashSet<TermReport>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -25,9 +27,14 @@ namespace SchoolJournalModels
         [DisplayName("Student ")]
         public string StudentName { get; set; }
 
+        [DisplayName("Observations ")]
+        public string Observations { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Grade> Grades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Homework> Homeworks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TermReport> TermReports { get; set; }
     }
 }

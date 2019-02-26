@@ -26,6 +26,7 @@
         <thead class="thead-dark">
             <tr>
                 <th><b>Name</b></th>
+                <th><b>Details</b></th>
                 <th>@*<input class="form-control" id="myInput" type="text" placeholder="Search..">*@</th>
             </tr>
         </thead>
@@ -33,7 +34,7 @@
             @if (Model.Count == 0)
             {
                 <tr>
-                    <td colspan="2">
+                    <td colspan="3">
                         <i>Records not found</i>
                     </td>
                 </tr>
@@ -42,16 +43,17 @@
             {
                 foreach (var stud in Model)
                 {
-                    <tr>
-                        <td>@stud.StudentName</td>
-                        <td>
-                            @Html.ActionLink("Details", "Details", "Student", new { @id = stud.StudentID }, null) |
+                <tr>
+                    <td>@stud.StudentName</td>
+                    <td>@stud.Observations</td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", "Student", new { @id = stud.StudentID }, null) |
                         @Html.ActionLink("Edit", "Update", "Student", new { @id = stud.StudentID }, null) |
                         @Html.ActionLink("Delete", "Delete", "Student", new { @id = stud.StudentID }, null)
                     </td>
                 </tr>
+                }
             }
-        }
         </tbody>
     </table>
 </div>

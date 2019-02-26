@@ -11,7 +11,7 @@ namespace SchoolJournalInterfaces
 
         Homework Get(int id);
 
-        IList<Homework> GetBySubject(string subject);
+        IList<Homework> GetByCourse(string course);
 
         IList<Homework> GetByStudent(string student);
 

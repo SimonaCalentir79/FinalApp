@@ -22,13 +22,11 @@ namespace SchoolJournalApp.Controllers
         public ActionResult Index(string option, string search, int? pageNumber)
         {
             if (option == "Subject")
-                return View(manager.GetBySubject(search).ToPagedList(pageNumber ?? 1, 5));
+                return View(manager.GetByCourse(search).ToPagedList(pageNumber ?? 1, 5));
             else if (option == "Student")
                 return View(manager.GetByStudent(search).ToPagedList(pageNumber ?? 1, 5));
             else if (option == "Semester")
                 return View(manager.GetBySemester(search).ToPagedList(pageNumber ?? 1, 5));
-            else if (option == "GradeCategory")
-                return View(manager.GetByGradeCategory(search).ToPagedList(pageNumber ?? 1, 5));
             else
                 return View(manager.GetAll().ToPagedList(pageNumber ?? 1, 5));
         }
@@ -73,7 +71,7 @@ namespace SchoolJournalApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update([Bind(Include = "GradeID,StudentID,SemesterID,SubjectID,CategoryID,Mark,DateOfGrade,Observations")]Grade grade)
+        public ActionResult Update([Bind(Include = "GradeID,StudentID,SemesterID,CourseID,CategoryID,Mark,DateOfMark,GradingWeight,Observations")]Grade grade)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +89,7 @@ namespace SchoolJournalApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "GradeID,StudentID,SemesterID,SubjectID,CategoryID,Mark,DateOfGrade,Observations")]Grade grade)
+        public ActionResult Add([Bind(Include = "GradeID,StudentID,SemesterID,CourseID,CategoryID,Mark,DateOfMark,GradingWeight,Observations")]Grade grade)
         {
             if (ModelState.IsValid)
             {

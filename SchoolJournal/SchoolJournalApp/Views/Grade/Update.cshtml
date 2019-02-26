@@ -12,16 +12,12 @@
             @Html.DropDownListFor(g => g.StudentID, new SelectList(Model.StudentsList, "Value", "Text"))
         </div>
         <div class="form-group">
-            @Html.LabelFor(g => g.Subjects.SubjectName)
-            @Html.DropDownListFor(g => g.SubjectID, new SelectList(Model.SubjectsList, "Value", "Text"))
+            @Html.LabelFor(g => g.Courses.CourseName)
+            @Html.DropDownListFor(g => g.CourseID, new SelectList(Model.CoursesList, "Value", "Text"))
         </div>
         <div class="form-group">
             @Html.LabelFor(g => g.Semesters.SemesterNumber)
             @Html.DropDownListFor(g => g.SemesterID, new SelectList(Model.SemestersList, "Value", "Text"))
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(g => g.GradeCategories.CategoryName)
-            @Html.DropDownListFor(g => g.CategoryID, new SelectList(Model.GradeCategoriesList, "Value", "Text"))
         </div>
         <div class="form-group">
             @Html.LabelFor(g => g.Mark)
@@ -29,9 +25,14 @@
             @Html.ValidationMessageFor(g => g.Mark)
         </div>
         <div class="form-group">
-            @Html.LabelFor(g => g.DateOfGrade)
-            @Html.TextBoxFor(g => g.DateOfGrade, null, new { @class = "form-control" })
-            @Html.ValidationMessageFor(g => g.DateOfGrade)
+            @Html.LabelFor(g => g.DateOfMark)
+            @Html.TextBoxFor(g => g.DateOfMark, null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(g => g.DateOfMark)
+        </div>
+                <div class="form-group">
+            @Html.LabelFor(g => g.GradingWeight)
+            @Html.TextBoxFor(g => g.GradingWeight, null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(g => g.GradingWeight)
         </div>
         <div class="form-group">
             @Html.LabelFor(g => g.Observations)

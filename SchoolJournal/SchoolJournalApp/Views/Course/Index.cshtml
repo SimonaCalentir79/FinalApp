@@ -1,16 +1,16 @@
 ﻿
 @using PagedList;
 @using PagedList.Mvc;
-@model IPagedList<SchoolJournalModels.Subject>
+@model IPagedList<SchoolJournalModels.Course>
 
 <h2>COURSES (@Model.Count() records)</h2>
 
 <div>
-    <p><strong>@Html.ActionLink("ADD NEW COURSE", "Add", "Subject")</strong></p>
+    <p><strong>@Html.ActionLink("ADD NEW COURSE", "Add", "Course")</strong></p>
 </div>
 <br />
 <div>
-    @using (Html.BeginForm("Index", "Subject", FormMethod.Get))
+    @using (Html.BeginForm("Index", "Course", FormMethod.Get))
     {
         <b>Search option: </b>
         @Html.RadioButton("option", "Subject")<text> Course </text>
@@ -44,7 +44,7 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(m => subj.SubjectName)
+                            @Html.DisplayFor(m => subj.CourseName)
                         </td>
                         <td>
                             @Html.DisplayFor(m => subj.LevelYear)
@@ -53,9 +53,9 @@
                             @Html.ActionLink(@Html.DisplayFor(m => subj.Teachers.TeacherName).ToString(), "Details", "Teacher", new { id = subj.TeacherID }, null)
                         </td>
                         <td>
-                            @Html.ActionLink("Details", "Details", "Subject", new { id = subj.SubjectID }, null) |
-                            @Html.ActionLink("Edit", "Update", "Subject", new { id = subj.SubjectID }, null) |
-                            @Html.ActionLink("Delete", "Delete", "Subject", new { id = subj.SubjectID }, null)
+                            @Html.ActionLink("Details", "Details", "Course", new { id = subj.CourseID }, null) |
+                            @Html.ActionLink("Edit", "Update", "Course", new { id = subj.CourseID }, null) |
+                            @Html.ActionLink("Delete", "Delete", "Course", new { id = subj.CourseID }, null)
                         </td>
                     </tr>
                 }

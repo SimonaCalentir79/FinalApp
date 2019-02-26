@@ -26,6 +26,6 @@ namespace SchoolJournalModels
         [DisplayName("Phone ")]
         public string TeacherPhone { get; set; }
 
-        public ICollection<Subject> Subjects { get; set; }
+        public ICollection<Course> Courses { get; set; }
     }
 }

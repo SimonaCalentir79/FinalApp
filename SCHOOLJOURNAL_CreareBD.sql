@@ -1,7 +1,7 @@
+--DROP TABLE TermReport;
 --DROP TABLE Homework;
 --DROP TABLE Grade;
---DROP TABLE Subject;
---DROP TABLE GradeCategory;
+--DROP TABLE Course;
 --DROP TABLE Semester;
 --DROP TABLE Student;
 --DROP TABLE Teacher;
@@ -17,7 +17,8 @@ CREATE TABLE Teacher
 CREATE TABLE Student
 (
 	StudentID INT IDENTITY(1,1) PRIMARY KEY,
-	StudentName VARCHAR(150) NOT NULL
+	StudentName VARCHAR(150) NOT NULL,
+	Observations VARCHAR(200) NULL
 )
 
 CREATE TABLE Semester
@@ -27,17 +28,10 @@ CREATE TABLE Semester
 	SchoolYear CHAR(9) NOT NULL
 )
 
-CREATE TABLE GradeCategory
+CREATE TABLE Course
 (
-	CategoryID INT IDENTITY(1,1) PRIMARY KEY,
-	CategoryName VARCHAR(100) NOT NULL,
-	Share NUMERIC(4,2) NOT NULL
-)
-
-CREATE TABLE Subject
-(
-	SubjectID INT IDENTITY(1,1) PRIMARY KEY,
-	SubjectName VARCHAR(200),
+	CourseID INT IDENTITY(1,1) PRIMARY KEY,
+	CourseName VARCHAR(200),
 	LevelYear INT NOT NULL,
 	TeacherID INT,
 	CONSTRAINT FK_Subjects_TeacherID FOREIGN KEY (TeacherID) REFERENCES Teacher(TeacherID)
@@ -48,25 +42,38 @@ CREATE TABLE Grade
 	GradeID INT IDENTITY(1,1) PRIMARY KEY,
 	StudentID INT NOT NULL,
 	SemesterID INT NOT NULL,
-	SubjectID INT NOT NULL,
-	CategoryID INT NOT NULL,
+	CourseID INT NOT NULL,
 	Mark NUMERIC(4,2) NOT NULL,
-	DateOfGrade DATE,
+	DateOfMark DATE DEFAULT GETDATE(),
+	GradingWeight NUMERIC(4,2) NOT NULL,
 	Observations VARCHAR(200)
 	CONSTRAINT FK_Grades_StudentID FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
 	CONSTRAINT FK_Grades_SemesterID FOREIGN KEY (SemesterID) REFERENCES Semester(SemesterID),
-	CONSTRAINT FK_Grades_SubjectID FOREIGN KEY (SubjectID) REFERENCES Subject(SubjectID),
-	CONSTRAINT FK_Grades_CategoryID FOREIGN KEY (CategoryID) REFERENCES GradeCategory(CategoryID)
+	CONSTRAINT FK_Grades_CourseID FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
 )
 
 CREATE TABLE Homework
 (
 	HomeworkID INT IDENTITY(1,1) PRIMARY KEY,
 	StudentID INT NOT NULL,
-	SubjectID INT NOT NULL,
-	DateOfHomework DATE,
-	DueDate DATE,
+	CourseID INT NOT NULL,
+	DateOfHomework DATE DEFAULT GETDATE(),
+	DueDate DATE DEFAULT GETDATE()+1,
 	Details VARCHAR(500) NOT NULL,
+	HomeworkStatus VARCHAR(50) DEFAULT 'TO DO',
 	CONSTRAINT FK_Homework_StudentID FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
-	CONSTRAINT FK_Homework_SubjectID FOREIGN KEY (SubjectID) REFERENCES Subject(SubjectID)
+	CONSTRAINT FK_Homework_CourseIDD FOREIGN KEY (CourseID) REFERENCES Course(CourseID),
+	CONSTRAINT CK_Homework_HWStatus CHECK (HomeworkStatus IN ('TO DO','IN PROGRESS','FINISHED'))
+)
+
+CREATE TABLE TermReport
+(
+	ReportID INT IDENTITY(1,1) PRIMARY KEY,
+	StudentID INT NOT NULL,
+	SemesterID INT NOT NULL,
+	CourseID INT NOT NULL,
+	AverageGrade NUMERIC(4,2),
+	CONSTRAINT FK_TermReports_StudentID FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
+	CONSTRAINT FK_TermReports_SemesterID FOREIGN KEY (SemesterID) REFERENCES Semester(SemesterID),
+	CONSTRAINT FK_TermReports_CourseID FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
 )

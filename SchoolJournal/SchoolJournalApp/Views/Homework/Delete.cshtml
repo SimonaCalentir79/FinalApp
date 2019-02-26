@@ -23,10 +23,10 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(h => h.Subjects.SubjectName)
+            @Html.DisplayNameFor(h => h.Courses.CourseName)
         </dt>
         <dd>
-            @Html.DisplayFor(h => h.Subjects.SubjectName)
+            @Html.DisplayFor(h => h.Courses.CourseName)
         </dd>
 
         <dt>
@@ -48,6 +48,13 @@
         </dt>
         <dd>
             @Html.DisplayFor(h => h.Details)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(h => h.HomeworkStatus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(h => h.HomeworkStatus)
         </dd>
     </dl>
     @using (Html.BeginForm())

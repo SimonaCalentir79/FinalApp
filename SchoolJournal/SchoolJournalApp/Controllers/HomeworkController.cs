@@ -22,7 +22,7 @@ namespace SchoolJournalApp.Controllers
         public ActionResult Index(string option, string search, int? pageNumber)
         {
             if (option == "Subject")
-                return View(manager.GetBySubject(search).ToPagedList(pageNumber ?? 1, 5));
+                return View(manager.GetByCourse(search).ToPagedList(pageNumber ?? 1, 5));
             else if (option == "Student")
                 return View(manager.GetByStudent(search).ToPagedList(pageNumber ?? 1, 5));
             else
@@ -69,14 +69,14 @@ namespace SchoolJournalApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update([Bind(Include = "HomeworkID,StudentID,SubjectID,DateOfHomework,DueDate,Details")]Homework hwork)
+        public ActionResult Update([Bind(Include = "HomeworkID,StudentID,CourseID,DateOfHomework,DueDate,Details,HomeworkStatus")]Homework homework)
         {
             if (ModelState.IsValid)
             {
-                manager.Save(hwork);
+                manager.Save(homework);
                 return RedirectToAction("Index");
             }
-            return View(hwork);
+            return View(homework);
         }
 
         [HttpGet]
@@ -87,7 +87,7 @@ namespace SchoolJournalApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "HomeworkID,StudentID,SubjectID,DateOfHomework,DueDate,Details")]Homework hwork)
+        public ActionResult Add([Bind(Include = "HomeworkID,StudentID,CourseID,DateOfHomework,DueDate,Details,HomeworkStatus")]Homework hwork)
         {
             if (ModelState.IsValid)
             {

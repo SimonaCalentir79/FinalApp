@@ -39,14 +39,11 @@ namespace SchoolJournalBusinessLogic
             grade.StudentsList = db.Student
                 .Select(s => new SelectListItem { Value = s.StudentID.ToString(), Text = s.StudentName })
                 .ToList();
-            grade.SubjectsList = db.Subject
-                .Select(s => new SelectListItem { Value = s.SubjectID.ToString(), Text = s.SubjectName+"/cls. "+s.LevelYear })
+            grade.CoursesList = db.Course
+                .Select(s => new SelectListItem { Value = s.CourseID.ToString(), Text = s.CourseName+"/cls. "+s.LevelYear })
                 .ToList();
             grade.SemestersList = db.Semester
                 .Select(s => new SelectListItem { Value = s.SemesterID.ToString(), Text = s.SemesterNumber.ToString()+"/"+s.SchoolYear })
-                .ToList();
-            grade.GradeCategoriesList = db.GradeCategory
-                .Select(g => new SelectListItem { Value = g.CategoryID.ToString(), Text = g.CategoryName + "/" + g.Share.ToString() })
                 .ToList();
 
             return grade;
@@ -58,14 +55,11 @@ namespace SchoolJournalBusinessLogic
             grade.StudentsList = db.Student
                 .Select(s => new SelectListItem { Value = s.StudentID.ToString(), Text = s.StudentName })
                 .ToList();
-            grade.SubjectsList = db.Subject
-                .Select(s => new SelectListItem { Value = s.SubjectID.ToString(), Text = s.SubjectName + "/cls. " + s.LevelYear })
+            grade.CoursesList = db.Course
+                .Select(s => new SelectListItem { Value = s.CourseID.ToString(), Text = s.CourseName + "/cls. " + s.LevelYear })
                 .ToList();
             grade.SemestersList = db.Semester
                 .Select(s => new SelectListItem { Value = s.SemesterID.ToString(), Text = s.SemesterNumber.ToString() + "/" + s.SchoolYear })
-                .ToList();
-            grade.GradeCategoriesList = db.GradeCategory
-                .Select(g => new SelectListItem { Value = g.CategoryID.ToString(), Text = g.CategoryName + "/" + g.Share.ToString() })
                 .ToList();
 
             return grade;
@@ -74,11 +68,6 @@ namespace SchoolJournalBusinessLogic
         public IList<Grade> GetAll()
         {
             return db.Grade.Select(g => g).ToList();
-        }
-
-        public IList<Grade> GetByGradeCategory(string gradectg)
-        {
-            return db.Grade.Where(g => g.GradeCategories.CategoryName.Contains(gradectg) || gradectg == null).ToList();
         }
 
         public IList<Grade> GetBySemester(string semester)
@@ -91,9 +80,9 @@ namespace SchoolJournalBusinessLogic
             return db.Grade.Where(g => g.Students.StudentName.Contains(student) || student == null).ToList();
         }
 
-        public IList<Grade> GetBySubject(string subject)
+        public IList<Grade> GetByCourse(string course)
         {
-            return db.Grade.Where(g => g.Subjects.SubjectName.Contains(subject) || subject == null).ToList();
+            return db.Grade.Where(g => g.Courses.CourseName.Contains(course) || course == null).ToList();
         }
 
         public void Save(Grade grade)

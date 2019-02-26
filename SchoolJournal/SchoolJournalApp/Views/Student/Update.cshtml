@@ -12,6 +12,11 @@
             @Html.TextBoxFor(s => s.StudentName, null, new { @class = "form-control" })
             @Html.ValidationMessageFor(s => s.StudentName)
         </div>
+        <div class="form-group">
+            @Html.LabelFor(s => s.Observations)
+            @Html.TextBoxFor(s => s.Observations, null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(s => s.Observations)
+        </div>
 
         <input type="submit" value="Save" class="btn btn-primary" />
         @Html.ActionLink("Cancel", "Index", "Student");

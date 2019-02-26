@@ -1,4 +1,4 @@
-﻿@model SchoolJournalModels.Subject
+﻿@model SchoolJournalModels.Course
 
 
 <h2>DELETE</h2>
@@ -9,17 +9,17 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(s => s.SubjectID)
+            @Html.DisplayNameFor(s => s.CourseID)
         </dt>
         <dd>
-            @Html.DisplayFor(s => s.SubjectID)
+            @Html.DisplayFor(s => s.CourseID)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(s => s.SubjectName)
+            @Html.DisplayNameFor(s => s.CourseName)
         </dt>
         <dd>
-            @Html.DisplayFor(s => s.SubjectName)
+            @Html.DisplayFor(s => s.CourseName)
         </dd>
 
         <dt>
@@ -41,7 +41,7 @@
         @Html.AntiForgeryToken()
         <div class="form-group">
             <input type="submit" value="Delete" class="btn btn-primary" />
-            @Html.ActionLink("Cancel", "Index", "Subject")
+            @Html.ActionLink("Cancel", "Index", "Course")
         </div>
     }
 </div>

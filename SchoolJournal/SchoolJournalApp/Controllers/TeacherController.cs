@@ -16,7 +16,6 @@ namespace SchoolJournalApp.Controllers
             manager = new TeacherManager();
         }
 
-
         public ActionResult Index(string option, string search, int? pageNumber)
         {
             if (option == "Name")

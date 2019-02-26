@@ -11,13 +11,11 @@ namespace SchoolJournalInterfaces
 
         Grade Get(int id);
 
-        IList<Grade> GetBySubject(string subject);
+        IList<Grade> GetByCourse(string course);
 
         IList<Grade> GetByStudent(string student);
 
         IList<Grade> GetBySemester(string semester);
-
-        IList<Grade> GetByGradeCategory(string gradectg);
 
         void Delete(int id);
 
