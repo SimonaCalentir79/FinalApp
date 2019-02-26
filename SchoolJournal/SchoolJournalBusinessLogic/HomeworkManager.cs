@@ -23,7 +23,7 @@ namespace SchoolJournalBusinessLogic
         {
             Homework hwork = new Homework();
             hwork.StudentsList = db.Student.Select(s => new SelectListItem { Value = s.StudentID.ToString(), Text = s.StudentName }).ToList();
-            hwork.CoursesList = db.Course.Select(s => new SelectListItem { Value = s.CourseID.ToString(), Text = s.CourseName }).ToList();
+            hwork.CoursesList = db.Course.Select(s => new SelectListItem { Value = s.CourseID.ToString(), Text = s.CourseName + "/cls." + s.LevelYear }).ToList();
 
             return hwork;
         }
@@ -33,7 +33,7 @@ namespace SchoolJournalBusinessLogic
             //return db.Homework.Find(id);
             Homework hwork = db.Homework.Find(id);
             hwork.StudentsList = db.Student.Select(s => new SelectListItem { Value = s.StudentID.ToString(), Text = s.StudentName }).ToList();
-            hwork.CoursesList = db.Course.Select(s => new SelectListItem { Value = s.CourseID.ToString(), Text = s.CourseName }).ToList();
+            hwork.CoursesList = db.Course.Select(s => new SelectListItem { Value = s.CourseID.ToString(), Text = s.CourseName + "/cls." + s.LevelYear }).ToList();
 
             return hwork;
         }

@@ -34,21 +34,25 @@ namespace SchoolJournalModels
         [DataType(DataType.Date)]
         public DateTime DueDate { get; set; }
 
-        [Required(ErrorMessage = "Details can't be null!")]
+        //[Required(ErrorMessage = "Details can't be null!")]
         [DisplayName("Details ")]
         public string Details { get; set; }
 
-        [Required(ErrorMessage ="Status can't be null!")]
+        //[Required(ErrorMessage ="Status can't be null!")]
         [DisplayName("Homework status ")]
-        [CheckStatus(AllowStatus ="TO DO, IN PROGRESS, FINISHED",ErrorMessage = "Choose a valid status eg.'TO DO', 'IN PROGRESS', 'FINISHED'.")]
+        //[CheckStatus(AllowStatus ="TO DO,IN PROGRESS,FINISHED",ErrorMessage = "Choose a valid status eg.'TO DO', 'IN PROGRESS', 'FINISHED'.")]
         public string HomeworkStatus { get; set; }
 
+        //[Required(ErrorMessage = "Student's name is required!")]
         public IEnumerable<SelectListItem> StudentsList { get; set; }
+        //[Required(ErrorMessage = "Course's name is required!")]
         public IEnumerable<SelectListItem> CoursesList { get; set; }
-        
+
+        //[Required(ErrorMessage = "Student's name is required!")]
         [ForeignKey("StudentID")]
         public virtual Student Students { get; set; }
 
+        //[Required(ErrorMessage = "Course's name is required!")]
         [ForeignKey("CourseID")]
         public virtual Course Courses { get; set; }
     }

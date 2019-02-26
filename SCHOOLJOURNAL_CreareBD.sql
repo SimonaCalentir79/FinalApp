@@ -60,7 +60,7 @@ CREATE TABLE Homework
 	DateOfHomework DATE DEFAULT GETDATE(),
 	DueDate DATE DEFAULT GETDATE()+1,
 	Details VARCHAR(500) NOT NULL,
-	HomeworkStatus VARCHAR(50) DEFAULT 'TO DO',
+	HomeworkStatus VARCHAR(50) DEFAULT 'TO DO' NOT NULL,
 	CONSTRAINT FK_Homework_StudentID FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
 	CONSTRAINT FK_Homework_CourseIDD FOREIGN KEY (CourseID) REFERENCES Course(CourseID),
 	CONSTRAINT CK_Homework_HWStatus CHECK (HomeworkStatus IN ('TO DO','IN PROGRESS','FINISHED'))
@@ -72,7 +72,7 @@ CREATE TABLE TermReport
 	StudentID INT NOT NULL,
 	SemesterID INT NOT NULL,
 	CourseID INT NOT NULL,
-	AverageGrade NUMERIC(4,2),
+	AverageGrade NUMERIC(4,2) DEFAULT 0.00 NOT NULL,
 	CONSTRAINT FK_TermReports_StudentID FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
 	CONSTRAINT FK_TermReports_SemesterID FOREIGN KEY (SemesterID) REFERENCES Semester(SemesterID),
 	CONSTRAINT FK_TermReports_CourseID FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
