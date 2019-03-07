@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Web;
+using System.Web.Mvc;
 
 namespace SchoolJournalInterfaces
 {
@@ -19,5 +20,7 @@ namespace SchoolJournalInterfaces
         void Delete(int id);
 
         void Add(Student student);
+
+        string GetPhotoName(int id);
     }
 }

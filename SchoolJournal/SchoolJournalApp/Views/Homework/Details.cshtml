@@ -6,7 +6,7 @@
     <p>@Html.DisplayNameFor(h => h.HomeworkID): @Model.HomeworkID</p>
     <p>@Html.DisplayNameFor(h => h.Students.StudentName): @Html.ActionLink(@Model.Students.StudentName.ToString(), "Details", "Student", new { id = Model.StudentID }, null)</p>
     <br />
-    <h3>@Html.DisplayNameFor(h => h.Courses.CourseName): @Html.ActionLink(@Model.Courses.CourseName.ToString(), "Details", "Subject", new { id = Model.CourseID }, null)</h3>
+    <h3>@Html.DisplayNameFor(h => h.Courses.CourseName): @Html.ActionLink(@Model.Courses.CourseName.ToString(), "Details", "Course", new { id = Model.CourseID }, null)</h3>
 
     <p>@Html.DisplayNameFor(h => h.DateOfHomework): @Model.DateOfHomework</p>
     <br />

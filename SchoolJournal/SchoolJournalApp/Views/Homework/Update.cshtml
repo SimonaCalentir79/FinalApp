@@ -32,7 +32,10 @@
         </div>
         <div class="form-group">
             @Html.LabelFor(h => h.HomeworkStatus)
-            @Html.TextBoxFor(h => h.HomeworkStatus, null, new { @class = "form-control" })
+            @*@Html.TextBoxFor(h => h.HomeworkStatus, null, new { @class = "form-control" })*@
+            @Html.DropDownList("HomeworkStatus", new List<SelectListItem> { new SelectListItem { Text="to do", Value="TO DO"},
+                                                                        new SelectListItem { Text="in progress", Value="IN PROGRESS"},
+                                                                        new SelectListItem { Text="finished", Value="FINISHED"} },"Select status")
             @Html.ValidationMessageFor(h => h.HomeworkStatus, "", new { @class = "text-danger" })
         </div>
 

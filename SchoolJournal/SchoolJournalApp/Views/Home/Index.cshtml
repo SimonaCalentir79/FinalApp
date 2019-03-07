@@ -1,16 +1,36 @@
-﻿@model SchoolJournalModels.Student
+﻿@model IList<SchoolJournalModels.Student>
 
 @{
     ViewBag.Title = "Home Page";
 }
+
 <div class="container">
+            @foreach (var stud in Model)
+            {
+                    <div class="col-lg-3 align-content-center">
+                        @*<h2 style="text-align:center"> @stud.StudentName</h2>*@
+                        <div class="card-header align-content-center">@stud.StudentName</div>
+                        <div class="card">
+                            <img class="card-img-top" src="~/Images/@stud.StudentPhoto" alt="Luca's image" style="height:75%;width:100%;align-content:center" />
+                            <div class="card-body">
+                                <p class="card-text">@stud.Observations</p>
+                                <a href="~/Grade/Index.cshtml" class="btn btn-primary">Note</a>
+                                <a href="#" class="btn btn-primary">Orar</a>
+                                <a href="~/Homework/Index.cshtml" class="btn btn-primary">Teme</a>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+            }
+</div>
+
+@*<div class="container">
     <div class="row">
         <div class="col-sm-3">
             <h2>LUCA-BOGDAN</h2>
             <div class="card">
                 <img class="card-img-top" src="~/images/luca.jpg" alt="Luca's image" style="height:75%;width:100%;align-content:center" />
                 <div class="card-body">
-                    @*<h4 class="card-title">Luca-Bogdan</h4>*@
                     <p class="card-text">Cls. a V-a</p>
                     <p class="card-text">Scoala Gimnaziala Internationala "SPECTRUM" Iasi</p>
                     <a href="#" class="btn btn-primary">Note</a>
@@ -24,7 +44,6 @@
             <div class="card">
                 <img class="card-img-top" src="~/images/matei2.jpg" alt="Matei's image" style="height:75%;width:100%;" />
                 <div class="card-body">
-                    @*<h4 class="card-title">Matei-Calin</h4>*@
                     <p class="card-text">Cls. a III-a</p>
                     <p class="card-text">Scoala Gimnaziala Internationala "SPECTRUM" Iasi</p>
                     <a href="#" class="btn btn-primary">Note</a>
@@ -38,7 +57,6 @@
             <div class="card">
                 <img class="card-img-top" src="~/images/avatar.jpg" alt="Avatar's image" style="height:75%;width:100%;" />
                 <div class="card-body">
-                    @*<h4 class="card-title">Matei-Calin</h4>*@
                     <p class="card-text">Cls. a ???-a</p>
                     <p class="card-text">Scoala ???</p>
                     <a href="#" class="btn btn-primary">Note</a>
@@ -52,7 +70,6 @@
             <div class="card">
                 <img class="card-img-top" src="~/images/avatar.jpg" alt="Avatar's image" style="height:75%;width:100%;" />
                 <div class="card-body">
-                    @*<h4 class="card-title">Matei-Calin</h4>*@
                     <p class="card-text">Cls. a ???-a</p>
                     <p class="card-text">Scoala ???</p>
                     <a href="#" class="btn btn-primary">Note</a>
@@ -62,7 +79,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 
 @*<div class="jumbotron">

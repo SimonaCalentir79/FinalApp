@@ -2,12 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Web.Mvc;
 
 namespace SchoolJournalInterfaces
 {
     public interface IHomeworkManager
     {
         IList<Homework> GetAll();
+
+        IEnumerable<SelectListItem> GetStudentsList(Homework hwork);
+
+        IEnumerable<SelectListItem> GetCoursesList(Homework hwork);
 
         Homework Get(int id);
 

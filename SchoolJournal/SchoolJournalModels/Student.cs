@@ -23,12 +23,16 @@ namespace SchoolJournalModels
         [DisplayName("ID ")]
         public int StudentID { get; set; }
 
-        [Required(ErrorMessage ="Name of student is required!")]
+        [Required(ErrorMessage = "Name of student is required!")]
         [DisplayName("Student ")]
         public string StudentName { get; set; }
 
         [DisplayName("Observations ")]
         public string Observations { get; set; }
+
+        [DisplayName("Photo ")]
+        [DataType(DataType.ImageUrl)]
+        public string StudentPhoto { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Grade> Grades { get; set; }

@@ -28,6 +28,20 @@
         <dd>
             @Html.DisplayFor(s => s.Observations)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(s => s.StudentPhoto)
+        </dt>
+        <dd>
+            @if (@Model.StudentPhoto != null)
+            {
+                <img src="~/Images/@Model.StudentPhoto" width="100" height="100" />
+            }
+            else
+            {
+                <img src="~/Images/avatar.JPG" width="100" height="100" />
+            }
+        </dd>
     </dl>
     @using (Html.BeginForm())
     {

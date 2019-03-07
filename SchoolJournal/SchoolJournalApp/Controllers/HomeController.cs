@@ -1,12 +1,21 @@
-﻿using System.Web.Mvc;
+﻿using SchoolJournalBusinessLogic;
+using SchoolJournalInterfaces;
+using System.Web.Mvc;
 
 namespace SchoolJournalApp.Controllers
 {
     public class HomeController : Controller
     {
+        private IStudentManager manager;
+
+        public HomeController()
+        {
+            manager = new StudentManager();
+        }
+
         public ActionResult Index()
         {
-            return View();
+            return View(manager.GetAllStudents());
         }
 
         public ActionResult About()

@@ -6,7 +6,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
-using System.Web;
+using System.Web.Mvc;
+using System.Web.UI.DataVisualization.Charting;
 
 namespace SchoolJournalBusinessLogic
 {
@@ -53,6 +54,15 @@ namespace SchoolJournalBusinessLogic
         {
             db.Entry(student).State = EntityState.Modified;
             db.SaveChanges();
+        }
+
+        public string GetPhotoName(int id)
+        {
+            Student student = db.Student.Find(id);
+            if (student.StudentPhoto != null)
+                return student.StudentPhoto;
+            else
+                return "avatar.JPG";
         }
     }
 }

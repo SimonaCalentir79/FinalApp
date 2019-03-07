@@ -3,11 +3,24 @@
 <div>
     <h2>DETAILS</h2>
     <br />
-    <p>ID: @Model.StudentID</p>
+    <p><label>ID: </label>@Model.StudentID</p>
     <br />
-    <h3>Name: @Model.StudentName</h3>
+    <h3><label>Name:</label>@Model.StudentName</h3>
     <br />
-    <p>Details: @Model.Observations</p>
+    <p><label>Details:</label>@Model.Observations</p>
+    <br />
+    @*<p>Photo: <img src="~/images/@Model.StudentPhotoURL" width="100" height="100" /></p>*@
+    <p>
+        <label>Photo: </label>
+        @if (@Model.StudentPhoto != null)
+        {
+            <img src="~/Images/@Model.StudentPhoto" width="100" height="100" />
+        }
+        else
+        {
+            <img src="~/Images/avatar.JPG" width="100" height="100" />
+        }
+    </p>
     <br />
 
     <br />

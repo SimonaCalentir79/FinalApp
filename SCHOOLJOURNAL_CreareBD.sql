@@ -18,6 +18,7 @@ CREATE TABLE Student
 (
 	StudentID INT IDENTITY(1,1) PRIMARY KEY,
 	StudentName VARCHAR(150) NOT NULL,
+	StudentPhoto VARCHAR(200) NULL,
 	Observations VARCHAR(200) NULL
 )
 

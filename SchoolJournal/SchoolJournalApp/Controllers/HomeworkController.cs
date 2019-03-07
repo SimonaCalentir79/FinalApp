@@ -33,8 +33,9 @@ namespace SchoolJournalApp.Controllers
             }
             catch (Exception ex)
             {
-                return View("Error", new HandleErrorInfo(ex, "HomeworkController", "Index"));
+                ViewBag.Message = "Error:" + ex.Message.ToString();
             }
+            return View(manager.GetAll().ToPagedList(pageNumber ?? 1, 5));
         }
 
         public ActionResult Details(int id)
@@ -45,8 +46,9 @@ namespace SchoolJournalApp.Controllers
             }
             catch (Exception ex)
             {
-                return View("Error", new HandleErrorInfo(ex, "HomeworkController", "Details"));
+                ViewBag.Message = "Error:" + ex.Message.ToString();
             }
+            return View(manager.Get(id));
         }
 
         [HttpGet]
@@ -72,12 +74,13 @@ namespace SchoolJournalApp.Controllers
                     manager.Delete(id);
                     return RedirectToAction("Index");
                 }
-                return RedirectToAction("Delete", new { id, saveChangesError = true });
+                //return RedirectToAction("Delete", new { id, saveChangesError = true });
             }
             catch (Exception ex)
             {
-                return View("Error", new HandleErrorInfo(ex, "HomeworkController", "Delete"));
+                ViewBag.Message = "Error:" + ex.Message.ToString();
             }
+            return RedirectToAction("Delete", new { id, saveChangesError = true });
         }
 
         [HttpGet]
@@ -100,12 +103,14 @@ namespace SchoolJournalApp.Controllers
                     manager.Save(homework);
                     return RedirectToAction("Index");
                 }
-                return View(homework);
+
+                //return View(homework);
             }
             catch (Exception ex)
             {
-                return View("Error", new HandleErrorInfo(ex, "HomeworkController", "Update"));
+                ViewBag.Message = "Error:" + ex.Message.ToString();
             }
+            return View(homework);
         }
 
         [HttpGet]
@@ -116,7 +121,7 @@ namespace SchoolJournalApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "HomeworkID,StudentID,CourseID,DateOfHomework,DueDate,Details,HomeworkStatus")]Homework hwork)
+        public ActionResult Add(Homework hwork)
         {
             try
             {
@@ -125,16 +130,13 @@ namespace SchoolJournalApp.Controllers
                     manager.Add(hwork);
                     return RedirectToAction("Index");
                 }
-                return View(hwork);
-            }
-            catch (ArgumentNullException nullex)
-            {
-                return View("Error", new HandleErrorInfo(nullex, "HomeworkController", "Add"));
+                //return View(hwork);
             }
             catch (Exception ex)
             {
-                return View("Error", new HandleErrorInfo(ex, "HomeworkController", "Add"));
+                ViewBag.Message = "Error:" + ex.Message.ToString();
             }
+            return View(hwork);
         }
     }
 }

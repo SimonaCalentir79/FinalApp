@@ -27,6 +27,7 @@
             <tr>
                 <th><b>Name</b></th>
                 <th><b>Details</b></th>
+                <th><b>Photo</b></th>
                 <th>@*<input class="form-control" id="myInput" type="text" placeholder="Search..">*@</th>
             </tr>
         </thead>
@@ -34,7 +35,7 @@
             @if (Model.Count == 0)
             {
                 <tr>
-                    <td colspan="3">
+                    <td colspan="4">
                         <i>Records not found</i>
                     </td>
                 </tr>
@@ -46,6 +47,17 @@
                 <tr>
                     <td>@stud.StudentName</td>
                     <td>@stud.Observations</td>
+                    <td>
+                        @*<img src="~/images/@stud.StudentPhotoURL" width="100" height="100" />*@
+                        @if (stud.StudentPhoto != null)
+                        {
+                            <img src="~/Images/@stud.StudentPhoto" width="100" height="100" />
+                        }
+                        else
+                        {
+                            <img src="~/Images/avatar.JPG" width="100" height="100" />
+                        }
+                    </td>
                     <td>
                         @Html.ActionLink("Details", "Details", "Student", new { @id = stud.StudentID }, null) |
                         @Html.ActionLink("Edit", "Update", "Student", new { @id = stud.StudentID }, null) |

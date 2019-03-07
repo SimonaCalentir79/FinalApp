@@ -19,12 +19,24 @@ namespace SchoolJournalBusinessLogic
             db = new SchoolJournalEntities();
         }
 
+        public IEnumerable<SelectListItem> GetStudentsList(Homework hwork)
+        {
+            hwork.StudentsList = db.Student.Select(s => new SelectListItem { Value = s.StudentID.ToString(), Text = s.StudentName }).ToList();
+            return hwork.StudentsList;
+        }
+
+        public IEnumerable<SelectListItem> GetCoursesList(Homework hwork)
+        {
+            hwork.CoursesList = db.Course.Select(s => new SelectListItem { Value = s.CourseID.ToString(), Text = s.CourseName + "/cls." + s.LevelYear }).ToList();
+            return hwork.CoursesList;
+        }
+
         public Homework HWwithSubjStudList()
         {
             Homework hwork = new Homework();
-            hwork.StudentsList = db.Student.Select(s => new SelectListItem { Value = s.StudentID.ToString(), Text = s.StudentName }).ToList();
-            hwork.CoursesList = db.Course.Select(s => new SelectListItem { Value = s.CourseID.ToString(), Text = s.CourseName + "/cls." + s.LevelYear }).ToList();
-
+            hwork.StudentsList = GetStudentsList(hwork);
+            hwork.CoursesList = GetCoursesList(hwork);
+            
             return hwork;
         }
 
@@ -32,8 +44,8 @@ namespace SchoolJournalBusinessLogic
         {
             //return db.Homework.Find(id);
             Homework hwork = db.Homework.Find(id);
-            hwork.StudentsList = db.Student.Select(s => new SelectListItem { Value = s.StudentID.ToString(), Text = s.StudentName }).ToList();
-            hwork.CoursesList = db.Course.Select(s => new SelectListItem { Value = s.CourseID.ToString(), Text = s.CourseName + "/cls." + s.LevelYear }).ToList();
+            hwork.StudentsList = GetStudentsList(hwork);
+            hwork.CoursesList = GetCoursesList(hwork);
 
             return hwork;
         }
