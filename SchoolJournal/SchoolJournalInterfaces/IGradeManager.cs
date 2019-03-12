@@ -17,6 +17,8 @@ namespace SchoolJournalInterfaces
 
         IList<Grade> GetBySemester(string semester);
 
+        IList<Grade> GetByStudentID(int studentID);
+
         void Delete(int id);
 
         void Add(Grade grade);

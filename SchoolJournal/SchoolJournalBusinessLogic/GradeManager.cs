@@ -85,6 +85,11 @@ namespace SchoolJournalBusinessLogic
             return db.Grade.Where(g => g.Courses.CourseName.Contains(course) || course == null).ToList();
         }
 
+        public IList<Grade> GetByStudentID(int studentID)
+        {
+            return db.Grade.Where(g => g.Students.StudentID==studentID).ToList();
+        }
+
         public void Save(Grade grade)
         {
             db.Entry(grade).State = EntityState.Modified;

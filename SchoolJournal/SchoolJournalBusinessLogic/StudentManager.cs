@@ -28,6 +28,12 @@ namespace SchoolJournalBusinessLogic
             db.SaveChanges();
         }
 
+        public void Save(Student student)
+        {
+            db.Entry(student).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
         public void Delete(int id)
         {
             Student student = this.Get(id);
@@ -48,12 +54,6 @@ namespace SchoolJournalBusinessLogic
         public IList<Student> GetByName(string name)
         {
             return db.Student.Where(s => s.StudentName.Contains(name) || name == null).ToList();
-        }
-
-        public void Save(Student student)
-        {
-            db.Entry(student).State = EntityState.Modified;
-            db.SaveChanges();
         }
 
         public string GetPhotoName(int id)

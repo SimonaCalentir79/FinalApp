@@ -48,14 +48,13 @@
                     <td>@stud.StudentName</td>
                     <td>@stud.Observations</td>
                     <td>
-                        @*<img src="~/images/@stud.StudentPhotoURL" width="100" height="100" />*@
-                        @if (stud.StudentPhoto != null)
+                        @if (@stud.StudentPhoto != null)
                         {
-                            <img src="~/Images/@stud.StudentPhoto" width="100" height="100" />
+                            <img src="~/Images/@stud.StudentPhoto" width="75" height="100" />
                         }
                         else
                         {
-                            <img src="~/Images/avatar.JPG" width="100" height="100" />
+                            <img src="~/Images/avatar.JPG" width="75" height="100" />
                         }
                     </td>
                     <td>

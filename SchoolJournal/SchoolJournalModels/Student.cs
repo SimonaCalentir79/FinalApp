@@ -31,7 +31,6 @@ namespace SchoolJournalModels
         public string Observations { get; set; }
 
         [DisplayName("Photo ")]
-        [DataType(DataType.ImageUrl)]
         public string StudentPhoto { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

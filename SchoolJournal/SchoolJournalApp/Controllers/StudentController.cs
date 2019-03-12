@@ -1,5 +1,4 @@
 ﻿using PagedList;
-using SchoolJournalApp.Models;
 using SchoolJournalBusinessLogic;
 using SchoolJournalInterfaces;
 using SchoolJournalModels;
@@ -19,38 +18,6 @@ namespace SchoolJournalApp.Controllers
         public StudentController()
         {
             manager = new StudentManager();
-        }
-
-        [HttpPost]
-        public ActionResult UploadPhoto(Student student, UploadFileModel photo)
-        {
-            string folder = "~/Images/";
-            if (photo != null && photo.File != null && photo.File.ContentLength > 0)
-            {
-                var photoName = Path.GetFileName(photo.File.FileName);
-                photo.File.SaveAs(Path.Combine(folder,photoName));
-            }
-            //if (photo != null && photo.ContentLength > 0)
-            //{
-            //    string folder = "~/Images/";
-            //    if (photo.ContentLength > 10240)
-            //    {
-            //        ModelState.AddModelError("photo","The size of the photo should not exceed 10 KB.");
-            //        return View();
-            //    }
-            //    var supportedTypes = new[] {"jpg","jpeg","png"};
-            //    var fileExt = Path.GetExtension(photo.FileName).Substring(1);
-            //    if (!supportedTypes.Contains(fileExt))
-            //    {
-            //        ModelState.AddModelError("photo","Invalid type. Only the following types (jpg, jpeg, png) are supported.");
-            //        return View();
-            //    }
-            //    var fileName = Path.GetFileName(photo.FileName);
-            //    var fileID = Guid.NewGuid().ToString();
-            //    photo.SaveAs(Path.Combine(folder,fileName, fileID));
-            //    student.StudentPhoto = string.Concat(fileName, fileID);
-            //}
-            return View();
         }
 
         public ActionResult Index(string option, string search, int? pageNumber)
@@ -74,11 +41,30 @@ namespace SchoolJournalApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "StudentId,StudentName,StudentPhoto,Observations")]Student student, UploadFileModel image)
+        public ActionResult Add([Bind(Include = "StudentId,StudentName,StudentPhoto,Observations")]Student student, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
-                UploadPhoto(student, image);
+                if (image != null && image.ContentLength > 0)
+                {
+                    try
+                    {
+                        var fileName = Path.GetFileName(image.FileName);
+                        var fileID = Guid.NewGuid().ToString().Replace("-", "");
+                        var path = Path.Combine(Server.MapPath("~/Images/"), fileName, fileID);
+                        image.SaveAs(path);
+                        student.StudentPhoto = fileName;
+                        ViewBag.Message = "File uploaded succesfully!";
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                    }
+                }
+                else
+                {
+                    ViewBag.Message = "You have not specified a file.";
+                }
                 manager.Add(student);
                 return RedirectToAction("Index");
             }
@@ -97,15 +83,34 @@ namespace SchoolJournalApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update([Bind(Include = "StudentId,StudentName,StudentPhoto,Observations")]Student student, UploadFileModel image)
+        public ActionResult Update([Bind(Include = "StudentId,StudentName,StudentPhoto,Observations")]Student student, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
-                UploadPhoto(student,image);
+                if (image != null && image.ContentLength > 0)
+                {
+                    try
+                    {
+                        var fileName = Path.GetFileName(image.FileName);
+                        var fileID = Guid.NewGuid().ToString().Replace("-", "");
+                        var path = Path.Combine(Server.MapPath("~/Images/"), fileName, fileID);
+                        image.SaveAs(path);
+                        student.StudentPhoto = fileName;
+                        ViewBag.Message = "File uploaded succesfully!";
+                    }
+                    catch (Exception ex)
+                    {
+                        ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                    }
+                }
+                else
+                {
+                    ViewBag.Message = "You have not specified a file.";
+                }
                 manager.Save(student);
                 return RedirectToAction("Index");
             }
-            return View(student);
+            return View();
         }
 
         [HttpGet]
