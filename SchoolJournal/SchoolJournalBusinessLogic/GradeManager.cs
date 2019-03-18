@@ -31,20 +31,35 @@ namespace SchoolJournalBusinessLogic
             db.SaveChanges();
         }
 
+        public void Save(Grade grade)
+        {
+            db.Entry(grade).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public IEnumerable<SelectListItem> GetStudentsList()
+        {
+            return db.Student.Select(s => new SelectListItem { Value = s.StudentID.ToString(), Text = s.StudentName }).ToList();
+        }
+
+        public IEnumerable<SelectListItem> GetCoursesList()
+        {
+            return db.Course.Select(c => new SelectListItem { Value = c.CourseID.ToString(), Text = c.CourseName+"/cls. "+c.LevelYear }).ToList();
+        }
+
+        public IEnumerable<SelectListItem> GetSemesterList()
+        {
+            return db.Semester.Select(sem => new SelectListItem { Value = sem.SemesterID.ToString(), Text = sem.SemesterNumber.ToString() + "/" + sem.SchoolYear }).ToList();
+        }
+
         public Grade Get(int id)
         {
             //return db.Grade.Find(id);
             Grade grade = db.Grade.Find(id);
 
-            grade.StudentsList = db.Student
-                .Select(s => new SelectListItem { Value = s.StudentID.ToString(), Text = s.StudentName })
-                .ToList();
-            grade.CoursesList = db.Course
-                .Select(s => new SelectListItem { Value = s.CourseID.ToString(), Text = s.CourseName+"/cls. "+s.LevelYear })
-                .ToList();
-            grade.SemestersList = db.Semester
-                .Select(s => new SelectListItem { Value = s.SemesterID.ToString(), Text = s.SemesterNumber.ToString()+"/"+s.SchoolYear })
-                .ToList();
+            grade.StudentsList = GetStudentsList();
+            grade.CoursesList = GetCoursesList();
+            grade.SemestersList = GetSemesterList();
 
             return grade;
         }
@@ -52,15 +67,9 @@ namespace SchoolJournalBusinessLogic
         public Grade GradeWithParentsLists()
         {
             Grade grade = new Grade();
-            grade.StudentsList = db.Student
-                .Select(s => new SelectListItem { Value = s.StudentID.ToString(), Text = s.StudentName })
-                .ToList();
-            grade.CoursesList = db.Course
-                .Select(s => new SelectListItem { Value = s.CourseID.ToString(), Text = s.CourseName + "/cls. " + s.LevelYear })
-                .ToList();
-            grade.SemestersList = db.Semester
-                .Select(s => new SelectListItem { Value = s.SemesterID.ToString(), Text = s.SemesterNumber.ToString() + "/" + s.SchoolYear })
-                .ToList();
+            grade.StudentsList = GetStudentsList();
+            grade.CoursesList = GetCoursesList();
+            grade.SemestersList = GetSemesterList();
 
             return grade;
         }
@@ -85,15 +94,9 @@ namespace SchoolJournalBusinessLogic
             return db.Grade.Where(g => g.Courses.CourseName.Contains(course) || course == null).ToList();
         }
 
-        public IList<Grade> GetByStudentID(int studentID)
+        public IList<Grade> GetByStudentID(int? studentID)
         {
             return db.Grade.Where(g => g.Students.StudentID==studentID).ToList();
-        }
-
-        public void Save(Grade grade)
-        {
-            db.Entry(grade).State = EntityState.Modified;
-            db.SaveChanges();
         }
     }
 }

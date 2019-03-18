@@ -20,7 +20,7 @@ namespace SchoolJournalApp.Controllers
             manager = new HomeworkManager();
         }
 
-        public ActionResult Index(string option, string search, int? pageNumber)
+        public ActionResult Index(string option, string search, int? pageNumber, int? id)
         {
             try
             {
@@ -28,6 +28,10 @@ namespace SchoolJournalApp.Controllers
                     return View(manager.GetByCourse(search).ToPagedList(pageNumber ?? 1, 5));
                 else if (option == "Student")
                     return View(manager.GetByStudent(search).ToPagedList(pageNumber ?? 1, 5));
+                else if (option == "Status")
+                    return View(manager.GetByStatus(search).ToPagedList(pageNumber ?? 1, 5));
+                else if (id != null)
+                    return View(manager.GetByStudentId(id).ToPagedList(pageNumber ?? 1, 5));
                 else
                     return View(manager.GetAll().ToPagedList(pageNumber ?? 1, 5));
             }
@@ -116,7 +120,10 @@ namespace SchoolJournalApp.Controllers
         [HttpGet]
         public ActionResult Add()
         {
-            return View(manager.HWwithSubjStudList());
+            Homework homework = manager.HWwithSubjStudList();
+            ViewBag.CurrentHW = homework;
+
+            return View(homework);
         }
 
         [HttpPost]

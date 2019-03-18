@@ -5,6 +5,7 @@ using SchoolJournalModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -19,7 +20,7 @@ namespace SchoolJournalApp.Controllers
             manager = new GradeManager();
         }
 
-        public ActionResult Index(string option, string search, int? pageNumber)
+        public ActionResult Index(string option, string search, int? pageNumber, int? id)
         {
             if (option == "Subject")
                 return View(manager.GetByCourse(search).ToPagedList(pageNumber ?? 1, 5));
@@ -27,6 +28,8 @@ namespace SchoolJournalApp.Controllers
                 return View(manager.GetByStudent(search).ToPagedList(pageNumber ?? 1, 5));
             else if (option == "Semester")
                 return View(manager.GetBySemester(search).ToPagedList(pageNumber ?? 1, 5));
+            else if(id != null)
+                return View(manager.GetByStudentID(id).ToPagedList(pageNumber ?? 1, 5));
             else
                 return View(manager.GetAll().ToPagedList(pageNumber ?? 1, 5));
         }

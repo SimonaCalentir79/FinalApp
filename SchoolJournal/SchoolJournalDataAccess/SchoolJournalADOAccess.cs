@@ -7,45 +7,33 @@ namespace SchoolJournalDataAccess
 {
     public class SchoolJournalADOAccess
     {
-        private string connName = "SchoolJournalDBSQLConn";
-
-        public static SqlConnection OpenConnToDB(string connName)
+        public static SqlConnection OpenConn(string connName)
         {
-            SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings[connName].ConnectionString;
+            SqlConnection connection = new SqlConnection()
+            {
+                ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings[connName].ConnectionString
+            };
             connection.Open();
             return connection;
         }
 
-        public static void CloseConnToDB(SqlConnection connection)
+        public static void CloseConn(SqlConnection connection)
         {
             connection.Close();
         }
 
-        //public static void PrintReader(SqlConnection connection, string commandText)
-        //{
-        //    SqlCommand command = new SqlCommand(commandText);
-        //    command.Connection = connection;
+        public static SqlCommand StoredProcedureCommand(string text, SqlConnection sqlConnection)
+        {
+            SqlCommand cmd = new SqlCommand(text,sqlConnection);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-        //    SqlDataReader reader = command.ExecuteReader();
-        //    while (reader.Read())
-        //    {
-        //        for (int i = 0; i < reader.FieldCount; i++)
-        //        {
-        //            Console.Write($"\t {reader[i]}");
-        //        }
-        //        Console.WriteLine();
-        //    }
-        //    reader.Close();
-        //}
+            return cmd;
+        }
 
         public static SqlDataReader GetObjectFromReader(SqlConnection connection, string commandText)
         {
-            SqlCommand command = new SqlCommand(commandText);
-            command.Connection = connection;
-
+            SqlCommand command = new SqlCommand(commandText) { Connection = connection };
             SqlDataReader reader = command.ExecuteReader();
-
             return reader;
         }
 

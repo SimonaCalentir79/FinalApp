@@ -65,6 +65,16 @@ namespace SchoolJournalBusinessLogic
             return db.Homework.Where(h => h.Courses.CourseName.Contains(course) || course == null).ToList();
         }
 
+        public IList<Homework> GetByStatus(string status)
+        {
+            return db.Homework.Where(h => h.HomeworkStatus.Contains(status) || status == null).ToList();
+        }
+
+        public IList<Homework> GetByStudentId(int? id)
+        {
+            return db.Homework.Where(h => h.StudentID == id).ToList();
+        }
+
         public void Save(Homework hwork)
         {
             db.Entry(hwork).State = EntityState.Modified;

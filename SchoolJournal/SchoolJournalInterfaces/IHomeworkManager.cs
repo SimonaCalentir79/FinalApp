@@ -8,23 +8,27 @@ namespace SchoolJournalInterfaces
 {
     public interface IHomeworkManager
     {
+        IList<Homework> GetByCourse(string course);
+
+        IList<Homework> GetByStudent(string student);
+
+        IList<Homework> GetByStatus(string status);
+
         IList<Homework> GetAll();
+
+        IList<Homework> GetByStudentId(int? id);
 
         IEnumerable<SelectListItem> GetStudentsList(Homework hwork);
 
         IEnumerable<SelectListItem> GetCoursesList(Homework hwork);
-
-        Homework Get(int id);
-
-        IList<Homework> GetByCourse(string course);
-
-        IList<Homework> GetByStudent(string student);
 
         void Delete(int id);
 
         void Add(Homework hwork);
 
         void Save(Homework hwork);
+
+        Homework Get(int id);
 
         Homework HWwithSubjStudList();
     }

@@ -1,6 +1,9 @@
 ﻿@model SchoolJournalModels.Homework
 
 <h2><strong>ADD HOMEWORK</strong></h2>
+@{ 
+    var homework = ViewBag.CurrentHW;
+}
 
 @using (Html.BeginForm())
 {
