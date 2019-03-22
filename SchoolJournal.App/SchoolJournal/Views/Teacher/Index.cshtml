@@ -1,0 +1,34 @@
+﻿@model IEnumerable<SchoolJournal.Models.Teacher>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Teachers</h2>
+<p>
+    <strong>@Html.ActionLink("ADD NEW", "Create", "Teacher")</strong>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.TeacherName)</th>
+            <th>@Html.DisplayNameFor(model => model.TeacherEmail)</th>
+            <th>@Html.DisplayNameFor(model => model.TeacherPhone)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var teach in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => teach.TeacherName)</td>
+                <td>@Html.DisplayFor(model => teach.TeacherEmail)</td>
+                <td>@Html.DisplayFor(model => teach.TeacherPhone)</td>
+                <td>
+                    @Html.ActionLink("Details", "Details", "Teacher", new { @id = teach.TeacherID }, null) |
+                    @Html.ActionLink("Edit", "Edit", "Teacher", new { @id = teach.TeacherID }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Teacher", new { @id = teach.TeacherID }, null)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

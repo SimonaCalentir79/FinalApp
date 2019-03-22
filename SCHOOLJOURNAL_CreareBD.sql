@@ -78,3 +78,14 @@ CREATE TABLE TermReport
 	CONSTRAINT FK_TermReports_SemesterID FOREIGN KEY (SemesterID) REFERENCES Semester(SemesterID),
 	CONSTRAINT FK_TermReports_CourseID FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
 )
+
+CREATE TABLE Timetable
+(
+	TimetableID INT IDENTITY(1,1) PRIMARY KEY,
+	StudentID INT NOT NULL,
+	DayOfTheWeek VARCHAR(50) NOT NULL,
+	TimeInterval VARCHAR(50) NOT NULL,
+	CourseID INT NOT NULL,
+	CONSTRAINT FK_Timetable_StudentID FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
+	CONSTRAINT FK_Timetable_CourseID FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
+)

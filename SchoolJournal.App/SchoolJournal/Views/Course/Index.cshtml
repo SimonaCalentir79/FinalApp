@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SchoolJournal.Models.Course>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>Courses</h2>
+<p>
+    <strong>@Html.ActionLink("ADD NEW", "Create", "Course")</strong>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.CourseName)</th>
+            <th>@Html.DisplayNameFor(model => model.LevelYear)</th>
+            <th>@Html.DisplayNameFor(model => model.Teachers.TeacherName)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var curs in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => curs.CourseName)</td>
+                <td>@Html.DisplayFor(model => curs.LevelYear)</td>
+                <td>@Html.DisplayFor(model => curs.Teachers.TeacherName)</td>
+                <td>
+                    @Html.ActionLink("Details", "Details", "Course", new { @id = curs.CourseID }, null) |
+                    @Html.ActionLink("Edit", "Edit", "Course", new { @id = curs.CourseID }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Course", new { @id = curs.CourseID }, null)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

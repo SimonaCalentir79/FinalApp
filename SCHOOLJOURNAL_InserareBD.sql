@@ -34,14 +34,13 @@ INSERT INTO Course(CourseName,LevelYear,TeacherID) VALUES ('Georgrafie',5,6);
 INSERT INTO Course(CourseName,LevelYear,TeacherID) VALUES ('Informatica',5,5);
 
 INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (1,1,1,10,1.00);
-INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (1,1,3,10,0.75);
-INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (1,2,5,10,0.75);
-INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (1,2,7,10,0.25);
-INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (2,1,8,10,1.00);
-INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (2,1,10,10,0.75);
-INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (2,2,9,10,0.25);
-INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (2,2,9,8,1.00);
-INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (2,2,9,6,1.00);
-INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (2,2,9,10,1.00);
+INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (1,1,1,6,1.00);
+INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (1,1,2,10,0.6);
+INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (1,1,2,10,0.6);
+INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (1,1,2,10,0.4);
 
 INSERT INTO Homework(StudentID,CourseID,Details) VALUES (2,9,'details about homework');
+
+INSERT INTO Timetable(StudentID,DayOfTheWeek,TimeInterval,CourseID) VALUES (1,'LUNI','08:00 - 08:50',8);
+
+

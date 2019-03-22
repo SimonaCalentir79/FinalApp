@@ -1,0 +1,58 @@
+﻿@model SchoolJournal.Models.Student
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+
+<h2>ADD STUDENT</h2>
+
+@using (Html.BeginForm("Create","Student",FormMethod.Post, new { enctype="multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-horizontal">
+        <h4>Student details</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(t => t.StudentName, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(t => t.StudentName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(t => t.StudentName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(t => t.Observations, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(t => t.Observations, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(t => t.Observations, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(t => t.StudentPhoto, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(t => t.StudentPhoto, new { type="file" })
+                @Html.ValidationMessageFor(t => t.StudentPhoto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </div>
+        @*<div class="form-group">
+                <div class="col-md-offset-3 col-md-9 text-success">
+                    @ViewBag.FileStatus
+                </div>
+            </div>*@
+    </div>
+}
+<div>
+    @Html.ActionLink("Back to list", "Index", "Student")
+</div>

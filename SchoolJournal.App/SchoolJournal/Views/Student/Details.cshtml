@@ -1,0 +1,26 @@
+﻿@model SchoolJournal.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div>
+    <h2>DETAILS</h2>
+    <br />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.StudentID)</dt>
+        <dd>@Html.DisplayFor(model => model.StudentID)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.StudentName)</dt>
+        <dd>@Html.DisplayFor(model => model.StudentName)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Observations)</dt>
+        <dd>@Html.DisplayFor(model => model.Observations)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.StudentPhoto)</dt>
+        <dd>@Html.DisplayFor(model => model.StudentPhoto)</dd>
+    </dl>
+
+    <p>@Html.ActionLink("Back to students", "Index", "Student") | @Html.ActionLink("Edit", "Edit", "Student", new { @id = Model.StudentID }, null)</p>
+</div>

@@ -1,0 +1,46 @@
+﻿@model SchoolJournal.Models.Teacher
+
+<h2>ADD TEACHER</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Teacher details</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(t => t.TeacherName, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(t => t.TeacherName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(t => t.TeacherName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(t => t.TeacherEmail, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(t => t.TeacherEmail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(t => t.TeacherEmail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(t => t.TeacherPhone, new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(t => t.TeacherPhone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(t => t.TeacherPhone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+<div>
+    @Html.ActionLink("Back to list", "Index", "Teacher")
+</div>
