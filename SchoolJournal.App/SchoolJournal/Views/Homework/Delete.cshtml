@@ -1,0 +1,43 @@
+﻿@model SchoolJournal.Models.Homework
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>DELETE</h2>
+<h3>Are you sure you want to delete this information?</h3>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(t => t.HomeworkID)</dt>
+        <dd>@Html.DisplayFor(t => t.HomeworkID)</dd>
+
+        <dt>@Html.DisplayNameFor(t => t.Students.StudentName)</dt>
+        <dd>@Html.DisplayFor(t => t.Students.StudentName)</dd>
+
+        <dt>@Html.DisplayNameFor(t => t.Courses.CourseName)</dt>
+        <dd>@Html.DisplayFor(t => t.Courses.CourseName)</dd>
+
+        <dt>@Html.DisplayNameFor(t => t.DateOfHomework)</dt>
+        <dd>@Html.DisplayFor(t => t.DateOfHomework)</dd>
+
+        <dt>@Html.DisplayNameFor(t => t.DueDate)</dt>
+        <dd>@Html.DisplayFor(t => t.DueDate)</dd>
+
+        <dt>@Html.DisplayNameFor(t => t.Details)</dt>
+        <dd>@Html.DisplayFor(t => t.Details)</dd>
+
+        <dt>@Html.DisplayNameFor(t => t.HomeworkStatus)</dt>
+        <dd>@Html.DisplayFor(t => t.HomeworkStatus)</dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <input type="submit" value="Delete" class="btn btn-primary" />
+            @Html.ActionLink("Cancel", "Index", "Homework")
+        </div>
+    }
+</div>

@@ -1,0 +1,31 @@
+﻿@model SchoolJournal.Models.Homework
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div>
+    <h2>DETAILS</h2>
+    <br />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Students.StudentName)</dt>
+        <dd>@Html.DisplayFor(model => model.Students.StudentName)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Courses.CourseName)</dt>
+        <dd>@Html.DisplayFor(model => model.Courses.CourseName)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.DateOfHomework)</dt>
+        <dd>@Html.DisplayFor(model => model.DateOfHomework)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.DueDate)</dt>
+        <dd>@Html.DisplayFor(model => model.DueDate)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Details)</dt>
+        <dd>@Html.DisplayFor(model => model.Details)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.HomeworkStatus)</dt>
+        <dd>@Html.DisplayFor(model => model.HomeworkStatus)</dd>
+    </dl>
+
+    <p>@Html.ActionLink("Back to courses", "Index", "Homework") | @Html.ActionLink("Edit", "Edit", "Homework", new { @id = Model.HomeworkID }, null)</p>
+</div>

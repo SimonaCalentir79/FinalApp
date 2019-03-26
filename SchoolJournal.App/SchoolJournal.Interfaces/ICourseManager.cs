@@ -10,8 +10,6 @@ namespace SchoolJournal.Interfaces
 {
     public interface ICourseManager
     {
-        IEnumerable<SelectListItem> PopulateTeachersList();
-
         IEnumerable<Course> GetAllCourses();
 
         Course GetCourseByID(int? id);

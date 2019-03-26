@@ -1,0 +1,74 @@
+﻿@model SchoolJournal.Models.Homework
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>ADD HOMEWORK</h2>
+
+@using (Html.BeginForm("Create", "Homework", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Homework details</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(t => t.Students.StudentName, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.DropDownListFor(t => t.StudentID, Model.StudentsList, "Please select")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(t => t.Courses.CourseName, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.DropDownListFor(t => t.CourseID, Model.CoursesList, "Please select")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(t => t.DateOfHomework, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.EditorFor(t => t.DateOfHomework, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(t => t.DateOfHomework, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(t => t.DueDate, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.EditorFor(t => t.DueDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(t => t.DueDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(t => t.Details, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(t => t.Details, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(t => t.Details, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(h => h.HomeworkStatus, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.DropDownList("HomeworkStatus", new List<SelectListItem> { new SelectListItem { Text="TO DO", Value="TO DO"},
+                                                                    new SelectListItem { Text="IN PROGRESS", Value="IN PROGRESS"},
+                                                                    new SelectListItem { Text="FINISHED", Value="FINISHED"} },"Select status")
+            @Html.ValidationMessageFor(h => h.HomeworkStatus, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-9">
+            <input type="submit" value="Add" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+<div>
+    @Html.ActionLink("Back to list", "Index", "Homework")
+</div>

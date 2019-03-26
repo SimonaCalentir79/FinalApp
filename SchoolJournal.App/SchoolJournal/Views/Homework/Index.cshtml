@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SchoolJournal.Models.Homework>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>Homeworks</h2>
+<p>
+    <strong>@Html.ActionLink("ADD NEW", "Create", "Homework")</strong>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Students.StudentName)</th>
+            <th>@Html.DisplayNameFor(model => model.Courses.CourseName)</th>
+            <th>@Html.DisplayNameFor(model => model.DateOfHomework)</th>
+            <th>@Html.DisplayNameFor(model => model.DueDate)</th>
+            <th>@Html.DisplayNameFor(model=>model.Details)</th>
+            <th>@Html.DisplayNameFor(model=>model.HomeworkStatus)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var homework in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => homework.Students.StudentName)</td>
+                <td>@Html.DisplayFor(model => homework.Courses.CourseName)</td>
+                <td>@Html.DisplayFor(model => homework.DateOfHomework)</td>
+                <td>@Html.DisplayFor(model => homework.DueDate)</td>
+                <td>@Html.DisplayFor(model => homework.Details)</td>
+                <td>@Html.DisplayFor(model => homework.HomeworkStatus)</td>
+                <td>
+                    @Html.ActionLink("Details", "Details", "Homework", new { @id = homework.HomeworkID }, null) |
+                    @Html.ActionLink("Edit", "Edit", "Homework", new { @id = homework.HomeworkID }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Homework", new { @id = homework.HomeworkID }, null)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

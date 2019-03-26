@@ -15,26 +15,6 @@ namespace SchoolJournal.BusinessLogic
     {
         private readonly SqlConnection sqlConn = ADO_NETconfig.OpenConn("SchoolJournalDBSQLConn");
 
-        public IEnumerable<SelectListItem> PopulateTeachersList()
-        {
-            List<SelectListItem> list = new List<SelectListItem>();
-
-            SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spGetAllTeachers",sqlConn);
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                list.Add(new SelectListItem
-                {
-                    Text =reader["TeacherName"].ToString(),
-                    Value =reader["TeacherID"].ToString()
-                });
-            }
-            ADO_NETconfig.CloseReader(reader);
-            
-            return list;
-        }
-
         public IEnumerable<Course> GetAllCourses()
         {
             List<Course> listOfCourses = new List<Course>();

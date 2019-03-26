@@ -58,8 +58,8 @@ namespace SchoolJournal.BusinessLogic
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spAddTeacher", sqlConn);
 
             cmd.Parameters.AddWithValue("@TeacherName", teacher.TeacherName);
-            cmd.Parameters.AddWithValue("@TeacherEmail", teacher.TeacherEmail);
-            cmd.Parameters.AddWithValue("@TeacherPhone", teacher.TeacherPhone);
+            cmd.Parameters.AddWithValue("@TeacherEmail", (object)teacher.TeacherEmail??DBNull.Value);
+            cmd.Parameters.AddWithValue("@TeacherPhone", (object)teacher.TeacherPhone??DBNull.Value);
 
             cmd.ExecuteNonQuery();
             ADO_NETconfig.CloseConn(sqlConn);
@@ -71,8 +71,8 @@ namespace SchoolJournal.BusinessLogic
 
             cmd.Parameters.AddWithValue("@TeacherID", teacher.TeacherID);
             cmd.Parameters.AddWithValue("@TeacherName", teacher.TeacherName);
-            cmd.Parameters.AddWithValue("@TeacherEmail", teacher.TeacherEmail);
-            cmd.Parameters.AddWithValue("@TeacherPhone", teacher.TeacherPhone);
+            cmd.Parameters.AddWithValue("@TeacherEmail", (object)teacher.TeacherEmail??DBNull.Value);
+            cmd.Parameters.AddWithValue("@TeacherPhone", (object)teacher.TeacherPhone??DBNull.Value);
 
             cmd.ExecuteNonQuery();
             ADO_NETconfig.CloseConn(sqlConn);

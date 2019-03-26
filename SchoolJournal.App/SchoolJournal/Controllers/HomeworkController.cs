@@ -9,20 +9,20 @@ using System.Web.Mvc;
 
 namespace SchoolJournal.Controllers
 {
-    public class CourseController : Controller
+    public class HomeworkController : Controller
     {
-        private readonly ICourseManager manager;
+        private readonly IHomeworkManager manager;
         private readonly IPopulateList populate;
 
-        public CourseController()
+        public HomeworkController()
         {
-            manager = new CourseManager();
+            manager = new HomeworkManager();
             populate = new PopulateList();
         }
 
         public ActionResult Index()
         {
-            return View(manager.GetAllCourses().ToList());
+            return View(manager.GetAllHomeworks().ToList());
         }
 
         [HttpGet]
@@ -31,33 +31,36 @@ namespace SchoolJournal.Controllers
             if (id == null)
                 return HttpNotFound();
 
-            Course course = manager.GetCourseByID(id);
-            course.TeachersList = populate.TeachersList();
+            Homework homework = manager.GetHomeworkByID(id);
+            homework.StudentsList = populate.StudentsList();
+            homework.CoursesList = populate.CoursesList();
 
-            if (course == null)
+            if (homework == null)
                 return HttpNotFound();
 
-            return View(course);
+            return View(homework);
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            Course course = new Course();
-            course.TeachersList = populate.TeachersList();
-            return View(course);
+            Homework homework = new Homework();
+            homework.StudentsList = populate.StudentsList();
+            homework.CoursesList = populate.CoursesList();
+
+            return View(homework);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include ="CourseName,LevelYear,TeacherID")] Course course)
+        public ActionResult Create([Bind(Include = "StudentID,CourseID,DateOfHomework,DueDate,Details,HomeworkStatus")] Homework homework)
         {
             if (ModelState.IsValid)
             {
-                manager.AddCourse(course);
+                manager.AddHomework(homework);
                 return RedirectToAction("Index");
             }
-            return View(course);
+            return View(homework);
         }
 
         [HttpGet]
@@ -66,29 +69,30 @@ namespace SchoolJournal.Controllers
             if (id == null)
                 return HttpNotFound();
 
-            Course course = manager.GetCourseByID(id);
-            course.TeachersList = populate.TeachersList();
+            Homework homework = manager.GetHomeworkByID(id);
+            homework.StudentsList = populate.StudentsList();
+            homework.CoursesList = populate.CoursesList();
 
-            if (course == null)
+            if (homework == null)
                 return HttpNotFound();
 
-            return View(course);
+            return View(homework);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include ="CourseID,CourseName,LevelYear,TeacherID")]Course course, int? id)
+        public ActionResult Edit([Bind(Include = "HomeworkID,StudentID,CourseID,DateOfHomework,DueDate,Details,HomeworkStatus")]Homework homework, int? id)
         {
             if (id == null)
                 return HttpNotFound();
 
             if (ModelState.IsValid)
             {
-                manager.UpdateCourse(course);
+                manager.UpdateHomework(homework);
                 return RedirectToAction("Index");
             }
 
-            return View(course);
+            return View(homework);
         }
 
         [HttpGet]
@@ -97,19 +101,19 @@ namespace SchoolJournal.Controllers
             if (id == null)
                 return HttpNotFound();
 
-            Course course = manager.GetCourseByID(id);
+            Homework homework = manager.GetHomeworkByID(id);
 
-            if (course == null)
+            if (homework == null)
                 return HttpNotFound();
 
-            return View(course);
+            return View(homework);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)
         {
-            manager.DeleteCourse(id);
+            manager.DeleteHomework(id);
             return RedirectToAction("Index");
         }
     }

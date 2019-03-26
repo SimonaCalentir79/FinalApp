@@ -1,0 +1,36 @@
+﻿@model SchoolJournal.Models.Course
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>UPDATE</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(c => c.CourseID)
+
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(c => c.CourseName)</dt>
+        <dd>
+            @Html.TextBoxFor(c => c.CourseName, null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.CourseName)
+        </dd>
+
+        <dt>@Html.DisplayNameFor(c => c.LevelYear)</dt>
+        <dd>
+            @Html.TextBoxFor(c => c.LevelYear, null, new { @class = "form-control" })
+            @Html.ValidationMessageFor(c => c.LevelYear)
+        </dd>
+
+        <dt>@Html.LabelFor(t => t.Teachers.TeacherName, new { @class = "control-label col-md-3" })</dt>
+        <dd>
+            @Html.DropDownListFor(t => t.TeacherID, Model.TeachersList, "Please select")
+            @Html.ValidationMessageFor(c=>c.TeacherID)
+        </dd>
+    </dl>
+
+    <input type="submit" value="Save" class="btn btn-primary" />
+    @Html.ActionLink("Cancel", "Index", "Course");
+}

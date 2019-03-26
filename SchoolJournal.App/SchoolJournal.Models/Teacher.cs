@@ -19,12 +19,10 @@ namespace SchoolJournal.Models
         [DisplayName("Name ")]
         public string TeacherName { get; set; }
 
-        [Required(ErrorMessage ="E-mail is required!")]
         [DisplayName("E-mail ")]
         [EmailAddress]
         public string TeacherEmail { get; set; }
 
-        [Required(ErrorMessage ="Phone is required!")]
         [DisplayName("Phone ")]
         public string TeacherPhone { get; set; }
     }

@@ -9,20 +9,20 @@ using System.Web.Mvc;
 
 namespace SchoolJournal.Controllers
 {
-    public class CourseController : Controller
+    public class GradeController : Controller
     {
-        private readonly ICourseManager manager;
+        private readonly IGradeManager manager;
         private readonly IPopulateList populate;
 
-        public CourseController()
+        public GradeController()
         {
-            manager = new CourseManager();
+            manager = new GradeManager();
             populate = new PopulateList();
         }
 
         public ActionResult Index()
         {
-            return View(manager.GetAllCourses().ToList());
+            return View(manager.GetAllGrades().ToList());
         }
 
         [HttpGet]
@@ -31,33 +31,41 @@ namespace SchoolJournal.Controllers
             if (id == null)
                 return HttpNotFound();
 
-            Course course = manager.GetCourseByID(id);
-            course.TeachersList = populate.TeachersList();
+            Grade grade = manager.GetGradeByID(id);
+            grade.StudentsList = populate.StudentsList();
+            grade.SemestersList = populate.SemestersList();
+            grade.CoursesList = populate.CoursesList();
 
-            if (course == null)
+            if (grade == null)
                 return HttpNotFound();
 
-            return View(course);
+            return View(grade);
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            Course course = new Course();
-            course.TeachersList = populate.TeachersList();
-            return View(course);
+            Grade grade = new Grade();
+            grade.StudentsList = populate.StudentsList();
+            grade.SemestersList = populate.SemestersList();
+            grade.CoursesList = populate.CoursesList();
+
+            if (grade == null)
+                return HttpNotFound();
+
+            return View(grade);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include ="CourseName,LevelYear,TeacherID")] Course course)
+        public ActionResult Create([Bind(Include = "StudentID,SemsterID,CourseID,Mark,DateOfMark,GradingWeight,Observations")] Grade grade)
         {
             if (ModelState.IsValid)
             {
-                manager.AddCourse(course);
+                manager.AddGrade(grade);
                 return RedirectToAction("Index");
             }
-            return View(course);
+            return View(grade);
         }
 
         [HttpGet]
@@ -66,29 +74,31 @@ namespace SchoolJournal.Controllers
             if (id == null)
                 return HttpNotFound();
 
-            Course course = manager.GetCourseByID(id);
-            course.TeachersList = populate.TeachersList();
+            Grade grade = manager.GetGradeByID(id);
+            grade.StudentsList = populate.StudentsList();
+            grade.SemestersList = populate.SemestersList();
+            grade.CoursesList = populate.CoursesList();
 
-            if (course == null)
+            if (grade == null)
                 return HttpNotFound();
 
-            return View(course);
+            return View(grade);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include ="CourseID,CourseName,LevelYear,TeacherID")]Course course, int? id)
+        public ActionResult Edit([Bind(Include = "GradeID,StudentID,SemesterID,CourseID,Mark,DateOfMark,GradingWeight,Observations")]Grade grade, int? id)
         {
             if (id == null)
                 return HttpNotFound();
 
             if (ModelState.IsValid)
             {
-                manager.UpdateCourse(course);
+                manager.UpdateGrade(grade);
                 return RedirectToAction("Index");
             }
 
-            return View(course);
+            return View(grade);
         }
 
         [HttpGet]
@@ -97,19 +107,19 @@ namespace SchoolJournal.Controllers
             if (id == null)
                 return HttpNotFound();
 
-            Course course = manager.GetCourseByID(id);
+            Grade grade = manager.GetGradeByID(id);
 
-            if (course == null)
+            if (grade == null)
                 return HttpNotFound();
 
-            return View(course);
+            return View(grade);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)
         {
-            manager.DeleteCourse(id);
+            manager.DeleteGrade(id);
             return RedirectToAction("Index");
         }
     }

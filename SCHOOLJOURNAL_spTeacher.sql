@@ -7,8 +7,8 @@ end
 create or alter procedure spAddTeacher
 (
 	@TeacherName varchar(150),
-	@TeacherEmail varchar(100),
-	@TeacherPhone varchar(100)
+	@TeacherEmail varchar(100) null,
+	@TeacherPhone varchar(100) null
 )
 as
 begin
@@ -21,8 +21,8 @@ create or alter procedure spUpdateTeacher
 (
 	@TeacherID INTEGER,
 	@TeacherName varchar(150),
-	@TeacherEmail varchar(100),
-	@TeacherPhone varchar(100)
+	@TeacherEmail varchar(100) null,
+	@TeacherPhone varchar(100) null
 )
 as
 begin

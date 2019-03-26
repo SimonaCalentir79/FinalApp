@@ -1,0 +1,34 @@
+﻿@model SchoolJournal.Models.Grade
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div>
+    <h2>DETAILS</h2>
+    <br />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Students.StudentName)</dt>
+        <dd>@Html.DisplayFor(model => model.Students.StudentName)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Semesters.SemesterNumber)</dt>
+        <dd>@Html.DisplayFor(model => model.Semesters.SemesterNumber)/@Html.DisplayFor(model => model.Semesters.SchoolYear)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Courses.CourseName)</dt>
+        <dd>@Html.DisplayFor(model => model.Courses.CourseName)/(lvl.@Html.DisplayFor(model => model.Courses.LevelYear))</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Mark)</dt>
+        <dd>@Html.DisplayFor(model => model.Mark)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.DateOfMark)</dt>
+        <dd>@Html.DisplayFor(model => model.DateOfMark)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.GradingWeight)</dt>
+        <dd>@Html.DisplayFor(model => model.GradingWeight)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Observations)</dt>
+        <dd>@Html.DisplayFor(model => model.Observations)</dd>
+    </dl>
+
+    <p>@Html.ActionLink("Back to grades", "Index", "Grade") | @Html.ActionLink("Edit", "Edit", "Grade", new { @id = Model.GradeID }, null)</p>
+</div>

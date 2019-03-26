@@ -65,6 +65,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CourseManager.cs" />
+    <Compile Include="PopulateList.cs" />
+    <Compile Include="GradeManager.cs" />
+    <Compile Include="HomeworkManager.cs" />
     <Compile Include="SemesterManager.cs" />
     <Compile Include="StudentManager.cs" />
     <Compile Include="TeacherManager.cs" />

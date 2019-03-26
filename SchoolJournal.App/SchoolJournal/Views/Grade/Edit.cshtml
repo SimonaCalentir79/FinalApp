@@ -1,0 +1,61 @@
+﻿@model SchoolJournal.Models.Grade
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>UPDATE</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(g => g.GradeID)
+
+<dl class="dl-horizontal">
+    <dt>@Html.LabelFor(g => g.Students.StudentName, new { @class = "control-label col-md-3" })</dt>
+    <dd>
+        @Html.DropDownListFor(g => g.StudentID, Model.StudentsList, "Please select")
+        @Html.ValidationMessageFor(g => g.StudentID)
+    </dd>
+
+    <dt>@Html.LabelFor(g => g.Semesters.SemesterNumber, new { @class = "control-label col-md-3" })</dt>
+    <dd>
+        @Html.DropDownListFor(g => g.SemesterID, Model.SemestersList, "Please select")
+        @Html.ValidationMessageFor(g => g.SemesterID)
+    </dd>
+
+    <dt>@Html.LabelFor(g => g.Courses.CourseName, new { @class = "control-label col-md-3" })</dt>
+    <dd>
+        @Html.DropDownListFor(g => g.CourseID, Model.CoursesList, "Please select")
+        @Html.ValidationMessageFor(g => g.CourseID)
+    </dd>
+
+    <dt>@Html.DisplayNameFor(c => c.Mark)</dt>
+    <dd>
+        @Html.TextBoxFor(c => c.Mark, null, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Mark)
+    </dd>
+
+    <dt>@Html.DisplayNameFor(c => c.DateOfMark)</dt>
+    <dd>
+        @Html.TextBoxFor(c => c.DateOfMark, null, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.DateOfMark)
+    </dd>
+
+    <dt>@Html.DisplayNameFor(c => c.GradingWeight)</dt>
+    <dd>
+        @Html.TextAreaFor(c => c.GradingWeight, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.GradingWeight)
+    </dd>
+
+    <dt>@Html.DisplayNameFor(c => c.Observations)</dt>
+    <dd>
+        @Html.TextAreaFor(c => c.Observations, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Observations)
+    </dd>
+
+</dl>
+
+    <input type="submit" value="Save" class="btn btn-primary" />
+    @Html.ActionLink("Cancel", "Index", "Grade");
+}

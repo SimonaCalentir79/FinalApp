@@ -63,6 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ICourseManager.cs" />
+    <Compile Include="IPopulateList.cs" />
+    <Compile Include="IGradeManager.cs" />
+    <Compile Include="IHomeworkManager.cs" />
     <Compile Include="ISemesterManager.cs" />
     <Compile Include="IStudentManager.cs" />
     <Compile Include="ITeacherManager.cs" />

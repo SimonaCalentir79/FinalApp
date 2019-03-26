@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SchoolJournal.Models.Grade>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>Grades</h2>
+<p>
+    <strong>@Html.ActionLink("ADD NEW", "Create", "Grade")</strong>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Students.StudentName)</th>
+            <th>@Html.DisplayNameFor(model => model.Semesters.SemesterNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.Courses.CourseName)</th>
+            <th>@Html.DisplayNameFor(model => model.Mark)</th>
+            <th>@Html.DisplayNameFor(model => model.DateOfMark)</th>
+            <th>@Html.DisplayNameFor(model => model.GradingWeight)</th>
+            <th>@Html.DisplayNameFor(model => model.Observations)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var grade in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => grade.Students.StudentName)</td>
+                <td>@Html.DisplayFor(model => grade.Semesters.SemesterNumber)/@Html.DisplayFor(model => grade.Semesters.SchoolYear)</td>
+                <td>@Html.DisplayFor(model => grade.Courses.CourseName)</td>
+                <td>@Html.DisplayFor(model => grade.Mark)</td>
+                <td>@Html.DisplayFor(model => grade.DateOfMark)</td>
+                <td>@Html.DisplayFor(model => grade.GradingWeight)</td>
+                <td>@Html.DisplayFor(model => grade.Observations)</td>
+                <td>
+                    @Html.ActionLink("Details", "Details", "Grade", new { @id = grade.GradeID }, null) |
+                    @Html.ActionLink("Edit", "Edit", "Grade", new { @id = grade.GradeID }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Grade", new { @id = grade.GradeID }, null)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

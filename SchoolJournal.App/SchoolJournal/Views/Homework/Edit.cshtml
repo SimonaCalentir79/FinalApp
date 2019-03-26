@@ -1,0 +1,57 @@
+﻿@model SchoolJournal.Models.Homework
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>UPDATE</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(c => c.HomeworkID)
+
+<dl class="dl-horizontal">
+    <dt>@Html.LabelFor(t => t.Students.StudentName, new { @class = "control-label col-md-3" })</dt>
+    <dd>
+        @Html.DropDownListFor(t => t.StudentID, Model.StudentsList, "Please select")
+        @Html.ValidationMessageFor(c => c.StudentID)
+    </dd>
+
+    <dt>@Html.LabelFor(t => t.Courses.CourseName, new { @class = "control-label col-md-3" })</dt>
+    <dd>
+        @Html.DropDownListFor(t => t.CourseID, Model.CoursesList, "Please select")
+        @Html.ValidationMessageFor(c => c.CourseID)
+    </dd>
+
+    <dt>@Html.DisplayNameFor(c => c.DateOfHomework)</dt>
+    <dd>
+        @Html.TextBoxFor(c => c.DateOfHomework, null, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.DateOfHomework)
+    </dd>
+
+    <dt>@Html.DisplayNameFor(c => c.DueDate)</dt>
+    <dd>
+        @Html.TextBoxFor(c => c.DueDate, null, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.DueDate)
+    </dd>
+
+    <dt>@Html.DisplayNameFor(c => c.Details)</dt>
+    <dd>
+        @Html.TextAreaFor(c => c.Details, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Details)
+    </dd>
+
+    <dt>@Html.LabelFor(h => h.HomeworkStatus, new { @class = "control-label col-md-3" })</dt>
+    <dd>
+        @Html.DropDownList("HomeworkStatus", new List<SelectListItem> { new SelectListItem { Text="TO DO", Value="TO DO"},
+                                                                new SelectListItem { Text="IN PROGRESS", Value="IN PROGRESS"},
+                                                                new SelectListItem { Text="FINISHED", Value="FINISHED"} },"Select status")
+        @Html.ValidationMessageFor(h => h.HomeworkStatus, "", new { @class = "text-danger" })
+    </dd>
+
+</dl>
+
+    <input type="submit" value="Save" class="btn btn-primary" />
+    @Html.ActionLink("Cancel", "Index", "Homework");
+}
