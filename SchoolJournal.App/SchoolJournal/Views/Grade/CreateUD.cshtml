@@ -1,0 +1,80 @@
+﻿@model SchoolJournal.Models.Grade
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<h2>ADD GRADE</h2>
+
+@using (Html.BeginForm("Create", "Grade", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Grade details</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(t => t.Students.StudentName, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.DropDownListFor(t => t.StudentID, Model.StudentsList, "Please select")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(t => t.Semesters.SemesterNumber, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.DropDownListFor(t => t.SemesterID, Model.SemestersList, "Please select")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(t => t.Courses.CourseName, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.DropDownListFor(t => t.CourseID, Model.CoursesList, "Please select")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(t => t.Mark, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.EditorFor(t => t.Mark, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(t => t.Mark, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(t => t.DateOfMark, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.EditorFor(t => t.DateOfMark, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(t => t.DateOfMark, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(t => t.GradingWeight, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(t => t.GradingWeight, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(t => t.GradingWeight, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(t => t.Observations, new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(t => t.Observations, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(t => t.Observations, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-9">
+            <input type="submit" value="Add" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+<div>
+    @Html.ActionLink("Back to list", "Index", "Grade")
+</div>

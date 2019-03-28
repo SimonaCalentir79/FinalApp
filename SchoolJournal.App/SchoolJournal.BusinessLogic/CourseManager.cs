@@ -3,6 +3,7 @@ using SchoolJournal.Interfaces;
 using SchoolJournal.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -39,16 +40,19 @@ namespace SchoolJournal.BusinessLogic
                 listOfCourses.Add(course);
             }
             ADO_NETconfig.CloseReader(reader);
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
 
             return listOfCourses;
         }
 
         public Course GetCourseByID(int? id)
         {
+            int nonNullId = id ?? throw new ArgumentNullException(nameof(id));
+
             Course course = new Course();
             string query = "select * from Course c join Teacher t on c.TeacherID=t.TeacherID where c.CourseID=";
-            SqlDataReader reader = ADO_NETconfig.GetObjectFromReader(sqlConn, query + id);
+            SqlDataReader reader = ADO_NETconfig.GetObjectFromReader(sqlConn, query + nonNullId);
 
             while (reader.Read())
             {
@@ -63,7 +67,6 @@ namespace SchoolJournal.BusinessLogic
 
                 course.Teachers = teacher;
             }
-
             ADO_NETconfig.CloseReader(reader);
 
             return course;
@@ -71,38 +74,47 @@ namespace SchoolJournal.BusinessLogic
 
         public void AddCourse(Course course)
         {
+            Course nonNullCourse = course ?? throw new ArgumentNullException(nameof(course));
+
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spAddCourse",sqlConn);
 
-            cmd.Parameters.AddWithValue("@CourseName",course.CourseName);
-            cmd.Parameters.AddWithValue("@LevelYear",course.LevelYear);
-            cmd.Parameters.AddWithValue("@TeacherID",course.TeacherID);
+            cmd.Parameters.AddWithValue("@CourseName", nonNullCourse.CourseName);
+            cmd.Parameters.AddWithValue("@LevelYear", nonNullCourse.LevelYear);
+            cmd.Parameters.AddWithValue("@TeacherID", nonNullCourse.TeacherID);
 
             cmd.ExecuteNonQuery();
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
         }
 
         public void UpdateCourse(Course course)
         {
+            Course nonNullCourse = course ?? throw new ArgumentNullException(nameof(course));
+
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spUpdateCourse",sqlConn);
 
-            cmd.Parameters.AddWithValue("@CourseID",course.CourseID);
-            cmd.Parameters.AddWithValue("@CourseName",course.CourseName);
-            cmd.Parameters.AddWithValue("@LevelYear",course.LevelYear);
-            cmd.Parameters.AddWithValue("@TeacherID",course.TeacherID);
+            cmd.Parameters.AddWithValue("@CourseID", nonNullCourse.CourseID);
+            cmd.Parameters.AddWithValue("@CourseName", nonNullCourse.CourseName);
+            cmd.Parameters.AddWithValue("@LevelYear", nonNullCourse.LevelYear);
+            cmd.Parameters.AddWithValue("@TeacherID", nonNullCourse.TeacherID);
 
             cmd.ExecuteNonQuery();
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
         }
 
         public void DeleteCourse(int? id)
         {
+            int nonNullId = id ?? throw new ArgumentNullException(nameof(id));
+
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spDeleteCourse",sqlConn);
 
-            cmd.Parameters.AddWithValue("@CourseID",id);
+            cmd.Parameters.AddWithValue("@CourseID", nonNullId);
 
             cmd.ExecuteNonQuery();
 
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
         }
     }
 }

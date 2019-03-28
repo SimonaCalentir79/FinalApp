@@ -114,12 +114,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\404-cat.jpg" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\error-cat.jpg" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\PagedList.css" />
@@ -254,7 +256,14 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="UploadedFiles\avatar.jpg" />
+    <Content Include="UploadedFiles\coperta.jpg" />
+    <Content Include="UploadedFiles\luca.jpg" />
+    <Content Include="UploadedFiles\matei.jpg" />
+    <Content Include="UploadedFiles\matei2.jpg" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -267,6 +276,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\GradeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -312,11 +322,18 @@
     <Content Include="Views\Homework\Details.cshtml" />
     <Content Include="Views\Homework\Delete.cshtml" />
     <Content Include="Views\Homework\Edit.cshtml" />
-    <Content Include="Views\Grade\Create.cshtml" />
+    <Content Include="Views\Grade\CreateUD.cshtml" />
     <Content Include="Views\Grade\Delete.cshtml" />
     <Content Include="Views\Grade\Details.cshtml" />
     <Content Include="Views\Grade\Edit.cshtml" />
     <Content Include="Views\Grade\Index.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Grade\Create.cshtml" />
+    <Content Include="Views\Error.cshtml" />
+    <Content Include="Views\PageNotFound.cshtml" />
+    <Content Include="Views\Home\IndexNoUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -327,7 +344,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="UploadedFiles\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SchoolJournal.BusinessLogic\SchoolJournal.BusinessLogic.csproj">

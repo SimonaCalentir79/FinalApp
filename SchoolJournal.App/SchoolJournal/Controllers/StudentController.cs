@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace SchoolJournal.Controllers
 {
+    [MyExceptionHandler]
     public class StudentController : Controller
     {
         private IStudentManager manager;
@@ -19,11 +20,13 @@ namespace SchoolJournal.Controllers
             manager = new StudentManager();
         }
 
+        [MyExceptionHandler]
         public ActionResult Index()
         {
             return View(manager.GetAllStudents().ToList());
         }
 
+        [MyExceptionHandler]
         [HttpGet]
         public ActionResult Details(int? id)
         {
@@ -37,12 +40,14 @@ namespace SchoolJournal.Controllers
             return View(student);
         }
 
+        [MyExceptionHandler]
         [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
+        [MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "StudentName,StudentPhoto,Observations")]Student student, HttpPostedFileBase file)
@@ -56,6 +61,7 @@ namespace SchoolJournal.Controllers
             return View(student);
         }
 
+        [MyExceptionHandler]
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -69,6 +75,7 @@ namespace SchoolJournal.Controllers
             return View(student);
         }
 
+        [MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "StudentID,StudentName,StudentPhoto,Observations")]Student student, int? id)
@@ -85,6 +92,7 @@ namespace SchoolJournal.Controllers
             return View(student);
         }
 
+        [MyExceptionHandler]
         [HttpGet]
         public ActionResult Delete(int? id)
         {
@@ -98,6 +106,7 @@ namespace SchoolJournal.Controllers
             return View(student);
         }
 
+        [MyExceptionHandler]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)

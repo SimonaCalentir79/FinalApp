@@ -3,6 +3,7 @@ using SchoolJournal.Interfaces;
 using SchoolJournal.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -48,7 +49,44 @@ namespace SchoolJournal.BusinessLogic
                 listOfHomeworks.Add(homework);
             }
             ADO_NETconfig.CloseReader(reader);
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
+
+            return listOfHomeworks;
+        }
+
+        public IEnumerable<Homework> GetHomeworkByStudentID(int? id)
+        {
+            List<Homework> listOfHomeworks = new List<Homework>();
+            Homework homework = new Homework();
+            string query = "select * from Homework h join Student s on h.StudentID = s.StudentID join Course c on h.CourseID = c.CourseID where h.StudentID=";
+            SqlDataReader reader = ADO_NETconfig.GetObjectFromReader(sqlConn, query + id);
+
+            while (reader.Read())
+            {
+                homework.HomeworkID = Convert.ToInt32(reader["HomeworkID"]);
+                homework.StudentID = Convert.ToInt32(reader["StudentID"]);
+                homework.CourseID = Convert.ToInt32(reader["CourseID"]);
+                homework.DateOfHomework = Convert.ToDateTime(reader["DateOfHomework"]);
+                homework.DueDate = Convert.ToDateTime(reader["DueDate"]);
+                homework.Details = reader["Details"].ToString();
+                homework.HomeworkStatus = reader["HomeworkStatus"].ToString();
+
+                Student student = new Student();
+                student.StudentID = Convert.ToInt32(reader["StudentID"]);
+                student.StudentName = reader["StudentName"].ToString();
+
+                Course course = new Course();
+                course.CourseID = Convert.ToInt32(reader["CourseID"]);
+                course.CourseName = reader["CourseName"].ToString();
+
+                homework.Students = student;
+                homework.Courses = course;
+
+                listOfHomeworks.Add(homework);
+            }
+
+            ADO_NETconfig.CloseReader(reader);
 
             return listOfHomeworks;
         }
@@ -98,7 +136,8 @@ namespace SchoolJournal.BusinessLogic
             cmd.Parameters.AddWithValue("@HomeworkStatus",homework.HomeworkStatus);
 
             cmd.ExecuteNonQuery();
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
         }
 
         public void UpdateHomework(Homework homework)
@@ -114,7 +153,8 @@ namespace SchoolJournal.BusinessLogic
             cmd.Parameters.AddWithValue("@HomeworkStatus", homework.HomeworkStatus);
 
             cmd.ExecuteNonQuery();
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
         }
 
         public void DeleteHomework(int? id)
@@ -124,8 +164,8 @@ namespace SchoolJournal.BusinessLogic
             cmd.Parameters.AddWithValue("@HomeworkID", id);
 
             cmd.ExecuteNonQuery();
-
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
         }
     }
 }

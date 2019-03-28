@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SchoolJournal.Interfaces;
+using System.Data;
 
 namespace SchoolJournal.BusinessLogic
 {
@@ -32,7 +33,8 @@ namespace SchoolJournal.BusinessLogic
 
                 listOfTeachers.Add(teacher);
             }
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
 
             return listOfTeachers;
         }
@@ -62,7 +64,8 @@ namespace SchoolJournal.BusinessLogic
             cmd.Parameters.AddWithValue("@TeacherPhone", (object)teacher.TeacherPhone??DBNull.Value);
 
             cmd.ExecuteNonQuery();
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
         }
 
         public void UpdateTeacher(Teacher teacher)
@@ -75,7 +78,8 @@ namespace SchoolJournal.BusinessLogic
             cmd.Parameters.AddWithValue("@TeacherPhone", (object)teacher.TeacherPhone??DBNull.Value);
 
             cmd.ExecuteNonQuery();
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
         }
 
         public void DeleteTeacher(int? id)
@@ -85,7 +89,8 @@ namespace SchoolJournal.BusinessLogic
             cmd.Parameters.AddWithValue("@TeacherID", id);
             cmd.ExecuteNonQuery();
 
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
         }
     }
 }

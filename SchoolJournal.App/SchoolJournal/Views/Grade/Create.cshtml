@@ -5,76 +5,85 @@
     Layout = "~/Views/_Layout.cshtml";
 }
 
-<h2>ADD GRADE</h2>
+<h2>Create</h2>
 
-@using (Html.BeginForm("Create", "Grade", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Grade</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.StudentID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.StudentID, Model.StudentsList, "Please select")
+                @Html.ValidationMessageFor(model => model.StudentID, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-<div class="form-horizontal">
-    <h4>Grade details</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(t => t.Students.StudentName, new { @class = "control-label col-md-3" })
-        <div class="col-md-9">
-            @Html.DropDownListFor(t => t.StudentID, Model.StudentsList, "Please select")
+        <div class="form-group">
+            @Html.LabelFor(model => model.SemesterID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.SemesterID, Model.SemestersList, "Please select")
+                @Html.ValidationMessageFor(model => model.SemesterID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CourseID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CourseID, Model.CoursesList, "Please select")
+                @Html.ValidationMessageFor(model => model.CourseID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Mark, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Mark, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Mark, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateOfMark, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateOfMark, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateOfMark, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GradingWeight, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GradingWeight, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GradingWeight, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Observations, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Observations, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Observations, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add" class="btn btn-default" />
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(t => t.Semesters.SemesterNumber, new { @class = "control-label col-md-3" })
-        <div class="col-md-9">
-            @Html.DropDownListFor(t => t.SemesterID, Model.SemestersList, "Please select")
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(t => t.Courses.CourseName, new { @class = "control-label col-md-3" })
-        <div class="col-md-9">
-            @Html.DropDownListFor(t => t.CourseID, Model.CoursesList, "Please select")
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(t => t.Mark, new { @class = "control-label col-md-3" })
-        <div class="col-md-9">
-            @Html.EditorFor(t => t.Mark, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(t => t.Mark, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(t => t.DateOfMark, new { @class = "control-label col-md-3" })
-        <div class="col-md-9">
-            @Html.EditorFor(t => t.DateOfMark, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(t => t.DateOfMark, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(t => t.GradingWeight, new { @class = "control-label col-md-3" })
-        <div class="col-md-9">
-            @Html.TextBoxFor(t => t.GradingWeight, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(t => t.GradingWeight, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(t => t.Observations, new { @class = "control-label col-md-3" })
-        <div class="col-md-9">
-            @Html.TextBoxFor(t => t.Observations, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(t => t.Observations, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-3 col-md-9">
-            <input type="submit" value="Add" class="btn btn-primary" />
-        </div>
-    </div>
-</div>
 }
+
 <div>
-    @Html.ActionLink("Back to list", "Index", "Grade")
+    @Html.ActionLink("Back to List", "Index")
 </div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

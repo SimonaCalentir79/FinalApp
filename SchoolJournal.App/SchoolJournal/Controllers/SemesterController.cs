@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace SchoolJournal.Controllers
 {
+    [MyExceptionHandler]
     public class SemesterController : Controller
     {
         private ISemesterManager manager;
@@ -18,11 +19,13 @@ namespace SchoolJournal.Controllers
             manager = new SemesterManager();
         }
 
+        [MyExceptionHandler]
         public ActionResult Index()
         {
             return View(manager.GetAllSemesters().ToList());
         }
 
+        [MyExceptionHandler]
         [HttpGet]
         public ActionResult Details(int? id)
         {
@@ -37,12 +40,14 @@ namespace SchoolJournal.Controllers
             return View(semester);
         }
 
+        [MyExceptionHandler]
         [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
+        [MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include ="SemesterNumber,SchoolYear")]Semester semester)
@@ -55,6 +60,7 @@ namespace SchoolJournal.Controllers
             return View(semester);
         }
 
+        [MyExceptionHandler]
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -69,6 +75,7 @@ namespace SchoolJournal.Controllers
             return View(semester);
         }
 
+        [MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include ="SemesterID,SemesterNumber,SchoolYear")]Semester semester, int? id)
@@ -85,6 +92,7 @@ namespace SchoolJournal.Controllers
             return View(semester);
         }
 
+        [MyExceptionHandler]
         [HttpGet]
         public ActionResult Delete(int? id)
         {
@@ -99,6 +107,7 @@ namespace SchoolJournal.Controllers
             return View(semester);
         }
 
+        [MyExceptionHandler]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)

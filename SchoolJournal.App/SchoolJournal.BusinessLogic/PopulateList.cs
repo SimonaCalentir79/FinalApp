@@ -65,7 +65,7 @@ namespace SchoolJournal.BusinessLogic
             {
                 list.Add(new SelectListItem
                 {
-                    Text = reader["CourseName"].ToString()+"/"+reader["LevelYear"].ToString(),
+                    Text = reader["CourseName"].ToString() + "/" + reader["LevelYear"].ToString(),
                     Value = reader["CourseID"].ToString()
                 });
             }

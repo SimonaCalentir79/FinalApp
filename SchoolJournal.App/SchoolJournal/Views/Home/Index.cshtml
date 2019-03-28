@@ -4,7 +4,6 @@
     ViewBag.Title = "Home Page";
     Layout = "~/Views/_Layout.cshtml";
 }
-
 <div class="container">
     <div class="row">
         @foreach (var stud in Model)
@@ -12,13 +11,12 @@
             <div class="col-lg-3 align-content-center">
                 <div class="card-header align-content-center">@stud.StudentName</div>
                 <div class="card">
-                    <img class="card-img-top" src="#" alt="Luca's image" style="height:75%;width:100%;align-content:center" />
+                    <img class="card-img-top" src="~/UploadedFiles/@stud.StudentPhoto" alt="Luca's image" style="height:75%;width:100%;align-content:center" />
                     <div class="card-body">
                         <p class="card-text">@stud.Observations</p>
-                        @*<a href="../Grade/Index" class="btn btn-primary">Note</a>*@
                         <input type="button" class="btn btn-primary" value="Note" onclick="location.href='@Url.Action("Index","Grade", new {id=stud.StudentID},null)'" />
                         <a href="#" class="btn btn-primary">Orar</a>
-                        <a href="#" class="btn btn-primary">Teme</a>
+                        <input type="button" class="btn btn-primary" value="Teme" onclick="location.href='@Url.Action("Index","Homework", new {id=stud.StudentID},null)'" />
                     </div>
                 </div>
             </div>

@@ -14,5 +14,12 @@ namespace SchoolJournal
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
+            Server.ClearError();
+            Response.Redirect("~/Views/Error");
+        }
     }
 }

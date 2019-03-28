@@ -1,3 +1,4 @@
+--DROP TABLE UserAccount;
 --DROP TABLE TermReport;
 --DROP TABLE Homework;
 --DROP TABLE Grade;
@@ -88,4 +89,15 @@ CREATE TABLE Timetable
 	CourseID INT NOT NULL,
 	CONSTRAINT FK_Timetable_StudentID FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
 	CONSTRAINT FK_Timetable_CourseID FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
+)
+
+CREATE TABLE UserAccount
+(
+	UserID INT IDENTITY(1,1) PRIMARY KEY,
+	FirstName VARCHAR(200) NOT NULL,
+	LastName VARCHAR(200) NOT NULL,
+	Email VARCHAR(200) NOT NULL,
+	Username VARCHAR(200) UNIQUE,
+	Password VARCHAR(200) NOT NULL,
+	ConfirmPassword VARCHAR(200) NOT NULL
 )

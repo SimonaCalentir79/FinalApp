@@ -11,6 +11,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+    @if (Session["UserID"] != null)
+    {
     <div class="container">
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <!-- Brand -->
@@ -35,7 +37,7 @@
                     <!-- Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Settings@*<i class='fas fa-cog'></i>*@
+                            Settings<i class='fas fa-cog'></i>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbardrop">
                             <a class="dropdown-item" href="~/Student/Index">Students</a>
@@ -47,11 +49,33 @@
                             @*<a class="dropdown-item" href="~/TermReport/Index">TermReports</a>*@
                         </div>
                     </li>
-
                 </ul>
+                <span class="navbar-text">
+                    <a class="nav-link" href="~/Account/Logout">Logout '@Session["Username"].ToString()'</a>
+                </span>
             </div>
         </nav>
     </div>
+    }
+    else
+    {
+    <div class="container">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <!-- Brand -->
+            <a class="navbar-brand" href="~/Home/IndexNoUser">School Journal</a>
+            <span class="navbar-text">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Account/Register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Account/Login">Login (u: 'guest' &amp; p: 'guest')</a>
+                    </li>
+                </ul>
+            </span>
+        </nav>
+    </div>
+    }
     <div class="container body-content" style="margin-top:50px">
         @RenderBody()
         <hr />

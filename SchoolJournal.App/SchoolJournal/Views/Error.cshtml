@@ -1,0 +1,32 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error</title>
+</head>
+<body>
+    <hgroup>
+        <h1>Error</h1>
+        <h2>Sorry, an error occured while processing your request.</h2>
+    </hgroup>
+    <img src="~/Content/error-cat.jpg" alt="Cat" />
+    <h2>Exception details</h2>
+    @if (Model != null)
+    {
+        <p>
+            Controller: @Model.ControllerName<br />
+            Action: @Model.ActionName<br />
+            Message: @Model.Exception.Message <br />
+            Exception: @Model.Exception
+        </p>
+    }
+
+</body>
+</html>

@@ -4,6 +4,7 @@ using SchoolJournal.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -36,7 +37,8 @@ namespace SchoolJournal.BusinessLogic
 
                 listOfStudents.Add(student);
             }
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
 
             return listOfStudents;
         }
@@ -80,7 +82,8 @@ namespace SchoolJournal.BusinessLogic
             cmd.Parameters.AddWithValue("@Observations", student.Observations);
 
             cmd.ExecuteNonQuery();
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
         }
 
         public void UpdateStudent(Student student)
@@ -93,7 +96,9 @@ namespace SchoolJournal.BusinessLogic
             cmd.Parameters.AddWithValue("@Observations", student.Observations);
 
             cmd.ExecuteNonQuery();
-            ADO_NETconfig.CloseConn(sqlConn);
+
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
         }
 
         public void DeleteStudent(int? id)
@@ -103,7 +108,8 @@ namespace SchoolJournal.BusinessLogic
             cmd.Parameters.AddWithValue("@StudentID", id);
             cmd.ExecuteNonQuery();
 
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
         }
     }
 }

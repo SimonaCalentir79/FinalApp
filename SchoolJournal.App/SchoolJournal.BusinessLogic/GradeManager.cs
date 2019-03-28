@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using SchoolJournal.DataAccess;
 using System.Web.Mvc;
 using SchoolJournal.Models;
+using System.Data;
 
 namespace SchoolJournal.BusinessLogic
 {
@@ -56,7 +57,8 @@ namespace SchoolJournal.BusinessLogic
                 listOfGrades.Add(grade);
             }
             ADO_NETconfig.CloseReader(reader);
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
 
             return listOfGrades;
         }
@@ -118,7 +120,8 @@ namespace SchoolJournal.BusinessLogic
             cmd.Parameters.AddWithValue("@Observations", (object)grade.Observations??DBNull.Value);
 
             cmd.ExecuteNonQuery();
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
         }
 
         public void UpdateGrade(Grade grade)
@@ -135,7 +138,8 @@ namespace SchoolJournal.BusinessLogic
             cmd.Parameters.AddWithValue("@Observations", (object)grade.Observations??DBNull.Value);
 
             cmd.ExecuteNonQuery();
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
         }
 
         public void DeleteGrade(int? id)
@@ -145,8 +149,8 @@ namespace SchoolJournal.BusinessLogic
             cmd.Parameters.AddWithValue("@GradeID", id);
 
             cmd.ExecuteNonQuery();
-
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
         }
     }
 }

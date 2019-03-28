@@ -3,6 +3,7 @@ using SchoolJournal.Interfaces;
 using SchoolJournal.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,8 @@ namespace SchoolJournal.BusinessLogic
 
                 listOfSemesters.Add(semester);
             }
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
 
             return listOfSemesters;
         }
@@ -59,7 +61,8 @@ namespace SchoolJournal.BusinessLogic
             cmd.Parameters.AddWithValue("@SchoolYear",semester.SchoolYear);
 
             cmd.ExecuteNonQuery();
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
         }
 
         public void UpdateSemester(Semester semester)
@@ -71,7 +74,8 @@ namespace SchoolJournal.BusinessLogic
             cmd.Parameters.AddWithValue("@SchoolYear",semester.SchoolYear);
 
             cmd.ExecuteNonQuery();
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
         }
 
         public void DeleteSemester(int? id)
@@ -81,7 +85,8 @@ namespace SchoolJournal.BusinessLogic
             cmd.Parameters.AddWithValue("@SemesterID",id);
             cmd.ExecuteNonQuery();
 
-            ADO_NETconfig.CloseConn(sqlConn);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
         }
     }
 }

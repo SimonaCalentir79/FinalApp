@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace SchoolJournal.Controllers
 {
+    [MyExceptionHandler]
     public class GradeController : Controller
     {
         private readonly IGradeManager manager;
@@ -20,11 +21,13 @@ namespace SchoolJournal.Controllers
             populate = new PopulateList();
         }
 
+        [MyExceptionHandler]
         public ActionResult Index()
         {
             return View(manager.GetAllGrades().ToList());
         }
 
+        [MyExceptionHandler]
         [HttpGet]
         public ActionResult Details(int? id)
         {
@@ -42,6 +45,7 @@ namespace SchoolJournal.Controllers
             return View(grade);
         }
 
+        [MyExceptionHandler]
         [HttpGet]
         public ActionResult Create()
         {
@@ -56,6 +60,7 @@ namespace SchoolJournal.Controllers
             return View(grade);
         }
 
+        [MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "StudentID,SemsterID,CourseID,Mark,DateOfMark,GradingWeight,Observations")] Grade grade)
@@ -68,6 +73,7 @@ namespace SchoolJournal.Controllers
             return View(grade);
         }
 
+        [MyExceptionHandler]
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -85,6 +91,7 @@ namespace SchoolJournal.Controllers
             return View(grade);
         }
 
+        [MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "GradeID,StudentID,SemesterID,CourseID,Mark,DateOfMark,GradingWeight,Observations")]Grade grade, int? id)
@@ -101,6 +108,7 @@ namespace SchoolJournal.Controllers
             return View(grade);
         }
 
+        [MyExceptionHandler]
         [HttpGet]
         public ActionResult Delete(int? id)
         {
@@ -115,6 +123,7 @@ namespace SchoolJournal.Controllers
             return View(grade);
         }
 
+        [MyExceptionHandler]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)

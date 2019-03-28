@@ -14,6 +14,8 @@ namespace SchoolJournal.Interfaces
 
         Homework GetHomeworkByID(int? id);
 
+        IEnumerable<Homework> GetHomeworkByStudentID(int? id);
+
         void AddHomework(Homework homework);
 
         void UpdateHomework(Homework homework);
