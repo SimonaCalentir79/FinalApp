@@ -82,8 +82,8 @@ namespace SchoolJournal.Controllers
 
             if (student != null)
             {
-                //Session["StudentID"] = student.StudentID.ToString();
-                //Session["StudentPhoto"] = student.StudentPhoto.ToString();
+                Session["StudentID"] = student.StudentID.ToString();
+                Session["StudentPhoto"] = student.StudentPhoto.ToString();
             }
             else
             {
@@ -95,33 +95,30 @@ namespace SchoolJournal.Controllers
         [MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StudentID,StudentName,StudentPhoto,Observations")]Student student, int? id, HttpPostedFileBase imageFile)
+        public ActionResult Edit([Bind(Include = "StudentID,StudentName,StudentPhoto,Observations")]Student student, HttpPostedFileBase imageFile)
         {
-            if (id == null)
-                return HttpNotFound();
-
-            //var fileName = "";
+            string pathToSave = "";
+            var fileName = "";
+            var directoryToSave = "";
 
             if (ModelState.IsValid)
             {
-                //if (imageFile != null)
-                //{
-                //    fileName = Path.GetFileName(imageFile.FileName);
-                //    var directoryToSave = Server.MapPath(Url.Content(uploadedFilesPath));
-                //    string pathToSave = Path.Combine(directoryToSave, fileName);
+                if (imageFile != null && imageFile.ContentLength > 0)
+                {
+                    fileName = Path.GetFileName(imageFile.FileName);
+                    directoryToSave = Server.MapPath(Url.Content(uploadedFilesPath));
+                    pathToSave = Path.Combine(directoryToSave, fileName);
+                    imageFile.SaveAs(pathToSave);
 
-                //    imageFile.SaveAs(pathToSave);
-                //    student.StudentPhoto = fileName;
-                //}
-                //else
-                //{
-                //    fileName = Session["StudentPhoto"].ToString();
-                //    student.StudentPhoto = fileName;
-                //}
+                    student.StudentPhoto = fileName;
+                }
+                else
+                {
+                    student.StudentPhoto = Session["StudentPhoto"].ToString();
+                }
                 manager.UpdateStudent(student);
                 return RedirectToAction("Index");
             }
-            //Session.Abandon();
             return View(student);
         }
 
@@ -145,8 +142,7 @@ namespace SchoolJournal.Controllers
         public ActionResult DeleteConfirmed(int? id)
         {
             Student student = manager.GetStudentByID(id);
-            //System.IO.File.SetAttributes(Server.MapPath(uploadedFilesPath), FileAttributes.Normal);
-            System.IO.File.Delete(Path.Combine(Server.MapPath(uploadedFilesPath),student.StudentPhoto));
+            //System.IO.File.Delete(Path.Combine(Server.MapPath(Url.Content(uploadedFilesPath)), student.StudentPhoto));
 
             manager.DeleteStudent(id);
             return RedirectToAction("Index");

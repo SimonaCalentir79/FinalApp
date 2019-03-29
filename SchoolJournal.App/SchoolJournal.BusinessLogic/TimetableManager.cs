@@ -52,12 +52,13 @@ namespace SchoolJournal.BusinessLogic
 
         public Timetable GetTimetableByID(int? id)
         {
+            int notNullId = id ?? throw new ArgumentNullException(nameof(id));
             Timetable timetable = new Timetable();
             Student student = new Student();
             Course course = new Course();
 
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spGetTimetableByID", sqlConn);
-            cmd.Parameters.AddWithValue("@TimetableID", id);
+            cmd.Parameters.AddWithValue("@TimetableID", notNullId);
 
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -83,10 +84,11 @@ namespace SchoolJournal.BusinessLogic
 
         public IList<Timetable> GetTimetableByStudentID(int? id)
         {
+            int notNullId = id ?? throw new ArgumentNullException(nameof(id));
             List<Timetable> listOfTimetables = new List<Timetable>();
 
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spGetTimetableByStudentID", sqlConn);
-            cmd.Parameters.AddWithValue("@StudentID", id);
+            cmd.Parameters.AddWithValue("@StudentID", notNullId);
 
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -191,12 +193,13 @@ namespace SchoolJournal.BusinessLogic
 
         public void AddTimetable(Timetable timetable)
         {
+            Timetable notNullTimetable = timetable ?? throw new ArgumentNullException(nameof(timetable));
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spAddTimetable", sqlConn);
 
-            cmd.Parameters.AddWithValue("@StudentID", timetable.StudentID);
-            cmd.Parameters.AddWithValue("@DayOfTheWeek", timetable.DayOfTheWeek);
-            cmd.Parameters.AddWithValue("@TimeInterval", timetable.TimeInterval);
-            cmd.Parameters.AddWithValue("@CourseID", timetable.CourseID);
+            cmd.Parameters.AddWithValue("@StudentID", notNullTimetable.StudentID);
+            cmd.Parameters.AddWithValue("@DayOfTheWeek", notNullTimetable.DayOfTheWeek);
+            cmd.Parameters.AddWithValue("@TimeInterval", notNullTimetable.TimeInterval);
+            cmd.Parameters.AddWithValue("@CourseID", notNullTimetable.CourseID);
 
             cmd.ExecuteNonQuery();
             if (sqlConn.State != ConnectionState.Closed)
@@ -205,13 +208,14 @@ namespace SchoolJournal.BusinessLogic
 
         public void UpdateTimetable(Timetable timetable)
         {
+            Timetable notNullTimetable = timetable ?? throw new ArgumentNullException(nameof(timetable));
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spUpdateTimetable", sqlConn);
 
-            cmd.Parameters.AddWithValue("@TimetableID", timetable.TimetableID);
-            cmd.Parameters.AddWithValue("@StudentID", timetable.StudentID);
-            cmd.Parameters.AddWithValue("@DayOfTheWeek", timetable.DayOfTheWeek);
-            cmd.Parameters.AddWithValue("@TimeInterval", timetable.TimeInterval);
-            cmd.Parameters.AddWithValue("@CourseID", timetable.CourseID);
+            cmd.Parameters.AddWithValue("@TimetableID", notNullTimetable.TimetableID);
+            cmd.Parameters.AddWithValue("@StudentID", notNullTimetable.StudentID);
+            cmd.Parameters.AddWithValue("@DayOfTheWeek", notNullTimetable.DayOfTheWeek);
+            cmd.Parameters.AddWithValue("@TimeInterval", notNullTimetable.TimeInterval);
+            cmd.Parameters.AddWithValue("@CourseID", notNullTimetable.CourseID);
 
             cmd.ExecuteNonQuery();
             if (sqlConn.State != ConnectionState.Closed)
@@ -220,9 +224,10 @@ namespace SchoolJournal.BusinessLogic
 
         public void DeleteTimetable(int? id)
         {
+            int notNullId = id ?? throw new ArgumentNullException(nameof(id));
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spDeleteTimetable", sqlConn);
 
-            cmd.Parameters.AddWithValue("@TimetableID", id);
+            cmd.Parameters.AddWithValue("@TimetableID", notNullId);
 
             cmd.ExecuteNonQuery();
             if (sqlConn.State != ConnectionState.Closed)

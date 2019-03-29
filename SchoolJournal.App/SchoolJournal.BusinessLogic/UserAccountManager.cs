@@ -44,14 +44,15 @@ namespace SchoolJournal.BusinessLogic
 
         public void AddUser(UserAccount userAccount)
         {
+            UserAccount notNullUA = userAccount ?? throw new ArgumentNullException(nameof(userAccount));
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spAddUserAccounts", sqlConn);
 
-            cmd.Parameters.AddWithValue("@FirstName", userAccount.FirstName);
-            cmd.Parameters.AddWithValue("@LastName", userAccount.LastName);
-            cmd.Parameters.AddWithValue("@Email", userAccount.Email);
-            cmd.Parameters.AddWithValue("@Username", userAccount.Username);
-            cmd.Parameters.AddWithValue("@Password", userAccount.Password);
-            cmd.Parameters.AddWithValue("@ConfirmPassword",userAccount.ConfirmPassword);
+            cmd.Parameters.AddWithValue("@FirstName", notNullUA.FirstName);
+            cmd.Parameters.AddWithValue("@LastName", notNullUA.LastName);
+            cmd.Parameters.AddWithValue("@Email", notNullUA.Email);
+            cmd.Parameters.AddWithValue("@Username", notNullUA.Username);
+            cmd.Parameters.AddWithValue("@Password", notNullUA.Password);
+            cmd.Parameters.AddWithValue("@ConfirmPassword", notNullUA.ConfirmPassword);
 
             cmd.ExecuteNonQuery();
             if (sqlConn.State != ConnectionState.Closed)

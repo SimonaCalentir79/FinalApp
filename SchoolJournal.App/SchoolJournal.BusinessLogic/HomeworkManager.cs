@@ -57,12 +57,13 @@ namespace SchoolJournal.BusinessLogic
 
         public Homework GetHomeworkByID(int? id)
         {
+            int notNullId = id ?? throw new ArgumentNullException(nameof(id));
             Homework homework = new Homework();
             Student student = new Student();
             Course course = new Course();
 
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spGetHomeworkByID", sqlConn);
-            cmd.Parameters.AddWithValue("@HomeworkID", id);
+            cmd.Parameters.AddWithValue("@HomeworkID", notNullId);
 
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -91,10 +92,11 @@ namespace SchoolJournal.BusinessLogic
 
         public IEnumerable<Homework> GetHomeworkByStudentID(int? id)
         {
+            int notNullId = id ?? throw new ArgumentNullException(nameof(id));
             List<Homework> listOfHomeworks = new List<Homework>();
 
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spGetHomeworkByStudentID", sqlConn);
-            cmd.Parameters.AddWithValue("@StudentID", id);
+            cmd.Parameters.AddWithValue("@StudentID", notNullId);
 
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -130,14 +132,15 @@ namespace SchoolJournal.BusinessLogic
 
         public void AddHomework(Homework homework)
         {
+            Homework notNullHomework = homework ?? throw new ArgumentNullException(nameof(homework));
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spAddHomework", sqlConn);
 
-            cmd.Parameters.AddWithValue("@StudentID", homework.StudentID);
-            cmd.Parameters.AddWithValue("@CourseID", homework.CourseID);
-            cmd.Parameters.AddWithValue("@DateOfHomework", homework.DateOfHomework);
-            cmd.Parameters.AddWithValue("@DueDate",homework.DueDate);
-            cmd.Parameters.AddWithValue("@Details",homework.Details);
-            cmd.Parameters.AddWithValue("@HomeworkStatus",homework.HomeworkStatus);
+            cmd.Parameters.AddWithValue("@StudentID", notNullHomework.StudentID);
+            cmd.Parameters.AddWithValue("@CourseID", notNullHomework.CourseID);
+            cmd.Parameters.AddWithValue("@DateOfHomework", notNullHomework.DateOfHomework);
+            cmd.Parameters.AddWithValue("@DueDate", notNullHomework.DueDate);
+            cmd.Parameters.AddWithValue("@Details", notNullHomework.Details);
+            cmd.Parameters.AddWithValue("@HomeworkStatus", notNullHomework.HomeworkStatus);
 
             cmd.ExecuteNonQuery();
             if (sqlConn.State != ConnectionState.Closed)
@@ -146,15 +149,16 @@ namespace SchoolJournal.BusinessLogic
 
         public void UpdateHomework(Homework homework)
         {
+            Homework notNullHomework = homework ?? throw new ArgumentNullException(nameof(homework));
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spUpdateHomework", sqlConn);
 
-            cmd.Parameters.AddWithValue("@HomeworkID", homework.HomeworkID);
-            cmd.Parameters.AddWithValue("@StudentID", homework.StudentID);
-            cmd.Parameters.AddWithValue("@CourseID", homework.CourseID);
-            cmd.Parameters.AddWithValue("@DateOfHomework", homework.DateOfHomework);
-            cmd.Parameters.AddWithValue("@DueDate", homework.DueDate);
-            cmd.Parameters.AddWithValue("@Details", homework.Details);
-            cmd.Parameters.AddWithValue("@HomeworkStatus", homework.HomeworkStatus);
+            cmd.Parameters.AddWithValue("@HomeworkID", notNullHomework.HomeworkID);
+            cmd.Parameters.AddWithValue("@StudentID", notNullHomework.StudentID);
+            cmd.Parameters.AddWithValue("@CourseID", notNullHomework.CourseID);
+            cmd.Parameters.AddWithValue("@DateOfHomework", notNullHomework.DateOfHomework);
+            cmd.Parameters.AddWithValue("@DueDate", notNullHomework.DueDate);
+            cmd.Parameters.AddWithValue("@Details", notNullHomework.Details);
+            cmd.Parameters.AddWithValue("@HomeworkStatus", notNullHomework.HomeworkStatus);
 
             cmd.ExecuteNonQuery();
             if (sqlConn.State != ConnectionState.Closed)
@@ -163,9 +167,10 @@ namespace SchoolJournal.BusinessLogic
 
         public void DeleteHomework(int? id)
         {
+            int notNullId = id ?? throw new ArgumentNullException(nameof(id));
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spDeleteHomework", sqlConn);
 
-            cmd.Parameters.AddWithValue("@HomeworkID", id);
+            cmd.Parameters.AddWithValue("@HomeworkID", notNullId);
 
             cmd.ExecuteNonQuery();
             if (sqlConn.State != ConnectionState.Closed)

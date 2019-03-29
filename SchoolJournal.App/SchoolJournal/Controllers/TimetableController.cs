@@ -41,9 +41,6 @@ namespace SchoolJournal.Controllers
                 ViewBag.Message = "Error: " + ex.Message.ToString();
             }
             return View(manager.GetAllTimetables().ToPagedList(pageNumber ?? 1, 5));
-            //if (id != null)
-            //    return View(manager.GetTimetableByStudentID(id).ToList());
-            //return View(manager.GetAllTimetables().ToList());
         }
 
         [MyExceptionHandler]

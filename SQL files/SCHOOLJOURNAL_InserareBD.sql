@@ -9,8 +9,8 @@ INSERT INTO Teacher(TeacherName,TeacherEmail) VALUES ('Teacher08','teacher08@ema
 INSERT INTO Teacher(TeacherName,TeacherEmail) VALUES ('Teacher09','teacher09@email.com');
 INSERT INTO Teacher(TeacherName,TeacherEmail) VALUES ('Teacher10','teacher10@email.com');
 
-INSERT INTO Student(StudentName,StudentPhoto) VALUES ('Luca-Bogdan','luca.jpg');
-INSERT INTO Student(StudentName,StudentPhoto) VALUES ('Matei-Calin','matei2.jpg');
+INSERT INTO Student(StudentName,StudentPhoto,Observations) VALUES ('Luca-Bogdan','luca.jpg','Cls. a V-a');
+INSERT INTO Student(StudentName,StudentPhoto,Observations) VALUES ('Matei-Calin','matei2.jpg','Cls. a III-a');
 
 INSERT INTO Semester(SemesterNumber,SchoolYear) VALUES (1,'2017-2018');
 INSERT INTO Semester(SemesterNumber,SchoolYear) VALUES (2,'2017-2018');
@@ -42,5 +42,7 @@ INSERT INTO Grade(StudentID,SemesterID,CourseID,Mark,GradingWeight) VALUES (1,1,
 INSERT INTO Homework(StudentID,CourseID,Details) VALUES (2,9,'details about homework');
 
 INSERT INTO Timetable(StudentID,DayOfTheWeek,TimeInterval,CourseID) VALUES (1,'LUNI','08:00 - 08:50',8);
+
+INSERT INTO UserAccount(FirstName,LastName,Email,Username,Password,ConfirmPassword) VALUES ('guest','guest','guest@guest.ro','guest','guest','guest');
 
 

@@ -64,13 +64,15 @@ namespace SchoolJournal.BusinessLogic
 
         public Grade GetGradeByID(int? id)
         {
+            int notNullId = id ?? throw new ArgumentNullException(nameof(id));
+
             Grade grade = new Grade();
             Student student = new Student();
             Semester semester = new Semester();
             Course course = new Course();
 
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spGetGradeByID", sqlConn);
-            cmd.Parameters.AddWithValue("@GradeID", id);
+            cmd.Parameters.AddWithValue("@GradeID", notNullId);
 
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -108,10 +110,12 @@ namespace SchoolJournal.BusinessLogic
 
         public IEnumerable<Grade> GetGradesByStudentID(int? id)
         {
+            int notNullId = id ?? throw new ArgumentNullException(nameof(id));
+
             List<Grade> listOfGrades = new List<Grade>();
 
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spGetGradeByStudentID", sqlConn);
-            cmd.Parameters.AddWithValue("@StudentID", id);
+            cmd.Parameters.AddWithValue("@StudentID", notNullId);
 
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -156,15 +160,16 @@ namespace SchoolJournal.BusinessLogic
 
         public void AddGrade(Grade grade)
         {
+            Grade notNullGrade = grade ?? throw new ArgumentNullException(nameof(grade));
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spAddGrade", sqlConn);
 
-            cmd.Parameters.AddWithValue("@StudentID", grade.StudentID);
-            cmd.Parameters.AddWithValue("@SemesterID",grade.SemesterID);
-            cmd.Parameters.AddWithValue("@CourseID", grade.CourseID);
-            cmd.Parameters.AddWithValue("@Mark", grade.Mark);
-            cmd.Parameters.AddWithValue("@DateOfMark", grade.DateOfMark);
-            cmd.Parameters.AddWithValue("@GradingWeight", grade.GradingWeight);
-            cmd.Parameters.AddWithValue("@Observations", (object)grade.Observations??DBNull.Value);
+            cmd.Parameters.AddWithValue("@StudentID", notNullGrade.StudentID);
+            cmd.Parameters.AddWithValue("@SemesterID", notNullGrade.SemesterID);
+            cmd.Parameters.AddWithValue("@CourseID", notNullGrade.CourseID);
+            cmd.Parameters.AddWithValue("@Mark", notNullGrade.Mark);
+            cmd.Parameters.AddWithValue("@DateOfMark", notNullGrade.DateOfMark);
+            cmd.Parameters.AddWithValue("@GradingWeight", notNullGrade.GradingWeight);
+            cmd.Parameters.AddWithValue("@Observations", (object)notNullGrade.Observations??DBNull.Value);
 
             cmd.ExecuteNonQuery();
             if (sqlConn.State != ConnectionState.Closed)
@@ -173,16 +178,17 @@ namespace SchoolJournal.BusinessLogic
 
         public void UpdateGrade(Grade grade)
         {
+            Grade notNullGrade = grade ?? throw new ArgumentNullException(nameof(grade));
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spUpdateGrade", sqlConn);
 
-            cmd.Parameters.AddWithValue("@GradeID", grade.GradeID);
-            cmd.Parameters.AddWithValue("@StudentID", grade.StudentID);
-            cmd.Parameters.AddWithValue("@SemesterID",grade.SemesterID);
-            cmd.Parameters.AddWithValue("@CourseID", grade.CourseID);
-            cmd.Parameters.AddWithValue("@Mark", grade.Mark);
-            cmd.Parameters.AddWithValue("@DateOfMark", grade.DateOfMark);
-            cmd.Parameters.AddWithValue("@GradingWeight", grade.GradingWeight);
-            cmd.Parameters.AddWithValue("@Observations", (object)grade.Observations??DBNull.Value);
+            cmd.Parameters.AddWithValue("@GradeID", notNullGrade.GradeID);
+            cmd.Parameters.AddWithValue("@StudentID", notNullGrade.StudentID);
+            cmd.Parameters.AddWithValue("@SemesterID", notNullGrade.SemesterID);
+            cmd.Parameters.AddWithValue("@CourseID", notNullGrade.CourseID);
+            cmd.Parameters.AddWithValue("@Mark", notNullGrade.Mark);
+            cmd.Parameters.AddWithValue("@DateOfMark", notNullGrade.DateOfMark);
+            cmd.Parameters.AddWithValue("@GradingWeight", notNullGrade.GradingWeight);
+            cmd.Parameters.AddWithValue("@Observations", (object)notNullGrade.Observations??DBNull.Value);
 
             cmd.ExecuteNonQuery();
             if (sqlConn.State != ConnectionState.Closed)
@@ -191,9 +197,11 @@ namespace SchoolJournal.BusinessLogic
 
         public void DeleteGrade(int? id)
         {
+            int notNullId = id ?? throw new ArgumentNullException(nameof(id));
+
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spDeleteGrade", sqlConn);
 
-            cmd.Parameters.AddWithValue("@GradeID", id);
+            cmd.Parameters.AddWithValue("@GradeID", notNullId);
 
             cmd.ExecuteNonQuery();
             if (sqlConn.State != ConnectionState.Closed)

@@ -40,10 +40,11 @@ namespace SchoolJournal.BusinessLogic
 
         public Semester GetSemesterByID(int? id)
         {
+            int notNullId = id ?? throw new ArgumentNullException(nameof(id));
             Semester semester = new Semester();
 
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spGetSemesterByID", sqlConn);
-            cmd.Parameters.AddWithValue("@SemesterID",id);
+            cmd.Parameters.AddWithValue("@SemesterID", notNullId);
 
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -58,10 +59,11 @@ namespace SchoolJournal.BusinessLogic
 
         public void AddSemester(Semester semester)
         {
+            Semester notNullSemester = semester ?? throw new ArgumentNullException(nameof(semester));
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spAddSemester",sqlConn);
 
-            cmd.Parameters.AddWithValue("@SemesterNumber",semester.SemesterNumber);
-            cmd.Parameters.AddWithValue("@SchoolYear",semester.SchoolYear);
+            cmd.Parameters.AddWithValue("@SemesterNumber", notNullSemester.SemesterNumber);
+            cmd.Parameters.AddWithValue("@SchoolYear", notNullSemester.SchoolYear);
 
             cmd.ExecuteNonQuery();
             if (sqlConn.State != ConnectionState.Closed)
@@ -70,11 +72,12 @@ namespace SchoolJournal.BusinessLogic
 
         public void UpdateSemester(Semester semester)
         {
+            Semester notNullSemester = semester ?? throw new ArgumentNullException(nameof(semester));
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spUpdateSemester",sqlConn);
 
-            cmd.Parameters.AddWithValue("@SemesterID",semester.SemesterID);
-            cmd.Parameters.AddWithValue("@SemesterNumber",semester.SemesterNumber);
-            cmd.Parameters.AddWithValue("@SchoolYear",semester.SchoolYear);
+            cmd.Parameters.AddWithValue("@SemesterID", notNullSemester.SemesterID);
+            cmd.Parameters.AddWithValue("@SemesterNumber", notNullSemester.SemesterNumber);
+            cmd.Parameters.AddWithValue("@SchoolYear", notNullSemester.SchoolYear);
 
             cmd.ExecuteNonQuery();
             if (sqlConn.State != ConnectionState.Closed)
@@ -83,9 +86,10 @@ namespace SchoolJournal.BusinessLogic
 
         public void DeleteSemester(int? id)
         {
+            int notNullId = id ?? throw new ArgumentNullException(nameof(id));
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spDeleteSemester",sqlConn);
 
-            cmd.Parameters.AddWithValue("@SemesterID",id);
+            cmd.Parameters.AddWithValue("@SemesterID", notNullId);
             cmd.ExecuteNonQuery();
 
             if (sqlConn.State != ConnectionState.Closed)

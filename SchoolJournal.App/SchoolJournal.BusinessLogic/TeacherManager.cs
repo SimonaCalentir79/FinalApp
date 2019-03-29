@@ -41,10 +41,11 @@ namespace SchoolJournal.BusinessLogic
 
         public Teacher GetTeacherByID(int? id)
         {
+            int notNullId = id ?? throw new ArgumentNullException(nameof(id));
             Teacher teacher = new Teacher();
 
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spGetTeacherByID", sqlConn);
-            cmd.Parameters.AddWithValue("@TeacherID", id);
+            cmd.Parameters.AddWithValue("@TeacherID", notNullId);
 
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
@@ -60,11 +61,12 @@ namespace SchoolJournal.BusinessLogic
 
         public void AddTeacher(Teacher teacher)
         {
+            Teacher notNullTeacher = teacher ?? throw new ArgumentNullException(nameof(teacher));
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spAddTeacher", sqlConn);
 
-            cmd.Parameters.AddWithValue("@TeacherName", teacher.TeacherName);
-            cmd.Parameters.AddWithValue("@TeacherEmail", (object)teacher.TeacherEmail??DBNull.Value);
-            cmd.Parameters.AddWithValue("@TeacherPhone", (object)teacher.TeacherPhone??DBNull.Value);
+            cmd.Parameters.AddWithValue("@TeacherName", notNullTeacher.TeacherName);
+            cmd.Parameters.AddWithValue("@TeacherEmail", (object)notNullTeacher.TeacherEmail??DBNull.Value);
+            cmd.Parameters.AddWithValue("@TeacherPhone", (object)notNullTeacher.TeacherPhone??DBNull.Value);
 
             cmd.ExecuteNonQuery();
             if (sqlConn.State != ConnectionState.Closed)
@@ -73,12 +75,13 @@ namespace SchoolJournal.BusinessLogic
 
         public void UpdateTeacher(Teacher teacher)
         {
+            Teacher notNullTeacher = teacher ?? throw new ArgumentNullException(nameof(teacher));
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spUpdateTeacher", sqlConn);
 
-            cmd.Parameters.AddWithValue("@TeacherID", teacher.TeacherID);
-            cmd.Parameters.AddWithValue("@TeacherName", teacher.TeacherName);
-            cmd.Parameters.AddWithValue("@TeacherEmail", (object)teacher.TeacherEmail??DBNull.Value);
-            cmd.Parameters.AddWithValue("@TeacherPhone", (object)teacher.TeacherPhone??DBNull.Value);
+            cmd.Parameters.AddWithValue("@TeacherID", notNullTeacher.TeacherID);
+            cmd.Parameters.AddWithValue("@TeacherName", notNullTeacher.TeacherName);
+            cmd.Parameters.AddWithValue("@TeacherEmail", (object)notNullTeacher.TeacherEmail??DBNull.Value);
+            cmd.Parameters.AddWithValue("@TeacherPhone", (object)notNullTeacher.TeacherPhone??DBNull.Value);
 
             cmd.ExecuteNonQuery();
             if (sqlConn.State != ConnectionState.Closed)
@@ -87,9 +90,10 @@ namespace SchoolJournal.BusinessLogic
 
         public void DeleteTeacher(int? id)
         {
+            int notNullId = id ?? throw new ArgumentNullException(nameof(id));
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spDeleteTeacher", sqlConn);
 
-            cmd.Parameters.AddWithValue("@TeacherID", id);
+            cmd.Parameters.AddWithValue("@TeacherID", notNullId);
             cmd.ExecuteNonQuery();
 
             if (sqlConn.State != ConnectionState.Closed)
