@@ -3,6 +3,7 @@ using SchoolJournal.Interfaces;
 using SchoolJournal.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,7 @@ namespace SchoolJournal.Controllers
     public class StudentController : Controller
     {
         private IStudentManager manager;
+        private const string uploadedFilesPath = "~/UploadedFiles";
 
         public StudentController()
         {
@@ -50,11 +52,19 @@ namespace SchoolJournal.Controllers
         [MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StudentName,StudentPhoto,Observations")]Student student, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "StudentName,StudentPhoto,Observations")]Student student, HttpPostedFileBase imageFile)
         {
             if (ModelState.IsValid)
             {
-                student.StudentPhoto = Path.GetFileName(file.FileName);
+                if (imageFile != null)
+                {
+                    var fileName = Path.GetFileName(imageFile.FileName);
+                    var directoryToSave = Server.MapPath(Url.Content(uploadedFilesPath));
+                    var pathToSave = Path.Combine(directoryToSave, fileName);
+
+                    imageFile.SaveAs(pathToSave);
+                    student.StudentPhoto = fileName;
+                }
                 manager.AddStudent(student);
                 return RedirectToAction("Index");
             }
@@ -70,25 +80,48 @@ namespace SchoolJournal.Controllers
 
             Student student = manager.GetStudentByID(id);
 
-            if (student == null)
+            if (student != null)
+            {
+                //Session["StudentID"] = student.StudentID.ToString();
+                //Session["StudentPhoto"] = student.StudentPhoto.ToString();
+            }
+            else
+            {
                 return HttpNotFound();
+            }
             return View(student);
         }
 
         [MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StudentID,StudentName,StudentPhoto,Observations")]Student student, int? id)
+        public ActionResult Edit([Bind(Include = "StudentID,StudentName,StudentPhoto,Observations")]Student student, int? id, HttpPostedFileBase imageFile)
         {
             if (id == null)
                 return HttpNotFound();
 
+            //var fileName = "";
+
             if (ModelState.IsValid)
             {
+                //if (imageFile != null)
+                //{
+                //    fileName = Path.GetFileName(imageFile.FileName);
+                //    var directoryToSave = Server.MapPath(Url.Content(uploadedFilesPath));
+                //    string pathToSave = Path.Combine(directoryToSave, fileName);
+
+                //    imageFile.SaveAs(pathToSave);
+                //    student.StudentPhoto = fileName;
+                //}
+                //else
+                //{
+                //    fileName = Session["StudentPhoto"].ToString();
+                //    student.StudentPhoto = fileName;
+                //}
                 manager.UpdateStudent(student);
                 return RedirectToAction("Index");
             }
-
+            //Session.Abandon();
             return View(student);
         }
 
@@ -111,6 +144,10 @@ namespace SchoolJournal.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)
         {
+            Student student = manager.GetStudentByID(id);
+            //System.IO.File.SetAttributes(Server.MapPath(uploadedFilesPath), FileAttributes.Normal);
+            System.IO.File.Delete(Path.Combine(Server.MapPath(uploadedFilesPath),student.StudentPhoto));
+
             manager.DeleteStudent(id);
             return RedirectToAction("Index");
         }

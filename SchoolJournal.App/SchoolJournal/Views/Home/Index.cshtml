@@ -11,7 +11,7 @@
             <div class="col-lg-3 align-content-center">
                 <div class="card-header align-content-center">@stud.StudentName</div>
                 <div class="card">
-                    <img class="card-img-top" src="~/UploadedFiles/@stud.StudentPhoto" alt="Luca's image" style="height:75%;width:100%;align-content:center" />
+                    <img class="card-img-top" src="~/UploadedFiles/@stud.StudentPhoto" alt="Student's image" style="height:270px;width:246px;align-content:center" />
                     <div class="card-body">
                         <p class="card-text">@stud.Observations</p>
                         <input type="button" class="btn btn-primary" value="Note" onclick="location.href='@Url.Action("Index","Grade", new {id=stud.StudentID},null)'" />

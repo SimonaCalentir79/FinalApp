@@ -19,7 +19,8 @@
         <dd>@Html.DisplayFor(model => model.Observations)</dd>
 
         <dt>@Html.DisplayNameFor(model => model.StudentPhoto)</dt>
-        <dd>@Html.DisplayFor(model => model.StudentPhoto)</dd>
+        <dd><img src="~/UploadedFiles/@Model.StudentPhoto" style="width:175px;height:200px"/></dd>
+        @*<dd>@Html.DisplayFor(model => model.StudentPhoto)</dd>*@
     </dl>
 
     <p>@Html.ActionLink("Back to students", "Index", "Student") | @Html.ActionLink("Edit", "Edit", "Student", new { @id = Model.StudentID }, null)</p>

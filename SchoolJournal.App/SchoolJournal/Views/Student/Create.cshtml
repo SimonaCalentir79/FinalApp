@@ -36,8 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(t => t.StudentPhoto, new { @class = "control-label col-md-3" })
             <div class="col-md-9">
-                @Html.TextBoxFor(t => t.StudentPhoto, new { type="file" })
-                @Html.ValidationMessageFor(t => t.StudentPhoto, "", new { @class = "text-danger" })
+                <input type="file" name="imageFile"/>
             </div>
         </div>
 

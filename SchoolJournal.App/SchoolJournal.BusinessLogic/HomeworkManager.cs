@@ -55,15 +55,51 @@ namespace SchoolJournal.BusinessLogic
             return listOfHomeworks;
         }
 
+        public Homework GetHomeworkByID(int? id)
+        {
+            Homework homework = new Homework();
+            Student student = new Student();
+            Course course = new Course();
+
+            SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spGetHomeworkByID", sqlConn);
+            cmd.Parameters.AddWithValue("@HomeworkID", id);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                homework.HomeworkID = Convert.ToInt32(reader["HomeworkID"]);
+                homework.StudentID = Convert.ToInt32(reader["StudentID"]);
+                homework.CourseID = Convert.ToInt32(reader["CourseID"]);
+                homework.DateOfHomework = Convert.ToDateTime(reader["DateOfHomework"]);
+                homework.DueDate = Convert.ToDateTime(reader["DueDate"]);
+                homework.Details = reader["Details"].ToString();
+                homework.HomeworkStatus = reader["HomeworkStatus"].ToString();
+
+                student.StudentID = Convert.ToInt32(reader["StudentID"]);
+                student.StudentName = reader["StudentName"].ToString();
+
+                course.CourseID = Convert.ToInt32(reader["CourseID"]);
+                course.CourseName = reader["CourseName"].ToString();
+
+                homework.Students = student;
+                homework.Courses = course;
+            }
+            ADO_NETconfig.CloseReader(reader);
+
+            return homework;
+        }
+
         public IEnumerable<Homework> GetHomeworkByStudentID(int? id)
         {
             List<Homework> listOfHomeworks = new List<Homework>();
-            Homework homework = new Homework();
-            string query = "select * from Homework h join Student s on h.StudentID = s.StudentID join Course c on h.CourseID = c.CourseID where h.StudentID=";
-            SqlDataReader reader = ADO_NETconfig.GetObjectFromReader(sqlConn, query + id);
 
+            SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spGetHomeworkByStudentID", sqlConn);
+            cmd.Parameters.AddWithValue("@StudentID", id);
+
+            SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
+                Homework homework = new Homework();
                 homework.HomeworkID = Convert.ToInt32(reader["HomeworkID"]);
                 homework.StudentID = Convert.ToInt32(reader["StudentID"]);
                 homework.CourseID = Convert.ToInt32(reader["CourseID"]);
@@ -85,43 +121,11 @@ namespace SchoolJournal.BusinessLogic
 
                 listOfHomeworks.Add(homework);
             }
-
             ADO_NETconfig.CloseReader(reader);
+            if (sqlConn.State != ConnectionState.Closed)
+                ADO_NETconfig.CloseConn(sqlConn);
 
             return listOfHomeworks;
-        }
-
-        public Homework GetHomeworkByID(int? id)
-        {
-            Homework homework = new Homework();
-            string query = "select * from Homework h join Student s on h.StudentID = s.StudentID join Course c on h.CourseID = c.CourseID where h.HomeworkID=";
-            SqlDataReader reader = ADO_NETconfig.GetObjectFromReader(sqlConn, query + id);
-
-            while (reader.Read())
-            {
-                homework.HomeworkID = Convert.ToInt32(reader["HomeworkID"]);
-                homework.StudentID = Convert.ToInt32(reader["StudentID"]);
-                homework.CourseID = Convert.ToInt32(reader["CourseID"]);
-                homework.DateOfHomework = Convert.ToDateTime(reader["DateOfHomework"]);
-                homework.DueDate = Convert.ToDateTime(reader["DueDate"]);
-                homework.Details = reader["Details"].ToString();
-                homework.HomeworkStatus = reader["HomeworkStatus"].ToString();
-
-                Student student = new Student();
-                student.StudentID = Convert.ToInt32(reader["StudentID"]);
-                student.StudentName = reader["StudentName"].ToString();
-
-                Course course = new Course();
-                course.CourseID = Convert.ToInt32(reader["CourseID"]);
-                course.CourseName = reader["CourseName"].ToString();
-
-                homework.Students = student;
-                homework.Courses = course;
-            }
-
-            ADO_NETconfig.CloseReader(reader);
-
-            return homework;
         }
 
         public void AddHomework(Homework homework)

@@ -63,7 +63,7 @@ namespace SchoolJournal.Controllers
             {
                 if (user.Username == userAccount.Username && user.Password == userAccount.Password)
                 {
-                    usr = user;
+                    usr = userAccount;
                 }
             }
             if (usr != null)
@@ -75,6 +75,8 @@ namespace SchoolJournal.Controllers
             else
             {
                 ModelState.AddModelError("","Username or Password is wrong!");
+                //ViewBag.Message = "Username or Password is wrong!";
+                //return RedirectToAction("IndexNoUser", "Home");
             }
             return View();
         }

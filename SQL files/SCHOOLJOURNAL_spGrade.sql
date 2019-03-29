@@ -6,6 +6,30 @@ as begin
 		join Semester m on g.SemesterID=m.SemesterID
 end
 
+create or alter procedure spGetGradeByID
+(
+	@GradeID integer
+)
+as begin
+	select * from Grade g 
+		join Student s on g.StudentID=s.StudentID 
+		join Course c on g.CourseID=c.CourseID
+		join Semester m on g.SemesterID=m.SemesterID 
+	where GradeID=@GradeID;
+end
+
+create or alter procedure spGetGradeByStudentID
+(
+	@StudentID integer
+)
+as begin
+	select * from Grade g 
+		join Student s on g.StudentID=s.StudentID 
+		join Course c on g.CourseID=c.CourseID
+		join Semester m on g.SemesterID=m.SemesterID
+	where g.StudentID=@StudentID;
+end
+
 create or alter procedure spAddGrade
 (
 	@StudentID integer,

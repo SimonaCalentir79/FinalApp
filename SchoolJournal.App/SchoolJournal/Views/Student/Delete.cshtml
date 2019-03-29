@@ -22,7 +22,7 @@
         <dd>@Html.DisplayFor(t => t.Observations)</dd>
 
         <dt>@Html.DisplayNameFor(t => t.StudentPhoto)</dt>
-        <dd>@Html.DisplayFor(t => t.StudentPhoto)</dd>
+        <dd><img src="~/UploadedFiles/@Model.StudentPhoto" style="width:175px;height:200px" /></dd>
     </dl>
     @using (Html.BeginForm())
     {

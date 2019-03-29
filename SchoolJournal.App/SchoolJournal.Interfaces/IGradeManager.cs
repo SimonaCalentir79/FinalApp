@@ -12,6 +12,8 @@ namespace SchoolJournal.Interfaces
     {
         IEnumerable<Grade> GetAllGrades();
 
+        IEnumerable<Grade> GetGradesByStudentID(int? id);
+
         Grade GetGradeByID(int? id);
 
         void AddGrade(Grade grade);

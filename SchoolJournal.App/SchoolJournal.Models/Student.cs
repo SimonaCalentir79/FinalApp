@@ -21,7 +21,7 @@ namespace SchoolJournal.Models
         public string StudentName { get; set; }
 
         //[DataType(DataType.ImageUrl)]
-        [Required(ErrorMessage = "Photo of student is required!!")]
+        //[Required(ErrorMessage = "Photo of student is required!!")]
         [DisplayName("Photo ")]
         public string StudentPhoto { get; set; }
 

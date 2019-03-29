@@ -27,8 +27,8 @@
 
     <dt>@Html.DisplayNameFor(m => m.StudentPhoto)</dt>
     <dd>
-        @Html.TextBoxFor(m => m.StudentPhoto, null, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.StudentPhoto)
+        <img src="~/UploadedFiles/@Model.StudentPhoto" style="width:175px;height:200px" />
+        <input type="file" name="imageFile" />
     </dd>
 </dl>
 

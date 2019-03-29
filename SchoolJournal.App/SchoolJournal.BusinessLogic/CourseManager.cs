@@ -51,9 +51,12 @@ namespace SchoolJournal.BusinessLogic
             int nonNullId = id ?? throw new ArgumentNullException(nameof(id));
 
             Course course = new Course();
-            string query = "select * from Course c join Teacher t on c.TeacherID=t.TeacherID where c.CourseID=";
-            SqlDataReader reader = ADO_NETconfig.GetObjectFromReader(sqlConn, query + nonNullId);
+            Teacher teacher = new Teacher();
 
+            SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spGetCourseByID", sqlConn);
+            cmd.Parameters.AddWithValue("@CourseID", nonNullId);
+
+            SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 course.CourseID = Convert.ToInt32(reader["CourseID"]);
@@ -61,7 +64,6 @@ namespace SchoolJournal.BusinessLogic
                 course.LevelYear = Convert.ToInt32(reader["LevelYear"].ToString());
                 course.TeacherID = Convert.ToInt32(reader["TeacherID"].ToString());
 
-                Teacher teacher = new Teacher();
                 teacher.TeacherID = (int)reader["TeacherID"];
                 teacher.TeacherName = (string)reader["TeacherName"];
 

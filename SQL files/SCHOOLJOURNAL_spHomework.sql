@@ -5,6 +5,28 @@ as begin
 		join Course c on h.CourseID=c.CourseID;
 end
 
+create or alter procedure spGetHomeworkByID
+(
+	@HomeworkID integer
+)
+as begin
+	select * from Homework h 
+		join Student s on h.StudentID=s.StudentID 
+		join Course c on h.CourseID=c.CourseID
+	where h.HomeworkID=@HomeworkID;
+end
+
+create or alter procedure spGetHomeworkByStudentID
+(
+	@StudentID integer
+)
+as begin
+	select * from Homework h 
+		join Student s on h.StudentID=s.StudentID 
+		join Course c on h.CourseID=c.CourseID
+	where s.StudentID=@StudentID;
+end
+
 create or alter procedure spAddHomework
 (
 	@StudentID integer,

@@ -3,6 +3,14 @@ as begin
 	select * from Course c join Teacher t on c.TeacherID=t.TeacherID;
 end
 
+create or alter procedure spGetCourseByID
+(
+	@CourseID integer
+)
+as begin
+	select * from Course c join Teacher t on c.TeacherID=t.TeacherID where CourseID=@CourseID;
+end
+
 create or alter procedure spAddCourse
 (
 	@CourseName varchar(200),

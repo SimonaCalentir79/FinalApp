@@ -3,6 +3,14 @@ as begin
 	select * from Semester
 end
 
+create or alter procedure spGetSemesterByID
+(
+	@SemesterID integer
+)
+as begin
+	select * from Semester where SemesterID=@SemesterID;
+end
+
 create or alter procedure spAddSemester
 (
 	@SemesterNumber integer,

@@ -46,8 +46,11 @@ namespace SchoolJournal.BusinessLogic
         public Student GetStudentByID(int? id)
         {
             Student student = new Student();
-            SqlDataReader reader = ADO_NETconfig.GetObjectFromReader(sqlConn, "select * from Student where StudentID=" + id);
+            //SqlDataReader reader = ADO_NETconfig.GetObjectFromReader(sqlConn, "select * from Student where StudentID=" + id);
+            SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spGetStudentsByID", sqlConn);
+            cmd.Parameters.AddWithValue("@StudentID",id);
 
+            SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 student.StudentID = Convert.ToInt32(reader["StudentID"]);
@@ -55,31 +58,17 @@ namespace SchoolJournal.BusinessLogic
                 student.StudentPhoto = reader["StudentPhoto"].ToString();
                 student.Observations = reader["Observations"].ToString();
             }
-
+            ADO_NETconfig.CloseReader(reader);
             return student;
         }
-
-        //public void SavePictureToFileSystem(string folderName, HttpPostedFileBase picture)
-        //{
-        //    string path = "~/" + folderName + "/";
-        //    var pictureFolderPath = Path.Combine(path,ConfigurationManager.AppSettings["UploadedFiles"].ToString());
-        //    if (!Directory.Exists(pictureFolderPath))
-        //    {
-        //        Directory.CreateDirectory(pictureFolderPath);
-        //    }
-        //    string fileName = Path.GetFileName(picture.FileName);
-        //    string filePath = Path.Combine(Server.MapPath(path), fileName);
-
-        //    picture.SaveAs(filePath);
-        //}
 
         public void AddStudent(Student student)
         {
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spAddStudent", sqlConn);
 
             cmd.Parameters.AddWithValue("@StudentName", student.StudentName);
-            cmd.Parameters.AddWithValue("@StudentPhoto", student.StudentPhoto);
-            cmd.Parameters.AddWithValue("@Observations", student.Observations);
+            cmd.Parameters.AddWithValue("@StudentPhoto", (object)student.StudentPhoto??DBNull.Value);
+            cmd.Parameters.AddWithValue("@Observations", (object)student.Observations??DBNull.Value);
 
             cmd.ExecuteNonQuery();
             if (sqlConn.State != ConnectionState.Closed)
@@ -92,8 +81,8 @@ namespace SchoolJournal.BusinessLogic
 
             cmd.Parameters.AddWithValue("@StudentID", student.StudentID);
             cmd.Parameters.AddWithValue("@StudentName", student.StudentName);
-            cmd.Parameters.AddWithValue("@StudentPhoto", student.StudentPhoto);
-            cmd.Parameters.AddWithValue("@Observations", student.Observations);
+            cmd.Parameters.AddWithValue("@StudentPhoto", (object)student.StudentPhoto??DBNull.Value);
+            cmd.Parameters.AddWithValue("@Observations", (object)student.Observations??DBNull.Value);
 
             cmd.ExecuteNonQuery();
 

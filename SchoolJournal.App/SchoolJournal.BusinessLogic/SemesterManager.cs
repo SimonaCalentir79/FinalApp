@@ -41,15 +41,18 @@ namespace SchoolJournal.BusinessLogic
         public Semester GetSemesterByID(int? id)
         {
             Semester semester = new Semester();
-            SqlDataReader reader = ADO_NETconfig.GetObjectFromReader(sqlConn,"select * from Semester where SemesterID="+id);
+            //SqlDataReader reader = ADO_NETconfig.GetObjectFromReader(sqlConn,"select * from Semester where SemesterID="+id);
+            SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spGetSemesterByID", sqlConn);
+            cmd.Parameters.AddWithValue("@SemesterID",id);
 
+            SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 semester.SemesterID = Convert.ToInt32(reader["SemesterID"]);
                 semester.SemesterNumber = Convert.ToInt32(reader["SemesterNumber"]);
                 semester.SchoolYear = reader["SchoolYear"].ToString();
             }
-
+            ADO_NETconfig.CloseReader(reader);
             return semester;
         }
 

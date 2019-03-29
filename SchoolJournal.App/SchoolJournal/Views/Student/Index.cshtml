@@ -22,7 +22,7 @@
         <tr>
             <td>@Html.DisplayFor(model => stud.StudentName)</td>
             <td>@Html.DisplayFor(model => stud.Observations)</td>
-            <td>@Html.DisplayFor(model => stud.StudentPhoto)</td>
+            <td><img src="~/UploadedFiles/@stud.StudentPhoto" style="height:90px;width:80px"/></td>
             <td>
                 @Html.ActionLink("Details", "Details", "Student", new { @id = stud.StudentID }, null) |
                 @Html.ActionLink("Edit", "Edit", "Student", new { @id = stud.StudentID }, null) |

@@ -4,6 +4,14 @@ begin
 	select * from Teacher
 end
 
+create or alter procedure spGetTeacherByID
+(
+	@TeacherID integer
+)
+as begin
+	select * from Teacher where TeacherID=@TeacherID
+end
+
 create or alter procedure spAddTeacher
 (
 	@TeacherName varchar(150),

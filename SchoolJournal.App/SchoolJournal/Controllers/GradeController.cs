@@ -22,8 +22,10 @@ namespace SchoolJournal.Controllers
         }
 
         [MyExceptionHandler]
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
+            if (id != null)
+                return View(manager.GetGradesByStudentID(id).ToList());
             return View(manager.GetAllGrades().ToList());
         }
 

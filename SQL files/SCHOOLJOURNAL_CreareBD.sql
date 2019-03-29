@@ -1,4 +1,5 @@
 --DROP TABLE UserAccount;
+--DROP TABLE Timetable;
 --DROP TABLE TermReport;
 --DROP TABLE Homework;
 --DROP TABLE Grade;
@@ -48,7 +49,7 @@ CREATE TABLE Grade
 	Mark NUMERIC(4,2) NOT NULL,
 	DateOfMark DATE DEFAULT GETDATE(),
 	GradingWeight NUMERIC(4,2) NOT NULL,
-	Observations VARCHAR(200)
+	Observations VARCHAR(200),
 	CONSTRAINT FK_Grades_StudentID FOREIGN KEY (StudentID) REFERENCES Student(StudentID),
 	CONSTRAINT FK_Grades_SemesterID FOREIGN KEY (SemesterID) REFERENCES Semester(SemesterID),
 	CONSTRAINT FK_Grades_CourseID FOREIGN KEY (CourseID) REFERENCES Course(CourseID)

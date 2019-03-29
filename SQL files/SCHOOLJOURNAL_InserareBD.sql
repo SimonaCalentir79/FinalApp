@@ -9,8 +9,8 @@ INSERT INTO Teacher(TeacherName,TeacherEmail) VALUES ('Teacher08','teacher08@ema
 INSERT INTO Teacher(TeacherName,TeacherEmail) VALUES ('Teacher09','teacher09@email.com');
 INSERT INTO Teacher(TeacherName,TeacherEmail) VALUES ('Teacher10','teacher10@email.com');
 
-INSERT INTO Student(StudentName) VALUES ('Luca-Bogdan');
-INSERT INTO Student(StudentName) VALUES ('Matei-Calin');
+INSERT INTO Student(StudentName,StudentPhoto) VALUES ('Luca-Bogdan','luca.jpg');
+INSERT INTO Student(StudentName,StudentPhoto) VALUES ('Matei-Calin','matei2.jpg');
 
 INSERT INTO Semester(SemesterNumber,SchoolYear) VALUES (1,'2017-2018');
 INSERT INTO Semester(SemesterNumber,SchoolYear) VALUES (2,'2017-2018');

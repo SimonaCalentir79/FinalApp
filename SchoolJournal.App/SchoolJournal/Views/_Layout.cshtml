@@ -22,31 +22,30 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <!-- Links -->
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <div class="collapse navbar-collapse" id="collapsibleNavbar1">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <!-- Links -->
                     <li class="nav-item">
                         <a class="nav-link" href="~/Home/Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="~/Home/About">About</a>
+                        <a class="nav-link" href="~/Student/Index">Students</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="~/Home/Contact">Contact</a>
+                        <a class="nav-link" href="~/Homework/Index">Homeworks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Grade/Index">Grades</a>
                     </li>
                     <!-- Dropdown -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Settings<i class='fas fa-cog'></i>
+                            Other
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbardrop">
-                            <a class="dropdown-item" href="~/Student/Index">Students</a>
                             <a class="dropdown-item" href="~/Teacher/Index">Teachers</a>
                             <a class="dropdown-item" href="~/Semester/Index">Semesters</a>
                             <a class="dropdown-item" href="~/Course/Index">Courses</a>
-                            <a class="dropdown-item" href="~/Homework/Index">Homeworks</a>
-                            <a class="dropdown-item" href="~/Grade/Index">Grades</a>
-                            @*<a class="dropdown-item" href="~/TermReport/Index">TermReports</a>*@
                         </div>
                     </li>
                 </ul>
@@ -63,16 +62,24 @@
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <!-- Brand -->
             <a class="navbar-brand" href="~/Home/IndexNoUser">School Journal</a>
-            <span class="navbar-text">
+            <div class="collapse navbar-collapse" id="collapsibleNavbar2">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <!-- Links -->
                     <li class="nav-item">
-                        <a class="nav-link" href="~/Account/Register">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="~/Account/Login">Login (u: 'guest' &amp; p: 'guest')</a>
+                        <a class="nav-link" href="#"></a>
                     </li>
                 </ul>
-            </span>
+                <span class="navbar-text">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Account/Register">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Account/Login">Login (u: 'guest' &amp; p: 'guest')</a>
+                        </li>
+                    </ul>
+                </span>
+            </div>
         </nav>
     </div>
     }

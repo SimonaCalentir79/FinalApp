@@ -42,8 +42,11 @@ namespace SchoolJournal.BusinessLogic
         public Teacher GetTeacherByID(int? id)
         {
             Teacher teacher = new Teacher();
-            SqlDataReader reader = ADO_NETconfig.GetObjectFromReader(sqlConn, "select * from Teacher where TeacherID=" + id);
 
+            SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spGetTeacherByID", sqlConn);
+            cmd.Parameters.AddWithValue("@TeacherID", id);
+
+            SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 teacher.TeacherID = Convert.ToInt32(reader["TeacherID"]);
@@ -51,7 +54,7 @@ namespace SchoolJournal.BusinessLogic
                 teacher.TeacherEmail = reader["TeacherEmail"].ToString();
                 teacher.TeacherPhone = reader["TeacherPhone"].ToString();
             }
-
+            ADO_NETconfig.CloseReader(reader);
             return teacher;
         }
 
