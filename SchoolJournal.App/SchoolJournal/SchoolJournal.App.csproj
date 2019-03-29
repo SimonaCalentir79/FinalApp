@@ -287,6 +287,7 @@
     <Compile Include="Controllers\SemesterController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
+    <Compile Include="Controllers\TimetableController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -337,6 +338,11 @@
     <Content Include="Views\Error.cshtml" />
     <Content Include="Views\PageNotFound.cshtml" />
     <Content Include="Views\Home\IndexNoUser.cshtml" />
+    <Content Include="Views\Timetable\Index.cshtml" />
+    <Content Include="Views\Timetable\Details.cshtml" />
+    <Content Include="Views\Timetable\Create.cshtml" />
+    <Content Include="Views\Timetable\Edit.cshtml" />
+    <Content Include="Views\Timetable\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

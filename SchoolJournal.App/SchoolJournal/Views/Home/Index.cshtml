@@ -15,7 +15,7 @@
                     <div class="card-body">
                         <p class="card-text">@stud.Observations</p>
                         <input type="button" class="btn btn-primary" value="Note" onclick="location.href='@Url.Action("Index","Grade", new {id=stud.StudentID},null)'" />
-                        <a href="#" class="btn btn-primary">Orar</a>
+                        <input type="button" class="btn btn-primary" value="Orar" onclick="location.href='@Url.Action("Index","Timetable", new {id=stud.StudentID},null)'" />
                         <input type="button" class="btn btn-primary" value="Teme" onclick="location.href='@Url.Action("Index","Homework", new {id=stud.StudentID},null)'" />
                     </div>
                 </div>

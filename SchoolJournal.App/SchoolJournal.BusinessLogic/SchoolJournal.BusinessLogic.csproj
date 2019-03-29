@@ -74,6 +74,7 @@
     <Compile Include="StudentManager.cs" />
     <Compile Include="TeacherManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimetableManager.cs" />
     <Compile Include="UserAccountManager.cs" />
   </ItemGroup>
   <ItemGroup>

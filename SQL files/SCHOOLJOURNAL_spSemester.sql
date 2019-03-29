@@ -1,6 +1,6 @@
 create or alter procedure spGetAllSemesters
 as begin
-	select * from Semester
+	select SemesterID,SemesterNumber,SchoolYear from Semester;
 end
 
 create or alter procedure spGetSemesterByID
@@ -8,7 +8,7 @@ create or alter procedure spGetSemesterByID
 	@SemesterID integer
 )
 as begin
-	select * from Semester where SemesterID=@SemesterID;
+	select SemesterID,SemesterNumber,SchoolYear from Semester where SemesterID=@SemesterID;
 end
 
 create or alter procedure spAddSemester

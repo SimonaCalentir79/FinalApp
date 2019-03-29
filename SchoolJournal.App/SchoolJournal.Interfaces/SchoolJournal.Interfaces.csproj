@@ -71,6 +71,7 @@
     <Compile Include="ISemesterManager.cs" />
     <Compile Include="IStudentManager.cs" />
     <Compile Include="ITeacherManager.cs" />
+    <Compile Include="ITimetableManager.cs" />
     <Compile Include="IUserAccountManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
