@@ -1,4 +1,5 @@
-﻿using SchoolJournal.BusinessLogic;
+﻿using PagedList;
+using SchoolJournal.BusinessLogic;
 using SchoolJournal.Interfaces;
 using SchoolJournal.Models;
 using System;
@@ -22,11 +23,27 @@ namespace SchoolJournal.Controllers
         }
 
         [MyExceptionHandler]
-        public ActionResult Index(int? id)
+        public ActionResult Index(string option, string search, int? pageNumber, int? id)
         {
-            if (id != null)
-                return View(manager.GetTimetableByStudentID(id).ToList());
-            return View(manager.GetAllTimetables().ToList());
+            try
+            {
+                if (option == "Subject")
+                    return View(manager.GetTimetableByCourse(search).ToPagedList(pageNumber ?? 1, 5));
+                else if (option == "Day")
+                    return View(manager.GetTimetableByDay(search).ToPagedList(pageNumber ?? 1, 5));
+                else if (id != null)
+                    return View(manager.GetTimetableByStudentID(id).ToPagedList(pageNumber ?? 1, 5));
+                else
+                    return View(manager.GetAllTimetables().ToPagedList(pageNumber ?? 1, 5));
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = "Error: " + ex.Message.ToString();
+            }
+            return View(manager.GetAllTimetables().ToPagedList(pageNumber ?? 1, 5));
+            //if (id != null)
+            //    return View(manager.GetTimetableByStudentID(id).ToList());
+            //return View(manager.GetAllTimetables().ToList());
         }
 
         [MyExceptionHandler]

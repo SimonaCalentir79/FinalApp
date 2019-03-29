@@ -9,11 +9,15 @@ namespace SchoolJournal.Interfaces
 {
     public interface ITimetableManager
     {
-        IEnumerable<Timetable> GetAllTimetables();
+        IList<Timetable> GetAllTimetables();
+
+        IList<Timetable> GetTimetableByStudentID(int? id);
+
+        IList<Timetable> GetTimetableByDay(string day);
+
+        IList<Timetable> GetTimetableByCourse(string subject);
 
         Timetable GetTimetableByID(int? id);
-
-        IEnumerable<Timetable> GetTimetableByStudentID(int? id);
 
         void AddTimetable(Timetable timetable);
 

@@ -41,7 +41,7 @@ namespace SchoolJournal.BusinessLogic
         public Semester GetSemesterByID(int? id)
         {
             Semester semester = new Semester();
-            //SqlDataReader reader = ADO_NETconfig.GetObjectFromReader(sqlConn,"select * from Semester where SemesterID="+id);
+
             SqlCommand cmd = ADO_NETconfig.StoredProcedureCommand("spGetSemesterByID", sqlConn);
             cmd.Parameters.AddWithValue("@SemesterID",id);
 

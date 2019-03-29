@@ -27,6 +27,28 @@ as begin
 	where s.StudentID=@StudentID;
 end
 
+create or alter procedure spGetTimetableByDay
+(
+	@DayOfTheWeek varchar(50)
+)
+as begin
+	select * from Timetable t 
+		join Student s on t.StudentID=s.StudentID 
+		join Course c on T.CourseID=c.CourseID
+	where t.DayOfTheWeek like '%'+@DayOfTheWeek+'%';
+end
+
+create or alter procedure spGetTimetableByCourse
+(
+	@CourseName varchar(200)
+)
+as begin
+	select * from Timetable t 
+		join Student s on t.StudentID=s.StudentID 
+		join Course c on T.CourseID=c.CourseID
+	where c.CourseName like '%'+@CourseName+'%';
+end
+
 create or alter procedure spAddTimetable
 (
 	@StudentID integer,

@@ -1,4 +1,6 @@
-﻿@model IEnumerable<SchoolJournal.Models.Timetable>
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<SchoolJournal.Models.Timetable>
 
 @{
     ViewBag.Title = "Index";
@@ -10,43 +12,45 @@
 <p>
     @Html.ActionLink("Add New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Students.StudentName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DayOfTheWeek)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TimeInterval)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Courses.CourseName)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Students.StudentName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DayOfTheWeek)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TimeInterval)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Courses.CourseName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TimetableID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TimetableID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TimetableID })
-        </td>
-    </tr>
-}
-
-</table>
+<div>
+    @using (Html.BeginForm("Index", "Timetable", FormMethod.Get))
+    {
+        <b>Search option: </b>
+        @Html.RadioButton("option", "Subject")<text> Subject </text>
+        @Html.RadioButton("option", "Day")<text> Day </text>
+        @Html.TextBox("search") <input type="submit" value="Search" class="btn btn-primary" />
+    }
+</div>
+<div class="table-responsive">
+    <table class="table table-hover table-responsive-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th><b>Student name</b></th>
+                <th><b>Day of the week</b></th>
+                <th><b>Time interval</b></th>
+                <th><b>Subject name</b></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Students.StudentName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DayOfTheWeek)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TimeInterval)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Courses.CourseName)</td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.TimetableID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.TimetableID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.TimetableID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+    </table>
+</div>
+<div>
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber, option = Request.QueryString["option"], search = Request.QueryString["search"] }))
+    Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount records
+</div>
