@@ -56,7 +56,7 @@ namespace SchoolJournal.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (imageFile != null)
+                if (imageFile != null && imageFile.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(imageFile.FileName);
                     var directoryToSave = Server.MapPath(Url.Content(uploadedFilesPath));
@@ -80,12 +80,7 @@ namespace SchoolJournal.Controllers
 
             Student student = manager.GetStudentByID(id);
 
-            if (student != null)
-            {
-                Session["StudentID"] = student.StudentID.ToString();
-                Session["StudentPhoto"] = student.StudentPhoto.ToString();
-            }
-            else
+            if (student == null)
             {
                 return HttpNotFound();
             }
@@ -95,7 +90,7 @@ namespace SchoolJournal.Controllers
         [MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StudentID,StudentName,StudentPhoto,Observations")]Student student, HttpPostedFileBase imageFile)
+        public ActionResult Edit([Bind(Include = "StudentID,StudentName,StudentPhoto,Observations")] ref Student student, HttpPostedFileBase imageFile)
         {
             string pathToSave = "";
             var fileName = "";
@@ -111,10 +106,6 @@ namespace SchoolJournal.Controllers
                     imageFile.SaveAs(pathToSave);
 
                     student.StudentPhoto = fileName;
-                }
-                else
-                {
-                    student.StudentPhoto = Session["StudentPhoto"].ToString();
                 }
                 manager.UpdateStudent(student);
                 return RedirectToAction("Index");
