@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace SchoolJournal.Controllers
 {
-    [MyExceptionHandler]
+    //[MyExceptionHandler]
     public class GradeController : Controller
     {
         private readonly IGradeManager manager;
@@ -21,7 +21,7 @@ namespace SchoolJournal.Controllers
             populate = new PopulateList();
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         public ActionResult Index(int? id)
         {
             if (id != null)
@@ -29,7 +29,7 @@ namespace SchoolJournal.Controllers
             return View(manager.GetAllGrades().ToList());
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Details(int? id)
         {
@@ -47,7 +47,7 @@ namespace SchoolJournal.Controllers
             return View(grade);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Create()
         {
@@ -62,10 +62,10 @@ namespace SchoolJournal.Controllers
             return View(grade);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StudentID,SemsterID,CourseID,Mark,DateOfMark,GradingWeight,Observations")] Grade grade)
+        public ActionResult Create(Grade grade)
         {
             if (ModelState.IsValid)
             {
@@ -75,7 +75,7 @@ namespace SchoolJournal.Controllers
             return View(grade);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -93,7 +93,7 @@ namespace SchoolJournal.Controllers
             return View(grade);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "GradeID,StudentID,SemesterID,CourseID,Mark,DateOfMark,GradingWeight,Observations")]Grade grade, int? id)
@@ -110,7 +110,7 @@ namespace SchoolJournal.Controllers
             return View(grade);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Delete(int? id)
         {
@@ -125,7 +125,7 @@ namespace SchoolJournal.Controllers
             return View(grade);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)

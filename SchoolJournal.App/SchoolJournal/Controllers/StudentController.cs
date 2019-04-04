@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace SchoolJournal.Controllers
 {
-    [MyExceptionHandler]
+    //[MyExceptionHandler]
     public class StudentController : Controller
     {
         private IStudentManager manager;
@@ -22,13 +22,13 @@ namespace SchoolJournal.Controllers
             manager = new StudentManager();
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         public ActionResult Index()
         {
             return View(manager.GetAllStudents().ToList());
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Details(int? id)
         {
@@ -42,17 +42,17 @@ namespace SchoolJournal.Controllers
             return View(student);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StudentName,StudentPhoto,Observations")]Student student, HttpPostedFileBase imageFile)
+        public ActionResult Create(Student student, HttpPostedFileBase imageFile)
         {
             if (ModelState.IsValid)
             {
@@ -71,7 +71,7 @@ namespace SchoolJournal.Controllers
             return View(student);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -87,10 +87,10 @@ namespace SchoolJournal.Controllers
             return View(student);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StudentID,StudentName,StudentPhoto,Observations")] ref Student student, HttpPostedFileBase imageFile)
+        public ActionResult Edit(Student student, HttpPostedFileBase imageFile)
         {
             string pathToSave = "";
             var fileName = "";
@@ -113,7 +113,7 @@ namespace SchoolJournal.Controllers
             return View(student);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Delete(int? id)
         {
@@ -127,13 +127,13 @@ namespace SchoolJournal.Controllers
             return View(student);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)
         {
             Student student = manager.GetStudentByID(id);
-            //System.IO.File.Delete(Path.Combine(Server.MapPath(Url.Content(uploadedFilesPath)), student.StudentPhoto));
+            System.IO.File.Delete(Path.Combine(Server.MapPath(Url.Content(uploadedFilesPath)), student.StudentPhoto));
 
             manager.DeleteStudent(id);
             return RedirectToAction("Index");

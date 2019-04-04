@@ -16,7 +16,7 @@ namespace SchoolJournal.Interfaces
         IList<Timetable> GetTimetableByDay(string day);
 
         IList<Timetable> GetTimetableByCourse(string subject);
-
+        
         Timetable GetTimetableByID(int? id);
 
         void AddTimetable(Timetable timetable);

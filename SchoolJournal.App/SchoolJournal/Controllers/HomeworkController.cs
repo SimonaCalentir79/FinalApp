@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace SchoolJournal.Controllers
 {
-    [MyExceptionHandler]
+    //[MyExceptionHandler]
     public class HomeworkController : Controller
     {
         private readonly IHomeworkManager manager;
@@ -21,7 +21,7 @@ namespace SchoolJournal.Controllers
             populate = new PopulateList();
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         public ActionResult Index(int? id)
         {
             if (id != null)
@@ -29,7 +29,7 @@ namespace SchoolJournal.Controllers
             return View(manager.GetAllHomeworks().ToList());
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Details(int? id)
         {
@@ -46,7 +46,7 @@ namespace SchoolJournal.Controllers
             return View(homework);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Create()
         {
@@ -57,7 +57,7 @@ namespace SchoolJournal.Controllers
             return View(homework);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "StudentID,CourseID,DateOfHomework,DueDate,Details,HomeworkStatus")] Homework homework)
@@ -70,7 +70,7 @@ namespace SchoolJournal.Controllers
             return View(homework);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -87,7 +87,7 @@ namespace SchoolJournal.Controllers
             return View(homework);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "HomeworkID,StudentID,CourseID,DateOfHomework,DueDate,Details,HomeworkStatus")]Homework homework, int? id)
@@ -104,7 +104,7 @@ namespace SchoolJournal.Controllers
             return View(homework);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Delete(int? id)
         {
@@ -119,7 +119,7 @@ namespace SchoolJournal.Controllers
             return View(homework);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)

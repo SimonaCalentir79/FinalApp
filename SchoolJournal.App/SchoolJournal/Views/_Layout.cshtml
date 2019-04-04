@@ -13,76 +13,76 @@
 <body>
     @if (Session["UserID"] != null)
     {
-    <div class="container">
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <!-- Brand -->
-            <a class="navbar-brand" href="~/Home/Index">School Journal</a>
-            <!-- Toggler/collapsibe Button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- Links -->
-            <div class="collapse navbar-collapse" id="collapsibleNavbar1">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <!-- Links -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="~/Home/Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="~/Timetable/Index">Timetables</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="~/Homework/Index">Homeworks</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="~/Grade/Index">Grades</a>
-                    </li>
-                    <!-- Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Other
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbardrop">
-                            <a class="dropdown-item" href="~/Student/Index">Students</a>
-                            <a class="dropdown-item" href="~/Teacher/Index">Teachers</a>
-                            <a class="dropdown-item" href="~/Semester/Index">Semesters</a>
-                            <a class="dropdown-item" href="~/Course/Index">Courses</a>
-                        </div>
-                    </li>
-                </ul>
-                <span class="navbar-text">
-                    <a class="nav-link" href="~/Account/Logout">Logout '@Session["Username"].ToString()'</a>
-                </span>
-            </div>
-        </nav>
-    </div>
+        <div class="container">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <!-- Brand -->
+                <a class="navbar-brand" href="~/Home/Index">School Journal</a>
+                <!-- Toggler/collapsibe Button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Links -->
+                <div class="collapse navbar-collapse" id="collapsibleNavbar1">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <!-- Links -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Home/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Timetable/Index">Timetables</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Homework/Index">Homeworks</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Grade/Index">Grades</a>
+                        </li>
+                        <!-- Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Other
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbardrop">
+                                <a class="dropdown-item" href="~/Student/Index">Students</a>
+                                <a class="dropdown-item" href="~/Teacher/Index">Teachers</a>
+                                <a class="dropdown-item" href="~/Semester/Index">Semesters</a>
+                                <a class="dropdown-item" href="~/Course/Index">Courses</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <span class="navbar-text">
+                        <a class="nav-link" href="~/Account/Logout">Logout '@Session["Username"].ToString()'</a>
+                    </span>
+                </div>
+            </nav>
+        </div>
     }
     else
     {
-    <div class="container">
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <!-- Brand -->
-            <a class="navbar-brand" href="~/Home/IndexNoUser">School Journal</a>
-            <div class="collapse navbar-collapse" id="collapsibleNavbar2">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <!-- Links -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"></a>
-                    </li>
-                </ul>
-                <span class="navbar-text">
+        <div class="container">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <!-- Brand -->
+                <a class="navbar-brand" href="~/Home/IndexNoUser">School Journal</a>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar2">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <!-- Links -->
                         <li class="nav-item">
-                            <a class="nav-link" href="~/Account/Register">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="~/Account/Login">Login (u: 'guest' &amp; p: 'guest')</a>
+                            <a class="nav-link" href="#"></a>
                         </li>
                     </ul>
-                </span>
-            </div>
-        </nav>
-    </div>
+                    <span class="navbar-text">
+                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Account/Register">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Account/Login">Login (u: 'guest' &amp; p: 'guest')</a>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
+            </nav>
+        </div>
     }
     <div class="container body-content" style="margin-top:50px">
         @RenderBody()

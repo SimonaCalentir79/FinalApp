@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace SchoolJournal.Controllers
 {
-    [MyExceptionHandler]
+    //[MyExceptionHandler]
     public class TeacherController : Controller
     {
         private ITeacherManager manager;
@@ -19,13 +19,13 @@ namespace SchoolJournal.Controllers
             manager = new TeacherManager();
         }
         
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         public ActionResult Index()
         {
             return View(manager.GetAllTeachers().ToList());
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Details(int? id)
         {
@@ -37,14 +37,14 @@ namespace SchoolJournal.Controllers
             return View(teacher);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include ="TeacherName,TeacherEmail,TeacherPhone")]Teacher teacher)
@@ -57,7 +57,7 @@ namespace SchoolJournal.Controllers
             return View(teacher);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -71,7 +71,7 @@ namespace SchoolJournal.Controllers
             return View(teacher);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "TeacherID,TeacherName,TeacherEmail,TeacherPhone")]Teacher teacher, int? id)
@@ -88,7 +88,7 @@ namespace SchoolJournal.Controllers
             return View(teacher);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Delete(int? id)
         {
@@ -102,7 +102,7 @@ namespace SchoolJournal.Controllers
             return View(teacher);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)

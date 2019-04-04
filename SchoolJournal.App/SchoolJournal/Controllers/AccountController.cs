@@ -10,7 +10,7 @@ using System.Web.Security;
 
 namespace SchoolJournal.Controllers
 {
-    [MyExceptionHandler]
+    //[MyExceptionHandler]
     public class AccountController : Controller
     {
         private IUserAccountManager manager;
@@ -20,19 +20,19 @@ namespace SchoolJournal.Controllers
             manager = new UserAccountManager();
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         public ActionResult Index()
         {
             return View(manager.GetAllUserAccounts().ToList());
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         public ActionResult Register()
         {
             return View();
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost]
         public ActionResult Register(UserAccount userAccount)
         {
@@ -46,13 +46,13 @@ namespace SchoolJournal.Controllers
             return View();
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         public ActionResult Login()
         {
             return View();
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost]
         public ActionResult Login(UserAccount userAccount)
         {
@@ -81,7 +81,7 @@ namespace SchoolJournal.Controllers
             return View();
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace SchoolJournal.Controllers
 {
-    [MyExceptionHandler]
+    //[MyExceptionHandler]
     public class HomeController : Controller
     {
         private IStudentManager manager;
@@ -19,13 +19,13 @@ namespace SchoolJournal.Controllers
             manager = new StudentManager();
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         public ActionResult Index()
         {
             return View(manager.GetAllStudents());
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         public ActionResult IndexNoUser()
         {
             return View();

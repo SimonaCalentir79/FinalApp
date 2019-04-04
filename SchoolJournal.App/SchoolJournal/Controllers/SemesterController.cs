@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace SchoolJournal.Controllers
 {
-    [MyExceptionHandler]
+    //[MyExceptionHandler]
     public class SemesterController : Controller
     {
         private ISemesterManager manager;
@@ -19,13 +19,13 @@ namespace SchoolJournal.Controllers
             manager = new SemesterManager();
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         public ActionResult Index()
         {
             return View(manager.GetAllSemesters().ToList());
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Details(int? id)
         {
@@ -40,14 +40,14 @@ namespace SchoolJournal.Controllers
             return View(semester);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include ="SemesterNumber,SchoolYear")]Semester semester)
@@ -60,7 +60,7 @@ namespace SchoolJournal.Controllers
             return View(semester);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -75,7 +75,7 @@ namespace SchoolJournal.Controllers
             return View(semester);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include ="SemesterID,SemesterNumber,SchoolYear")]Semester semester, int? id)
@@ -92,7 +92,7 @@ namespace SchoolJournal.Controllers
             return View(semester);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Delete(int? id)
         {
@@ -107,7 +107,7 @@ namespace SchoolJournal.Controllers
             return View(semester);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)

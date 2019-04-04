@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace SchoolJournal.Controllers
 {
-    [MyExceptionHandler]
+    //[MyExceptionHandler]
     public class TimetableController : Controller
     {
         private readonly ITimetableManager manager;
@@ -22,7 +22,7 @@ namespace SchoolJournal.Controllers
             populate = new PopulateList();
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         public ActionResult Index(string option, string search, int? pageNumber, int? id)
         {
             try
@@ -43,7 +43,7 @@ namespace SchoolJournal.Controllers
             return View(manager.GetAllTimetables().ToPagedList(pageNumber ?? 1, 5));
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Details(int? id)
         {
@@ -60,7 +60,7 @@ namespace SchoolJournal.Controllers
             return View(timetable);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Create()
         {
@@ -71,7 +71,7 @@ namespace SchoolJournal.Controllers
             return View(timetable);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "StudentID,DayOfTheWeek,TimeInterval,CourseID")]Timetable timetable)
@@ -84,7 +84,7 @@ namespace SchoolJournal.Controllers
             return View(timetable);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -101,7 +101,7 @@ namespace SchoolJournal.Controllers
             return View(timetable);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "TimetableID,StudentID,DayOfTheWeek,TimeInterval,CourseID")]Timetable timetable)
@@ -114,7 +114,7 @@ namespace SchoolJournal.Controllers
             return View(timetable);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Delete(int? id)
         {
@@ -122,7 +122,7 @@ namespace SchoolJournal.Controllers
             return View(timetable);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)

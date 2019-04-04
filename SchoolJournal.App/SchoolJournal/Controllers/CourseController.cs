@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace SchoolJournal.Controllers
 {
-    [MyExceptionHandler]
+    //[MyExceptionHandler]
     public class CourseController : Controller
     {
         private readonly ICourseManager manager;
@@ -21,13 +21,13 @@ namespace SchoolJournal.Controllers
             populate = new PopulateList();
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         public ActionResult Index()
         {
             return View(manager.GetAllCourses().ToList());
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Details(int? id)
         {
@@ -42,7 +42,7 @@ namespace SchoolJournal.Controllers
             return View(course);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Create()
         {
@@ -51,7 +51,7 @@ namespace SchoolJournal.Controllers
             return View(course);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include ="CourseName,LevelYear,TeacherID")] Course course)
@@ -64,7 +64,7 @@ namespace SchoolJournal.Controllers
             return View(course);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -80,7 +80,7 @@ namespace SchoolJournal.Controllers
             return View(course);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include ="CourseID,CourseName,LevelYear,TeacherID")]Course course, int? id)
@@ -97,7 +97,7 @@ namespace SchoolJournal.Controllers
             return View(course);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpGet]
         public ActionResult Delete(int? id)
         {
@@ -112,7 +112,7 @@ namespace SchoolJournal.Controllers
             return View(course);
         }
 
-        [MyExceptionHandler]
+        //[MyExceptionHandler]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int? id)

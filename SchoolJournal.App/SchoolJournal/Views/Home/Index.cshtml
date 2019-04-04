@@ -9,16 +9,16 @@
         @foreach (var stud in Model)
         {
             <div class="col-lg-3 align-content-center">
-                <div class="card-header align-content-center">@stud.StudentName</div>
-                <div class="card">
-                    <img class="card-img-top" src="~/UploadedFiles/@stud.StudentPhoto" alt="Student's image" style="height:270px;width:246px;align-content:center" />
-                    <div class="card-body">
-                        <p class="card-text">@stud.Observations</p>
-                        <input type="button" class="btn btn-primary" value="Note" onclick="location.href='@Url.Action("Index","Grade", new {id=stud.StudentID},null)'" />
-                        <input type="button" class="btn btn-primary" value="Orar" onclick="location.href='@Url.Action("Index","Timetable", new {id=stud.StudentID},null)'" />
-                        <input type="button" class="btn btn-primary" value="Teme" onclick="location.href='@Url.Action("Index","Homework", new {id=stud.StudentID},null)'" />
+                    <div class="card-header align-content-center">@stud.StudentName</div>
+                    <div class="card">
+                        <img class="card-img-top" src="~/UploadedFiles/@stud.StudentPhoto" alt="Student's image" style="height:270px;width:246px;align-content:center" />
+                        <div class="card-body">
+                            <p class="card-text">@stud.Observations</p>
+                            <input type="button" class="btn btn-primary" value="Note" onclick="location.href='@Url.Action("Index","Grade", new {id=stud.StudentID},null)'" />
+                            <input type="button" class="btn btn-primary" value="Orar" onclick="location.href='@Url.Action("Index","Timetable", new {id=stud.StudentID},null)'" />
+                            <input type="button" class="btn btn-primary" value="Teme" onclick="location.href='@Url.Action("Index","Homework", new {id=stud.StudentID},null)'" />
+                        </div>
                     </div>
-                </div>
             </div>
             <br />
         }
